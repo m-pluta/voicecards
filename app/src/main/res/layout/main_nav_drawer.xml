@@ -5,21 +5,68 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/imgClose"
+        android:layout_height="32dp"
+        android:layout_width="32dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_close" />
+
+    <ImageView
         android:id="@+id/imgProfile"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginTop="4dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
         android:src="@mipmap/ic_launcher_round" />
 
     <TextView
+        android:id="@+id/txtFullName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Full Name"
+        android:text="@string/full_name"
         android:textAlignment="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:textColor="#636363"
         android:textSize="16sp"
         android:textStyle="bold" />
+
+    <ScrollView
+        android:id="@+id/navView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        Add all nav items here-->
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/btnSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="18dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="18dp"
+            android:text="Settings"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>

@@ -20,7 +20,7 @@
         android:text=""
         android:textAlignment="center"
         android:textColor="#636363"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <ImageView
