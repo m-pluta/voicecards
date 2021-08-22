@@ -1,13 +1,19 @@
 package com.thundercandy.epq;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -25,6 +31,8 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         // Setting the content of layout your provided to the act_content frame
         getLayoutInflater().inflate(layoutResID, actContent, true);
         super.setContentView(fullLayout);
+
+        UI_changeOpenedActivity(this);
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
         addListeners();
@@ -55,19 +63,19 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             case R.id.closeDrawer:          // The X Button in the navigation drawer
                 closeDrawer(fullLayout);
                 break;
-            case R.id.btnHome:          // The X Button in the navigation drawer
+            case R.id.btnHome:              // The X Button in the navigation drawer
                 redirectActivity(this, HomeActivity.class);
                 break;
-            case R.id.btnCollections:          // The X Button in the navigation drawer
+            case R.id.btnCollections:       // The X Button in the navigation drawer
                 redirectActivity(this, CollectionsActivity.class);
                 break;
-            case R.id.btnStatistics:          // The X Button in the navigation drawer
+            case R.id.btnStatistics:        // The X Button in the navigation drawer
                 redirectActivity(this, StatisticsActivity.class);
                 break;
             case R.id.btnPomodoro:          // The X Button in the navigation drawer
                 redirectActivity(this, PomodoroActivity.class);
                 break;
-            case R.id.btnFriends:          // The X Button in the navigation drawer
+            case R.id.btnFriends:           // The X Button in the navigation drawer
                 redirectActivity(this, FriendsActivity.class);
                 break;
             case R.id.btnSettings:          // The X Button in the navigation drawer
@@ -91,7 +99,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         }
     }
 
-    public static void redirectActivity(Activity origin, Class destination) {
+    public static void redirectActivity(Activity origin, Class<?> destination) {
         if (!origin.getClass().equals(destination)) {
             Intent intent = new Intent(origin, destination);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -109,6 +117,31 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 //        super.onCreate(savedInstanceState);
 //        overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 //    }
+
+    private void UI_changeOpenedActivity(Activity context) {
+        if (context.getClass().equals(HomeActivity.class)) {
+            selectNavItem(R.id.navView_home_selected, R.id.navView_home_Icon, R.id.navView_home_SelectedIcon);
+        } else if (context.getClass().equals(CollectionsActivity.class)) {
+            selectNavItem(R.id.navView_collections_selected, R.id.navView_collections_Icon, R.id.navView_collections_SelectedIcon);
+        } else if (context.getClass().equals(StatisticsActivity.class)) {
+            selectNavItem(R.id.navView_statistics_selected, R.id.navView_statistics_Icon, R.id.navView_statistics_SelectedIcon);
+        } else if (context.getClass().equals(PomodoroActivity.class)) {
+            selectNavItem(R.id.navView_pomodoro_selected, R.id.navView_pomodoro_Icon, R.id.navView_pomodoro_SelectedIcon);
+        } else if (context.getClass().equals(FriendsActivity.class)) {
+            selectNavItem(R.id.navView_friends_selected, R.id.navView_friends_Icon, R.id.navView_friends_SelectedIcon);
+        }
+    }
+
+    private void selectNavItem(@IdRes int background, @IdRes int icon, @IdRes int selectedIcon) {
+        LinearLayout Bg = (LinearLayout) findViewById(background);
+        ImageView Ic = (ImageView) findViewById(icon);
+        ImageView sIc = (ImageView) findViewById(selectedIcon);
+
+        Bg.setBackgroundColor(Color.parseColor("#2af85f6a"));
+        Ic.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
+        sIc.setImageResource(R.drawable.ic_arrow_left);
+        sIc.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
+    }
 //
 //    //Code for making a window transition animation apply to only this activity and not globally
 //    @Override
