@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -36,6 +34,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         // Making the app full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // Removing the android system bottom navigation bar    //TODO: Find a better way to do this - maybe place this in the onCreate method instead
+        removeBottomNavigation();
+
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
         ImageView closeDrawer = (ImageView) findViewById(R.id.closeDrawer);
@@ -50,6 +51,18 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
         addListeners();
+    }
+
+    private void removeBottomNavigation() {
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {       // Use this if statement for backwards compatibility, When SDK_INT < 19
+        // }
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     private void addListeners() {
@@ -149,8 +162,8 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         sIc.setImageResource(R.drawable.ic_arrow_left);
 
         Bg.setBackgroundColor(Color.parseColor("#1af85f6a"));
-        Ic.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
-        sIc.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
+        Ic.setImageTintList(ColorStateList.valueOf(Color.rgb(248, 95, 106)));
+        sIc.setImageTintList(ColorStateList.valueOf(Color.rgb(248, 95, 106)));
     }
 //
 //    //Code for making a window transition animation apply to only this activity and not globally
