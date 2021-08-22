@@ -6,5 +6,5 @@
     <dimen name="navItem_paddingEnd">8dp</dimen>
     <dimen name="navItem_IconTextGap">12dp</dimen>
     <dimen name="navItem_textSize">16dp</dimen>
-    <dimen name="navItem_settings_vPadding">18dp</dimen>
+    <dimen name="navItem_settings_bottomPadding">18dp</dimen>
 </resources>

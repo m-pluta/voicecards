@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--TODO: adjust the padding on this to make it more easily clickable-->
         <ImageView
             android:id="@+id/closeDrawer"
             android:layout_width="28dp"
@@ -58,6 +59,9 @@
                 android:id="@+id/btnHome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/navItem_paddingVertical"
                 android:paddingStart="@dimen/navItem_paddingStart"
@@ -87,6 +91,9 @@
                 android:id="@+id/btnCollections"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/navItem_paddingVertical"
                 android:paddingStart="@dimen/navItem_paddingStart"
@@ -116,6 +123,9 @@
                 android:id="@+id/btnStatistics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/navItem_paddingVertical"
                 android:paddingStart="@dimen/navItem_paddingStart"
@@ -145,6 +155,9 @@
                 android:id="@+id/btnPomodoro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/navItem_paddingVertical"
                 android:paddingStart="@dimen/navItem_paddingStart"
@@ -174,6 +187,9 @@
                 android:id="@+id/btnFriends"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:paddingVertical="@dimen/navItem_paddingVertical"
                 android:paddingStart="@dimen/navItem_paddingStart"
@@ -207,9 +223,13 @@
         android:id="@+id/btnSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center_vertical"
-        android:paddingVertical="@dimen/navItem_settings_vPadding"
+        android:paddingBottom="@dimen/navItem_settings_bottomPadding"
         android:paddingStart="@dimen/navItem_paddingStart"
+        android:paddingTop="@dimen/navItem_paddingVertical"
         android:paddingEnd="@dimen/navItem_paddingEnd">
 
         <ImageView
