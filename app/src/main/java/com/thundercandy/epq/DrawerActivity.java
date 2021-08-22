@@ -35,14 +35,14 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
         ImageView closeDrawer = (ImageView) findViewById(R.id.closeDrawer);
-        closeDrawer.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
+        closeDrawer.setImageTintList(ColorStateList.valueOf(getResources().getColor(R.color.defaultRed_100)));
 
         // Updating the UI to highlight the current navigation drawer item
         UI_changeOpenedActivity(this);
 
         // Changing The shade of the Drawer scrim to a bit of a more transparent grey
         // TODO: Do this in the .xml instead of programmatically
-        fullLayout.setScrimColor(Color.parseColor("#40000000"));
+        fullLayout.setScrimColor(getResources().getColor(R.color.drawerScrim));
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
         addListeners();
@@ -64,53 +64,48 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnMenu:              // The Burger icon in the toolbar
-                // Open drawer
                 openDrawer(fullLayout);
                 break;
             case R.id.btnMore:              // The three dots in the toolbar
+                //TODO: Give this functionality
                 Toast.makeText(DrawerActivity.this, "Three dots clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.closeDrawer:          // The X Button in the navigation drawer
                 closeDrawer(fullLayout);
                 break;
-            case R.id.btnHome:              // The X Button in the navigation drawer
+            case R.id.btnHome:              // The Home Navigation Item in the navigation view
                 redirectActivity(this, HomeActivity.class);
                 break;
-            case R.id.btnCollections:       // The X Button in the navigation drawer
+            case R.id.btnCollections:       // The Collections Navigation Item in the navigation view
                 redirectActivity(this, CollectionsActivity.class);
                 break;
-            case R.id.btnStatistics:        // The X Button in the navigation drawer
+            case R.id.btnStatistics:        // The Statistics Navigation Item in the navigation view
                 redirectActivity(this, StatisticsActivity.class);
                 break;
-            case R.id.btnPomodoro:          // The X Button in the navigation drawer
+            case R.id.btnPomodoro:          // The Pomodoro Navigation Item in the navigation view
                 redirectActivity(this, PomodoroActivity.class);
                 break;
-            case R.id.btnFriends:           // The X Button in the navigation drawer
+            case R.id.btnFriends:           // The Friends Navigation Item in the navigation view
                 redirectActivity(this, FriendsActivity.class);
                 break;
-            case R.id.btnSettings:          // The X Button in the navigation drawer
+            case R.id.btnSettings:          // The Settings Item in the navigation drawer
                 redirectActivity(this, SettingsActivity.class);
                 break;
         }
     }
 
     public static void openDrawer(DrawerLayout drawerLayout) {
-        // Open drawer layout
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
-        // Close drawer layout
-        // Check condition
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            // When the drawer is open
-            // Close drawer
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {       // Check if the drawer is open
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
 
     public static void redirectActivity(Activity origin, Class<?> destination) {
-        if (!origin.getClass().equals(destination)) {
+        if (!origin.getClass().equals(destination)) {               // Checks if the user wants to go to where they already are
             Intent intent = new Intent(origin, destination);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             origin.startActivity(intent);
@@ -118,7 +113,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
     }
 
     public void setToolbarTitle(String title) {
-        TextView textView = fullLayout.findViewById(R.id.toolbarTitle);
+        TextView textView = (TextView) fullLayout.findViewById(R.id.toolbarTitle);
         textView.setText(title);
     }
 
@@ -147,9 +142,10 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         ImageView Ic = (ImageView) findViewById(icon);
         ImageView sIc = (ImageView) findViewById(selectedIcon);
 
+        sIc.setImageResource(R.drawable.ic_arrow_left);
+
         Bg.setBackgroundColor(Color.parseColor("#1af85f6a"));
         Ic.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
-        sIc.setImageResource(R.drawable.ic_arrow_left);
         sIc.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
     }
 //
