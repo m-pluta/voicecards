@@ -6,12 +6,14 @@
 
     <!--This LinearLayout contains elements in the navigation drawer's header-->
     <LinearLayout
-        android:id="@+id/navHeader"
+        android:id="@+id/drawerHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--This layout contains the closeDrawer button and potentially the app's name-->
         <LinearLayout
+            android:id="@+id/drawerHeader_upper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -25,16 +27,18 @@
                 android:paddingVertical="10dp"
                 android:src="@drawable/ic_close" />
 
-<!--            <TextView-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:layout_marginEnd="48dp"-->
-<!--                android:text="@string/app_name"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textAlignment="center"-->
-<!--                android:layout_gravity="center"/>-->
+            <TextView
+                android:id="@+id/txtUpperHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="48dp"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <ImageView
@@ -58,179 +62,236 @@
 
     </LinearLayout>
 
-    <!--This ScrollView contains all the navigation elements excluding settings -->
+    <!--This ScrollView contains the layout which holds all the navigation elements excluding settings -->
     <ScrollView
         android:id="@+id/navView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-
+        <!--This layout contains all the different navigation items-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--This layout is the background for navigation item-->
             <LinearLayout
-                android:id="@+id/btnHome"
+                android:id="@+id/navView_home_selected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/navItem_paddingVertical"
-                android:paddingStart="@dimen/navItem_paddingStart"
-                android:paddingEnd="@dimen/navItem_paddingEnd">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <!--This layout holds all icon, text and selected state icon for the nav item-->
+                <LinearLayout
+                    android:id="@+id/btnHome"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_home" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/navItem_paddingVertical"
+                    android:paddingStart="@dimen/navItem_paddingStart"
+                    android:paddingEnd="@dimen/navItem_paddingEnd">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/navItem_IconTextGap"
-                    android:layout_weight="1"
-                    android:text="@string/home"
-                    android:textSize="@dimen/navItem_textSize" />
+                    <ImageView
+                        android:id="@+id/navView_home_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_home" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/navView_home_Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/navItem_IconTextGap"
+                        android:layout_weight="1"
+                        android:text="@string/home"
+                        android:textSize="@dimen/navItem_textSize" />
+
+                    <ImageView
+                        android:id="@+id/navView_home_SelectedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--This layout is the background for navigation item-->
             <LinearLayout
-                android:id="@+id/btnCollections"
+                android:id="@+id/navView_collections_selected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/navItem_paddingVertical"
-                android:paddingStart="@dimen/navItem_paddingStart"
-                android:paddingEnd="@dimen/navItem_paddingEnd">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btnCollections"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_list" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/navItem_paddingVertical"
+                    android:paddingStart="@dimen/navItem_paddingStart"
+                    android:paddingEnd="@dimen/navItem_paddingEnd">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/navItem_IconTextGap"
-                    android:layout_weight="1"
-                    android:text="@string/collections"
-                    android:textSize="@dimen/navItem_textSize" />
+                    <ImageView
+                        android:id="@+id/navView_collections_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_list" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/navView_collections_Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/navItem_IconTextGap"
+                        android:layout_weight="1"
+                        android:text="@string/collections"
+                        android:textSize="@dimen/navItem_textSize" />
+
+                    <ImageView
+                        android:id="@+id/navView_collections_SelectedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--This layout is the background for navigation item-->
             <LinearLayout
-                android:id="@+id/btnStatistics"
+                android:id="@+id/navView_statistics_selected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/navItem_paddingVertical"
-                android:paddingStart="@dimen/navItem_paddingStart"
-                android:paddingEnd="@dimen/navItem_paddingEnd">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btnStatistics"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_bar_chart" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/navItem_paddingVertical"
+                    android:paddingStart="@dimen/navItem_paddingStart"
+                    android:paddingEnd="@dimen/navItem_paddingEnd">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/navItem_IconTextGap"
-                    android:layout_weight="1"
-                    android:text="@string/statistics"
-                    android:textSize="@dimen/navItem_textSize" />
+                    <ImageView
+                        android:id="@+id/navView_statistics_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_bar_chart" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/navView_statistics_Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/navItem_IconTextGap"
+                        android:layout_weight="1"
+                        android:text="@string/statistics"
+                        android:textSize="@dimen/navItem_textSize" />
+
+                    <ImageView
+                        android:id="@+id/navView_statistics_SelectedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--This layout is the background for navigation item-->
             <LinearLayout
-                android:id="@+id/btnPomodoro"
+                android:id="@+id/navView_pomodoro_selected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/navItem_paddingVertical"
-                android:paddingStart="@dimen/navItem_paddingStart"
-                android:paddingEnd="@dimen/navItem_paddingEnd">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btnPomodoro"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_timer" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/navItem_paddingVertical"
+                    android:paddingStart="@dimen/navItem_paddingStart"
+                    android:paddingEnd="@dimen/navItem_paddingEnd">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/navItem_IconTextGap"
-                    android:layout_weight="1"
-                    android:text="@string/pomodoro"
-                    android:textSize="@dimen/navItem_textSize" />
+                    <ImageView
+                        android:id="@+id/navView_pomodoro_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_timer" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/navView_pomodoro_Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/navItem_IconTextGap"
+                        android:layout_weight="1"
+                        android:text="@string/pomodoro"
+                        android:textSize="@dimen/navItem_textSize" />
+
+                    <ImageView
+                        android:id="@+id/navView_pomodoro_SelectedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
+            <!--This layout is the background for navigation item-->
             <LinearLayout
-                android:id="@+id/btnFriends"
+                android:id="@+id/navView_friends_selected"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:paddingVertical="@dimen/navItem_paddingVertical"
-                android:paddingStart="@dimen/navItem_paddingStart"
-                android:paddingEnd="@dimen/navItem_paddingEnd">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btnFriends"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_friends" />
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingVertical="@dimen/navItem_paddingVertical"
+                    android:paddingStart="@dimen/navItem_paddingStart"
+                    android:paddingEnd="@dimen/navItem_paddingEnd">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/navItem_IconTextGap"
-                    android:layout_weight="1"
-                    android:text="@string/friends"
-                    android:textSize="@dimen/navItem_textSize" />
+                    <ImageView
+                        android:id="@+id/navView_friends_Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_friends" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_arrow_right" />
+                    <TextView
+                        android:id="@+id/navView_friends_Text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/navItem_IconTextGap"
+                        android:layout_weight="1"
+                        android:text="@string/friends"
+                        android:textSize="@dimen/navItem_textSize" />
+
+                    <ImageView
+                        android:id="@+id/navView_friends_SelectedIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
     <!--This LinearLayout contains the button for accessing app settings-->
@@ -242,10 +303,10 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
-        android:paddingBottom="@dimen/navItem_settings_bottomPadding"
         android:paddingStart="@dimen/navItem_paddingStart"
         android:paddingTop="@dimen/navItem_paddingVertical"
-        android:paddingEnd="@dimen/navItem_paddingEnd">
+        android:paddingEnd="@dimen/navItem_paddingEnd"
+        android:paddingBottom="@dimen/navItem_settings_bottomPadding">
 
         <ImageView
             android:layout_width="wrap_content"
