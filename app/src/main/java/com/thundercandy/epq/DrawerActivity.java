@@ -147,7 +147,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         ImageView Ic = (ImageView) findViewById(icon);
         ImageView sIc = (ImageView) findViewById(selectedIcon);
 
-        Bg.setBackgroundColor(Color.parseColor("#2af85f6a"));
+        Bg.setBackgroundColor(Color.parseColor("#1af85f6a"));
         Ic.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
         sIc.setImageResource(R.drawable.ic_arrow_left);
         sIc.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
