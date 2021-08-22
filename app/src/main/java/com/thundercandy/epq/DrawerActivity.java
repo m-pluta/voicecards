@@ -33,6 +33,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
     private void addListeners() {
         findViewById(R.id.btnMenu).setOnClickListener(this);
         findViewById(R.id.btnMore).setOnClickListener(this);
+        findViewById(R.id.closeDrawer).setOnClickListener(this);
         findViewById(R.id.imgProfile).setOnClickListener(this);
     }
 
@@ -47,6 +48,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
                 Toast.makeText(DrawerActivity.this, "Three dots clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.imgProfile:           // The Profile picture in the navigation drawer
+                closeDrawer(fullLayout);
+                break;
+            case R.id.closeDrawer:          // The X Button in the navigation drawer
                 closeDrawer(fullLayout);
                 break;
         }

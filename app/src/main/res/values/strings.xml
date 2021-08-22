@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">EPQ</string>
     <string name="full_name">Full Name</string>
+    <string name="home">Home</string>
+    <string name="collections">Collections</string>
+    <string name="statistics">Statistics</string>
+    <string name="pomodoro">Pomodoro</string>
+    <string name="friends">Friends</string>
+    <string name="settings">Settings</string>
 </resources>
