@@ -34,7 +34,12 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         findViewById(R.id.btnMenu).setOnClickListener(this);
         findViewById(R.id.btnMore).setOnClickListener(this);
         findViewById(R.id.closeDrawer).setOnClickListener(this);
-        findViewById(R.id.imgProfile).setOnClickListener(this);
+        findViewById(R.id.btnHome).setOnClickListener(this);
+        findViewById(R.id.btnCollections).setOnClickListener(this);
+        findViewById(R.id.btnStatistics).setOnClickListener(this);
+        findViewById(R.id.btnPomodoro).setOnClickListener(this);
+        findViewById(R.id.btnFriends).setOnClickListener(this);
+        findViewById(R.id.btnSettings).setOnClickListener(this);
     }
 
     @Override
@@ -47,11 +52,26 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             case R.id.btnMore:              // The three dots in the toolbar
                 Toast.makeText(DrawerActivity.this, "Three dots clicked", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.imgProfile:           // The Profile picture in the navigation drawer
-                closeDrawer(fullLayout);
-                break;
             case R.id.closeDrawer:          // The X Button in the navigation drawer
                 closeDrawer(fullLayout);
+                break;
+            case R.id.btnHome:          // The X Button in the navigation drawer
+                redirectActivity(this, HomeActivity.class);
+                break;
+            case R.id.btnCollections:          // The X Button in the navigation drawer
+                redirectActivity(this, CollectionsActivity.class);
+                break;
+            case R.id.btnStatistics:          // The X Button in the navigation drawer
+                redirectActivity(this, StatisticsActivity.class);
+                break;
+            case R.id.btnPomodoro:          // The X Button in the navigation drawer
+                redirectActivity(this, PomodoroActivity.class);
+                break;
+            case R.id.btnFriends:          // The X Button in the navigation drawer
+                redirectActivity(this, FriendsActivity.class);
+                break;
+            case R.id.btnSettings:          // The X Button in the navigation drawer
+                redirectActivity(this, SettingsActivity.class);
                 break;
         }
     }
