@@ -32,7 +32,17 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         getLayoutInflater().inflate(layoutResID, actContent, true);
         super.setContentView(fullLayout);
 
+        // Changing color of closeDrawer button in the nav_drawer to red
+        // TODO: Do this in the .xml instead of programmatically
+        ImageView closeDrawer = (ImageView) findViewById(R.id.closeDrawer);
+        closeDrawer.setImageTintList(ColorStateList.valueOf(Color.rgb(248,95, 106)));
+
+        // Updating the UI to highlight the current navigation drawer item
         UI_changeOpenedActivity(this);
+
+        // Changing The shade of the Drawer scrim to a bit of a more transparent grey
+        // TODO: Do this in the .xml instead of programmatically
+        fullLayout.setScrimColor(Color.parseColor("#40000000"));
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
         addListeners();
