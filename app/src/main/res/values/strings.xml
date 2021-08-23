@@ -1,5 +1,8 @@
 <resources>
+    <!--Main-->
     <string name="app_name">EPQ</string>
+
+    <!--Navigation Drawer-->
     <string name="full_name">Full Name</string>
     <string name="home">Home</string>
     <string name="collections">Collections</string>
@@ -23,4 +26,12 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!--Login Activities-->
+    <string name="email">Email</string>
+    <string name="example_email">user@email.com</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="continue_as_guest">Continue As Guest</string>
+    <string name="or">OR</string>
 </resources>
