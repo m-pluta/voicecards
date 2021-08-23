@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_marginEnd="54dp"
             android:layout_weight="1"
-            android:text="@string/app_name"
+            android:text=""
             android:textAlignment="center"
             android:textColor="#636363"
             android:textSize="22sp"

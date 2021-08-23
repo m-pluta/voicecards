@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Standard dimensions for all elements in the navigation drawer-->
+    <dimen name="navDrawer_width">200dp</dimen>
     <dimen name="navItem_paddingVertical">12dp</dimen>
     <dimen name="navItem_paddingStart">16dp</dimen>
     <dimen name="navItem_paddingEnd">8dp</dimen>
