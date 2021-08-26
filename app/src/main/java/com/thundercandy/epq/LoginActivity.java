@@ -40,10 +40,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignIn = findViewById(R.id.btnSignIn);
         switchRememberMe = findViewById(R.id.switchRememberMe);
 
-        // Set the dimensions of the sign-in button.
-        SignInButton btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
-        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE);
-        btnGoogleSignIn.setColorScheme(SignInButton.COLOR_AUTO);
+//        // Set the dimensions of the sign-in button.
+//        SignInButton btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
+//        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE);
+//        btnGoogleSignIn.setColorScheme(SignInButton.COLOR_AUTO);
 
         // Toggle for showing/hiding the entered password
         passwordField.setEndIconOnClickListener(v -> {
