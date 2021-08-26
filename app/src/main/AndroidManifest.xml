@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EPQ.NoActionBar">
         <activity
+            android:name=".MainLoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".HomeActivity"
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
@@ -33,7 +36,7 @@
             android:name=".CollectionsActivity"
             android:exported="true" />
         <activity
-            android:name=".MainLoginActivity"
+            android:name=".Splashscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

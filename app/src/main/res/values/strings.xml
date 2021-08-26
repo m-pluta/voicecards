@@ -1,6 +1,6 @@
 <resources>
     <!--Main-->
-    <string name="app_name">EPQ</string>
+    <string name="app_name">VoiceCards</string>
 
     <!--Navigation Drawer-->
     <string name="full_name">Full Name</string>
