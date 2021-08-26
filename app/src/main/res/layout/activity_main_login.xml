@@ -43,11 +43,12 @@
             android:textSize="32sp" />
 
         <TextView
+            android:id="@+id/btnHaveAccount_LogIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:text="Already have an account? Log In"
+            android:text="@string/already_a_user_log_in"
             android:textSize="16sp" />
 
         <!--        <com.google.android.gms.common.SignInButton-->

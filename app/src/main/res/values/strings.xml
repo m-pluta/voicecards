@@ -38,4 +38,5 @@
     <string name="no_account_signup">Don\'t have an account? Sign up</string>
     <string name="remember_me">Remember me</string>
     <string name="developed_by">Developed by Michal Pluta</string>
+    <string name="already_a_user_log_in">Already a user? Log In</string>
 </resources>

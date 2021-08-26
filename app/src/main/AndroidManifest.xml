@@ -11,6 +11,7 @@
         android:theme="@style/Theme.EPQ.NoActionBar">
         <activity
             android:name=".MainLoginActivity"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
             android:name=".HomeActivity"
@@ -37,6 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".Splashscreen"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
