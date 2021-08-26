@@ -8,4 +8,8 @@
     <dimen name="navItem_IconTextGap">12dp</dimen>
     <dimen name="navItem_textSize">16sp</dimen>
     <dimen name="navItem_settings_bottomPadding">18dp</dimen>
+
+    <!--Standard dimensions in the Login Activities-->
+    <dimen name="text_indent">3dp</dimen>
+    <dimen name="field_indent">6dp</dimen>
 </resources>
