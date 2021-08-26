@@ -57,29 +57,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imgApp" />
 
 
-    <LinearLayout
-        android:id="@+id/btnContainer"
+    <Button
+        android:id="@+id/btnSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/defaultRed_100"
+        android:backgroundTint="@color/defaultRed_100"
+        android:text="@string/sign_in"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/guideline7">
-
-        <Button
-            android:id="@+id/btnSignIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:text="@string/sign_in"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-
-    </LinearLayout>
-
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
     <TextView
         android:id="@+id/or_text"
@@ -89,9 +79,9 @@
         android:text="@string/or"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/btnContainer"
-        app:layout_constraintStart_toStartOf="@+id/btnContainer"
-        app:layout_constraintTop_toBottomOf="@+id/btnContainer" />
+        app:layout_constraintEnd_toEndOf="@+id/btnSignIn"
+        app:layout_constraintStart_toStartOf="@+id/btnSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
     <Button
         android:id="@+id/btnContinueAsGuest"
