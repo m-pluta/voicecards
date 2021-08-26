@@ -36,10 +36,10 @@
         app:layout_constraintTop_toTopOf="@+id/hGuideLineTop">
 
         <TextView
-            android:id="@+id/sign_in_text"
+            android:id="@+id/log_in_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in"
+            android:text="@string/log_in"
             android:textSize="26sp"
             android:textStyle="bold" />
 
@@ -121,14 +121,14 @@
             android:padding="5dp"/>
 
         <Button
-            android:id="@+id/btnSignIn"
+            android:id="@+id/btnLogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="@color/defaultRed_100"
             android:padding="18dp"
-            android:text="@string/sign_in"
+            android:text="@string/log_in"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp" />

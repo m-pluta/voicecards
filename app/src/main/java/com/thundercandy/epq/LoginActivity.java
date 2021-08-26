@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // Init variables
     TextInputLayout passwordField;
     TextView signupTextButton;
-    Button btnSignIn;
+    Button btnLogIn;
     SwitchCompat switchRememberMe;
     
     @Override
@@ -37,13 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Assign variables
         passwordField = (TextInputLayout) findViewById(R.id.PasswordField);
         signupTextButton = findViewById(R.id.NoAccount_Register);
-        btnSignIn = findViewById(R.id.btnSignIn);
+        btnLogIn = findViewById(R.id.btnLogIn);
         switchRememberMe = findViewById(R.id.switchRememberMe);
-
-//        // Set the dimensions of the sign-in button.
-//        SignInButton btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
-//        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE);
-//        btnGoogleSignIn.setColorScheme(SignInButton.COLOR_AUTO);
 
         // Toggle for showing/hiding the entered password
         passwordField.setEndIconOnClickListener(v -> {
@@ -58,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // Makes the 'Register' bold and red
         setupRegisterButtonUI();
 
-        btnSignIn.setOnClickListener(this);
+        btnLogIn.setOnClickListener(this);
         signupTextButton.setOnClickListener(this);
 
         // Debug for Switch
@@ -88,8 +83,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnSignIn:
-                Toast.makeText(LoginActivity.this, "Sign In button clicked", Toast.LENGTH_SHORT).show();
+            case R.id.btnLogIn:
+                Toast.makeText(LoginActivity.this, "Log In button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.NoAccount_Register:
                 Toast.makeText(LoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();

@@ -12,7 +12,7 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
-//        findViewById(R.id.btnSignIn).setOnClickListener(this);
+        findViewById(R.id.btnSignUp).setOnClickListener(this);
         findViewById(R.id.btnContinueAsGuest).setOnClickListener(this);
     }
 
@@ -20,7 +20,7 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.btnSignIn:
+            case R.id.btnSignUp:
                 intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
                 break;
