@@ -18,14 +18,15 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        Intent intent;
         switch (v.getId()) {
             case R.id.btnSignIn:
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivity(intent);      //TODO: Make this nicer, why use intent1 and intent2?
+                intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btnContinueAsGuest:
-                Intent intent2 = new Intent(this, HomeActivity.class);
-                startActivity(intent2);
+                intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
                 break;
         }
 
