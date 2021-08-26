@@ -9,7 +9,6 @@ import android.text.Spanned;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextInputLayout passwordField;
     TextView registerTextButton;
     Button btnSignIn;
+    SwitchCompat switchRememberMe;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwordField = (TextInputLayout) findViewById(R.id.PasswordField);
         registerTextButton = findViewById(R.id.NoAccount_Register);
         btnSignIn = findViewById(R.id.btnSignIn);
+        switchRememberMe = findViewById(R.id.switchRememberMe);
 
         passwordField.setEndIconOnClickListener(v -> {
             EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -50,6 +52,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnSignIn.setOnClickListener(this);
         registerTextButton.setOnClickListener(this);
+
+        switchRememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                Toast.makeText(LoginActivity.this, "Remember me: true", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LoginActivity.this, "Remember me: false", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setupRegisterButtonUI() {

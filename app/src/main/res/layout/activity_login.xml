@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08" />
+        app:layout_constraintGuide_percent="0.04" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mainGuidelineLeft"
@@ -107,28 +107,41 @@
         <!--            android:paddingStart="10dp"-->
         <!--            android:text="@string/policy" />-->
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchRememberMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/remember_me"
+            android:thumb="@drawable/switch_thumb"
+            app:track="@drawable/switch_track"
+            app:switchPadding="10dp"
+            android:padding="5dp"/>
+
         <Button
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:padding="18dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/defaultRed_100"
+            android:padding="18dp"
             android:text="@string/sign_in"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:layout_marginHorizontal="20dp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/NoAccount_Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/no_account_register"
             android:layout_gravity="center_horizontal"
-            android:textSize="16sp"
-            android:padding="8dp"/>
+            android:layout_marginTop="25dp"
+            android:padding="8dp"
+            android:text="@string/no_account_register"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
