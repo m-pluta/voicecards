@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mainGuidelineLeft"
@@ -108,6 +108,7 @@
         <!--            android:text="@string/policy" />-->
 
         <Button
+            android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -123,11 +124,11 @@
             android:id="@+id/NoAccount_Register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:text="@string/no_account_register"
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
-            android:padding="10dp"/>
+            android:padding="8dp"/>
 
     </LinearLayout>
 
