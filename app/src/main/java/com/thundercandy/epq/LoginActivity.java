@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // Init variables
     TextInputLayout passwordField;
-    TextView registerTextButton;
+    TextView signupTextButton;
     Button btnSignIn;
     SwitchCompat switchRememberMe;
     
@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         
         // Assign variables
         passwordField = (TextInputLayout) findViewById(R.id.PasswordField);
-        registerTextButton = findViewById(R.id.NoAccount_Register);
+        signupTextButton = findViewById(R.id.NoAccount_Register);
         btnSignIn = findViewById(R.id.btnSignIn);
         switchRememberMe = findViewById(R.id.switchRememberMe);
 
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setupRegisterButtonUI();
 
         btnSignIn.setOnClickListener(this);
-        registerTextButton.setOnClickListener(this);
+        signupTextButton.setOnClickListener(this);
 
         // Debug for Switch
         switchRememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -73,16 +73,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void setupRegisterButtonUI() {
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        SpannableString ss = new SpannableString(getString(R.string.no_account_register));
+        SpannableString ss = new SpannableString(getString(R.string.no_account_signup));
 
         StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
         ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.defaultRed_100));
 
-        ss.setSpan(boldSpan, 23, 31, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(fcs, 23, 31, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(boldSpan, 23, 30, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(fcs, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         builder.append(ss);
-        registerTextButton.setText(ss);
+        signupTextButton.setText(ss);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "Sign In button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.NoAccount_Register:
-                Toast.makeText(LoginActivity.this, "Register button clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

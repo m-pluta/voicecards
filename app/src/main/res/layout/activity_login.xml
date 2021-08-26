@@ -112,7 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:text="@string/remember_me"
             android:thumb="@drawable/switch_thumb"
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:backgroundTint="@color/defaultRed_100"
             android:padding="18dp"
             android:text="@string/sign_in"
@@ -133,22 +133,13 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/NoAccount_Register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
-            android:padding="8dp"
-            android:text="@string/no_account_register"
-            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/or_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="@string/or"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -158,9 +149,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical|center"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/NoAccount_Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:padding="8dp"
+        android:text="@string/no_account_signup"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/mainGuidelineLeft"
+        app:layout_constraintEnd_toStartOf="@id/mainGuidelineRight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
