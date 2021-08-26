@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -39,6 +40,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnSignIn = findViewById(R.id.btnSignIn);
         switchRememberMe = findViewById(R.id.switchRememberMe);
 
+        // Set the dimensions of the sign-in button.
+        SignInButton btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
+        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE);
+        btnGoogleSignIn.setColorScheme(SignInButton.COLOR_AUTO);
+
+        // Toggle for showing/hiding the entered password
         passwordField.setEndIconOnClickListener(v -> {
             EditText txtPassword = (EditText) findViewById(R.id.txtPassword);
             if (txtPassword.getTransformationMethod() == null) {
@@ -48,11 +55,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
+        // Makes the 'Register' bold and red
         setupRegisterButtonUI();
 
         btnSignIn.setOnClickListener(this);
         registerTextButton.setOnClickListener(this);
 
+        // Debug for Switch
         switchRememberMe.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 Toast.makeText(LoginActivity.this, "Remember me: true", Toast.LENGTH_SHORT).show();
