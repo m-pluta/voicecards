@@ -31,6 +31,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         getLayoutInflater().inflate(layoutResID, actContent, true);
         super.setContentView(fullLayout);
 
+        // Makes the transition between DrawerActivities smooth
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
         // Making the app full screen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -121,9 +124,13 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         }
     }
 
-    public static void redirectActivity(Activity origin, Class<?> destination) {
+//Commented is the code for making the transition between activities fast
+//    public static void redirectActivity(Activity origin, Class<?> destination) {
+    public void redirectActivity(Activity origin, Class<?> destination) {
         if (!origin.getClass().equals(destination)) {               // Checks if the user wants to go to where they already are
             Intent intent = new Intent(origin, destination);
+//            overridePendingTransition(0, 0);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             origin.startActivity(intent);
         }
