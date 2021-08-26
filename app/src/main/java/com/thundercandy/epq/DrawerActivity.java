@@ -49,7 +49,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         UI_changeOpenedActivity(this);
 
         // Changing The shade of the Drawer scrim to a bit of a more transparent grey
-        // TODO: Do this in the .xml instead of programmatically
         fullLayout.setScrimColor(getResources().getColor(R.color.drawerScrim));
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
