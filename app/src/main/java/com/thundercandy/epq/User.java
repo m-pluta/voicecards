@@ -1,5 +1,7 @@
 package com.thundercandy.epq;
 
+import android.net.Uri;
+
 public class User {
     /**
      * Constant for when the user entered the app as a guest
@@ -24,4 +26,7 @@ public class User {
      * May be unnecessary as it can be stored in sharedPreferences
      */
     public static boolean PREFERENCE_REMEMBER_ME = false;
+
+    public static String DisplayName = "Guest";
+    public static Uri imageUri = null;
 }

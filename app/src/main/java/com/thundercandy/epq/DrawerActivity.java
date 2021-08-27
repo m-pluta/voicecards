@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.bumptech.glide.Glide;
+
 public abstract class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
     protected DrawerLayout fullLayout;
     protected FrameLayout actContent;
@@ -53,6 +55,25 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 
         // Adding OnClickListeners to all the buttons in the DrawerActivity
         addListeners();
+
+        updateDrawerWithUser();
+    }
+
+    private void updateDrawerWithUser() {
+        // Setting the display name in the nav drawer if the user logged in through Google
+        TextView txtFullName = (TextView) findViewById(R.id.txtFullName);
+        txtFullName.setText(User.DisplayName);
+
+        ImageView imgProfile = findViewById(R.id.imgProfile);
+        if (User.imageUri != null) {
+            System.out.println(User.imageUri.toString());
+            Glide.with(this)
+                    .asBitmap()
+                    .load(User.imageUri)
+                    .into(imgProfile);
+        } else {
+            imgProfile.setImageResource(R.mipmap.ic_launcher_round);
+        }
     }
 
     private void removeBottomNavigation() {
