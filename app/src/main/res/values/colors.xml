@@ -11,4 +11,5 @@
     <color name="defaultRed_10">#1AF85F6A</color>
     <color name="drawerScrim">#40000000</color>
     <color name="drawerActivity_background">#FFC1E7FF</color>
+    <color name="searchbar_bg">#FFE8EAEd</color>
 </resources>
