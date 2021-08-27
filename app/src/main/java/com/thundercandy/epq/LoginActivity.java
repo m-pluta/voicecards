@@ -1,5 +1,6 @@
 package com.thundercandy.epq;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -90,5 +91,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainLoginActivity.class);
+
+        // Clears the Back stack so the user can't go back to previous activity
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+        super.onBackPressed();
     }
 }

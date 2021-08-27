@@ -1,9 +1,9 @@
 package com.thundercandy.epq;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Splashscreen extends AppCompatActivity {
 
@@ -29,5 +29,17 @@ public class Splashscreen extends AppCompatActivity {
         };
         background.start();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            finishAndRemoveTask();
+//        } else {
+//            finish();
+//        }
+        finishAndRemoveTask();
+
+        super.onBackPressed();
     }
 }

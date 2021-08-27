@@ -143,7 +143,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    // [START onActivityResult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,9 +155,7 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
             handleSignInResult(task);
         }
     }
-    // [END onActivityResult]
 
-    // [START handleSignInResult]
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -169,5 +166,10 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
             proceedAsGoogleUser(null);
         }
     }
-    // [END handleSignInResult]
+
+    @Override
+    public void onBackPressed() {
+        finishAndRemoveTask();
+        super.onBackPressed();
+    }
 }

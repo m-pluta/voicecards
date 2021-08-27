@@ -226,4 +226,22 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 //    }
 
 
+    @Override
+    public void onBackPressed() {
+        Class<?> destination;
+        if (this.getClass().equals(HomeActivity.class)) {
+            destination = MainLoginActivity.class;
+        } else {
+            destination = HomeActivity.class;
+        }
+
+        Intent intent = new Intent(this, destination);
+
+        // Clears the Back stack so the user can't go back to previous activity
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(intent);
+
+        super.onBackPressed();
+    }
 }
