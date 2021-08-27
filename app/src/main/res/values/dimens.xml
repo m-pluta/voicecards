@@ -12,4 +12,10 @@
     <!--Standard dimensions in the Login Activities-->
     <dimen name="text_indent">3dp</dimen>
     <dimen name="field_indent">6dp</dimen>
+
+    <!--Card View dimensions-->
+    <dimen name="header_height">50dp</dimen>
+    <dimen name="header_corner_radius">20dp</dimen>
+    <dimen name="card_item_height">@dimen/header_height</dimen>
+    <diemn name="card_item_spacer_margins">25dp</diemn>
 </resources>

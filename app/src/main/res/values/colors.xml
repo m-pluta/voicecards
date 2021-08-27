@@ -7,9 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Custom colours-->
     <color name="defaultRed_100">#FFF85F6A</color>
     <color name="defaultRed_10">#1AF85F6A</color>
+
+    <!--Navigation Drawer-->
     <color name="drawerScrim">#40000000</color>
     <color name="drawerActivity_background">#FFC1E7FF</color>
+
+    <!--Collections Activity-->
     <color name="searchbar_bg">#FFE8EAEd</color>
+
+    <!--Collections Activity - Card View-->
+    <color name="card_header_bg">#FFF6F6F6</color>
+    <color name="card_item_bg">@color/white</color>
 </resources>
