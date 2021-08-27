@@ -27,6 +27,18 @@ public class User {
      */
     public static boolean PREFERENCE_REMEMBER_ME = false;
 
-    public static String DisplayName = "Guest";
+    public static String DisplayName = null;
     public static Uri imageUri = null;
+
+    public static String DEFAULT_DISPLAY_NAME = "Guest";
+    public static int DEFAULT_PROFILE_PICTURE = R.mipmap.ic_launcher_round;
+
+    public static void resetUser() {
+        LOGIN_TYPE = -1;
+        DisplayName = null;
+        imageUri = null;
+    }
+
+
+
 }

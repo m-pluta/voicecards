@@ -77,7 +77,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
 
     private void proceed(@Nullable GoogleSignInAccount account) {
         if (account != null) {
-            Toast.makeText(this, "Logged in as " + account.getDisplayName(), Toast.LENGTH_SHORT).show();
             User.DisplayName = account.getDisplayName();
             User.imageUri = account.getPhotoUrl();
             Intent intent = new Intent(this, HomeActivity.class);
