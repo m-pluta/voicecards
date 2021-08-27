@@ -13,13 +13,13 @@ import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.google.android.gms.common.SignInButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,17 +28,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextInputLayout passwordField;
     TextView signupTextButton;
     Button btnLogIn;
+    ImageView btnBack;
     SwitchCompat switchRememberMe;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        
+
         // Assign variables
         passwordField = (TextInputLayout) findViewById(R.id.PasswordField);
         signupTextButton = findViewById(R.id.NoAccount_Register);
         btnLogIn = findViewById(R.id.btnLogIn);
+        btnBack = findViewById(R.id.btnBack);
         switchRememberMe = findViewById(R.id.switchRememberMe);
 
         // Toggle for showing/hiding the entered password
@@ -55,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setupRegisterButtonUI();
 
         btnLogIn.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
         signupTextButton.setOnClickListener(this);
 
         // Debug for Switch
@@ -90,6 +93,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.NoAccount_Register:
                 Toast.makeText(LoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.btnBack:
+                onBackPressed();
         }
     }
 

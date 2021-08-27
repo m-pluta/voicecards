@@ -7,13 +7,6 @@
     tools:context=".LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/hGuideLineTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.04" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/mainGuidelineLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,13 +20,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.92" />
 
+    <include layout="@layout/back_toolbar" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toStartOf="@+id/mainGuidelineRight"
         app:layout_constraintStart_toStartOf="@+id/mainGuidelineLeft"
-        app:layout_constraintTop_toTopOf="@+id/hGuideLineTop">
+        app:layout_constraintTop_toBottomOf="@+id/back_toolbar">
+
 
         <TextView
             android:id="@+id/log_in_text"
@@ -114,11 +110,11 @@
             android:layout_gravity="end"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
+            android:padding="5dp"
             android:text="@string/remember_me"
             android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track"
             app:switchPadding="10dp"
-            android:padding="5dp"/>
+            app:track="@drawable/switch_track" />
 
         <Button
             android:id="@+id/btnLogIn"
@@ -141,12 +137,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
         android:padding="8dp"
         android:text="@string/no_account_signup"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/mainGuidelineLeft"
-        app:layout_constraintEnd_toStartOf="@id/mainGuidelineRight"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintEnd_toStartOf="@id/mainGuidelineRight"
+        app:layout_constraintStart_toEndOf="@id/mainGuidelineLeft" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
