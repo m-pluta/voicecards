@@ -71,12 +71,16 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
 
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        proceed(account);
+        if (User.autoGoogleSignIn) {
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            proceedAsGoogleUser(account);
+            User.autoGoogleSignIn = false;
+        }
     }
 
-    private void proceed(@Nullable GoogleSignInAccount account) {
+    private void proceedAsGoogleUser(@Nullable GoogleSignInAccount account) {
         if (account != null) {
+            User.setGoogleUser();
             User.DisplayName = account.getDisplayName();
             User.imageUri = account.getPhotoUrl();
             Intent intent = new Intent(this, HomeActivity.class);
@@ -127,11 +131,11 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(MainLoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnContinueAsGuest:
+                User.setGuestUser();
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 break;
         }
-
     }
 
     private void GoogleSignIn() {
@@ -160,9 +164,9 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            proceed(account);
+            proceedAsGoogleUser(account);
         } catch (ApiException e) {
-            proceed(null);
+            proceedAsGoogleUser(null);
         }
     }
     // [END handleSignInResult]

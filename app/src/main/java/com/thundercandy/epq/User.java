@@ -33,12 +33,23 @@ public class User {
     public static String DEFAULT_DISPLAY_NAME = "Guest";
     public static int DEFAULT_PROFILE_PICTURE = R.mipmap.ic_launcher_round;
 
+    public static boolean autoGoogleSignIn = true;
+
     public static void resetUser() {
         LOGIN_TYPE = -1;
         DisplayName = null;
         imageUri = null;
     }
 
+    public static void setGuestUser() {
+        LOGIN_TYPE = LOGIN_GUEST;
+    }
 
+    public static void setGoogleUser() {
+        LOGIN_TYPE = LOGIN_GOOGLE;
+    }
 
+    public static void setAppUser() {
+        LOGIN_TYPE = LOGIN_APP;
+    }
 }

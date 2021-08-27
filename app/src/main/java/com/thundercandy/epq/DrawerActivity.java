@@ -80,8 +80,10 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
                     .load(User.imageUri)
                     .into(imgProfile);
         } else {
-            imgProfile.setImageResource(R.mipmap.ic_launcher_round);
+            imgProfile.setImageResource(User.DEFAULT_PROFILE_PICTURE);
         }
+
+        Toast.makeText(this, "User type: " + User.LOGIN_TYPE, Toast.LENGTH_SHORT).show();
     }
 
     private void removeBottomNavigation() {
@@ -152,7 +154,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         googleSignInClient.revokeAccess()
                 .addOnCompleteListener(this, task -> {
                     User.resetUser();
-                    Intent intent = new Intent(DrawerActivity.this, Splashscreen.class);
+                    Intent intent = new Intent(DrawerActivity.this, MainLoginActivity.class);
                     startActivity(intent);
                 });
     }
