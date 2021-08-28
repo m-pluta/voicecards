@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -41,6 +42,14 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             holder.btnRemoveCategory.setVisibility(View.VISIBLE);
             holder.header_buffer.setVisibility(View.GONE);
 
+            holder.cardRecView.setVisibility(View.VISIBLE);
+
+            CardRecViewAdapter adapter = new CardRecViewAdapter(mContext);
+            holder.cardRecView.setAdapter(adapter);
+            holder.cardRecView.setLayoutManager(new LinearLayoutManager(mContext));
+            adapter.setCategories(categories.get(position).getCards());
+
+
             holder.btnAddNewItem.setVisibility(View.VISIBLE);
         } else {
             holder.imgExpandedState.setImageResource(R.drawable.ic_card_closed);
@@ -48,6 +57,8 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
             holder.btnRemoveCategory.setVisibility(View.GONE);
             holder.header_buffer.setVisibility(View.VISIBLE);
+
+            holder.cardRecView.setVisibility(View.GONE);
 
             holder.btnAddNewItem.setVisibility(View.GONE);
         }
