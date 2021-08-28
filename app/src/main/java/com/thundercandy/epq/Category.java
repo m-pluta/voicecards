@@ -7,7 +7,7 @@ public class Category {
     private int category_id;
     private String category_name;
     private ArrayList<String> items;
-    private boolean expanded = false;
+    private boolean isExpanded = false;
 
     public Category(int category_id, String category_name, ArrayList<String> items) {
         this.category_id = category_id;
@@ -37,7 +37,7 @@ public class Category {
     }
 
     public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
+        this.isExpanded = expanded;
     }
 
     public void flipExpanded() {
@@ -45,6 +45,6 @@ public class Category {
     }
 
     public boolean isExpanded() {
-        return expanded;
+        return isExpanded;
     }
 }

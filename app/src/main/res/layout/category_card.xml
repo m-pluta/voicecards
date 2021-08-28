@@ -12,25 +12,9 @@
         android:background="@color/drawerActivity_background"
         android:orientation="vertical">
 
-        <!--        <include-->
-        <!--            android:id="@+id/collapsedHeader"-->
-        <!--            layout="@layout/category_card_header_collapsed" />-->
-
-        <!--        <include-->
-        <!--            android:id="@+id/expandedHeader"-->
-        <!--            layout="@layout/category_card_header_expanded"-->
-        <!--            android:visibility="gone" />-->
-
         <include
             android:id="@+id/header"
             layout="@layout/category_card_header" />
-
-        <!--    <include layout="@layout/category_card_item"/>-->
-        <!--    <include layout="@layout/category_card_item"/>-->
-        <!--    <include layout="@layout/category_card_item"/>-->
-        <!--    <include layout="@layout/category_card_item"/>-->
-        <!--    <include layout="@layout/category_card_item"/>-->
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cardRecView"
@@ -45,6 +29,5 @@
             android:visibility="gone" />
 
     </LinearLayout>
-
 
 </androidx.cardview.widget.CardView>
