@@ -20,4 +20,6 @@
     <dimen name="card_item_height_no_spacer">49dp</dimen>
     <dimen name="card_item_spacer_margins">15dp</dimen>
     <dimen name="spacer_height">1dp</dimen>
+    <dimen name="card_header_font_size">20sp</dimen>
+    <dimen name="card_item_font_size">16sp</dimen>
 </resources>

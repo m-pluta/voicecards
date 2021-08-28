@@ -32,17 +32,23 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (categories.get(position).isExpanded()) {
-            holder.txtCategoryName_expanded.setText(categories.get(position).getCategory_name());
+        holder.txtCategoryName.setText(categories.get(position).getCategory_name());
 
-            holder.collapsedHeader.setVisibility(View.GONE);
-            holder.expandedHeader.setVisibility(View.VISIBLE);
+        if (categories.get(position).isExpanded()) {
+            holder.btnCollapseExpand.setImageResource(R.drawable.ic_card_open);
+            holder.parent.setBackgroundResource(R.drawable.card_header_expanded);
+
+            holder.btnRemoveCategory.setVisibility(View.VISIBLE);
+            holder.header_buffer.setVisibility(View.GONE);
+
             holder.btnAddNewItem.setVisibility(View.VISIBLE);
         } else {
-            holder.txtCategoryName_collapsed.setText(categories.get(position).getCategory_name());
+            holder.btnCollapseExpand.setImageResource(R.drawable.ic_card_closed);
+            holder.parent.setBackgroundResource(R.drawable.card_header_collapsed);
 
-            holder.collapsedHeader.setVisibility(View.VISIBLE);
-            holder.expandedHeader.setVisibility(View.GONE);
+            holder.btnRemoveCategory.setVisibility(View.GONE);
+            holder.header_buffer.setVisibility(View.VISIBLE);
+
             holder.btnAddNewItem.setVisibility(View.GONE);
         }
     }
@@ -60,9 +66,10 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView parent;                                         // Initializes all the GUI component variable
-        private LinearLayout expandedHeader, collapsedHeader;
-        private ImageView btnCollapse, btnExpand, btnRemoveCategory;
-        private TextView txtCategoryName_expanded, txtCategoryName_collapsed;
+        private LinearLayout header;
+        private ImageView btnCollapseExpand, btnRemoveCategory;
+        private TextView txtCategoryName;
+        private View header_buffer;
         private RecyclerView cardRecView;
         private LinearLayout btnAddNewItem;
 
@@ -70,25 +77,19 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             super(itemView);
 
             parent = itemView.findViewById(R.id.card_parent);                 // Initializes all the GUI components
-            expandedHeader = itemView.findViewById(R.id.expandedHeader);
-            collapsedHeader = itemView.findViewById(R.id.collapsedHeader);
-            btnCollapse = itemView.findViewById(R.id.btnCollapse);
-            btnExpand = itemView.findViewById(R.id.btnExpand);
-            txtCategoryName_expanded = itemView.findViewById(R.id.txtCategoryName_expanded);
-            txtCategoryName_collapsed = itemView.findViewById(R.id.txtCategoryName_collapsed);
+            header = itemView.findViewById(R.id.header);
+            header_buffer = itemView.findViewById(R.id.header_buffer);
+            btnCollapseExpand = itemView.findViewById(R.id.btnCollapseExpand);
+            txtCategoryName = itemView.findViewById(R.id.txtCategoryName);
             btnRemoveCategory = itemView.findViewById(R.id.btnRemoveCategory);
             cardRecView = itemView.findViewById(R.id.cardRecView);
             btnAddNewItem = itemView.findViewById(R.id.btnAddNewItem);
 
-            View.OnClickListener ocl = v -> {
+            btnCollapseExpand.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
                 c.flipExpanded();
                 notifyItemChanged(getAdapterPosition());
-            };
-
-            btnCollapse.setOnClickListener(ocl);
-            btnExpand.setOnClickListener(ocl);
-
+            });
         }
     }
 }
