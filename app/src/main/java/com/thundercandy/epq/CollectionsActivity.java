@@ -35,6 +35,7 @@ public class CollectionsActivity extends DrawerActivity {
         SearchField.setEndIconOnClickListener(v -> {
             txtSearch.setText("");
         });
+        SearchField.setEndIconVisible(false);       // Makes clear text end icon visibility to gone
 
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -49,6 +50,8 @@ public class CollectionsActivity extends DrawerActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                SearchField.setEndIconVisible(s.length() != 0); // End icon only visible when user has entered something
+
                 String search = s.toString();
                 updateResults(search);
             }
@@ -73,7 +76,6 @@ public class CollectionsActivity extends DrawerActivity {
     }
 
     private void updateResults(String search) {
-        Toast.makeText(CollectionsActivity.this, "Search: " + search, Toast.LENGTH_SHORT).show();
         // TODO: Make this update the the RecyclerView Adapter
     }
 }
