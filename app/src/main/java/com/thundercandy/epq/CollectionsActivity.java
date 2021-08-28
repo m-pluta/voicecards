@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CollectionsActivity extends DrawerActivity {
 
     TextInputLayout SearchField;
@@ -51,6 +54,12 @@ public class CollectionsActivity extends DrawerActivity {
         btnAddNewCategory.setOnClickListener(v -> {
             Toast.makeText(CollectionsActivity.this, "Add New Category button clicked", Toast.LENGTH_SHORT).show();
         });
+
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList("Work done", "Momentum", "Centripetal Force"))));
+        categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList("FDE Cycle", "Hardware", "Software", "NIC"))));
+
+
     }
 
     private void updateResults(String search) {
