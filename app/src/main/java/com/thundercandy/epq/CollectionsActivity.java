@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
@@ -58,6 +61,13 @@ public class CollectionsActivity extends DrawerActivity {
         ArrayList<Category> categories = new ArrayList<>();
         categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList("Work done", "Momentum", "Centripetal Force"))));
         categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList("FDE Cycle", "Hardware", "Software", "NIC"))));
+
+        RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
+
+        CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
+        collectionsRecView.setAdapter(adapter);
+        collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setCategories(categories);
 
 
     }

@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/drawerActivity_background"
-    android:orientation="vertical">
+    android:layout_margin="4dp">
 
-    <include
-        android:id="@+id/collapsedHeader"
-        layout="@layout/category_card_header_collapsed" />
-
-    <include
-        android:id="@+id/expandedHeader"
-        layout="@layout/category_card_header_expanded"
-        android:visibility="gone" />
-
-    <!--    <include layout="@layout/category_card_item"/>-->
-    <!--    <include layout="@layout/category_card_item"/>-->
-    <!--    <include layout="@layout/category_card_item"/>-->
-    <!--    <include layout="@layout/category_card_item"/>-->
-    <!--    <include layout="@layout/category_card_item"/>-->
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/cardRecView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/header_corner_radius" />
+        android:layout_height="match_parent"
+        android:background="@color/drawerActivity_background"
+        android:orientation="vertical">
 
-    <include
-        android:id="btnAddNewItem"
-        layout="@layout/category_card_item_new"
-        android:visibility="gone" />
+        <include
+            android:id="@+id/collapsedHeader"
+            layout="@layout/category_card_header_collapsed" />
 
-</LinearLayout>
+        <include
+            android:id="@+id/expandedHeader"
+            layout="@layout/category_card_header_expanded"
+            android:visibility="gone" />
+
+        <!--    <include layout="@layout/category_card_item"/>-->
+        <!--    <include layout="@layout/category_card_item"/>-->
+        <!--    <include layout="@layout/category_card_item"/>-->
+        <!--    <include layout="@layout/category_card_item"/>-->
+        <!--    <include layout="@layout/category_card_item"/>-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cardRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/header_corner_radius"
+            android:visibility="gone" />
+
+        <include
+            layout="@layout/category_card_item_new"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

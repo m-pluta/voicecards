@@ -7,6 +7,7 @@ public class Category {
     private int category_id;
     private String category_name;
     private ArrayList<String> items;
+    private boolean expanded = false;
 
     public Category(int category_id, String category_name, ArrayList<String> items) {
         this.category_id = category_id;
@@ -33,5 +34,17 @@ public class Category {
                 ", category_name='" + category_name + '\'' +
                 ", items=" + items +
                 '}';
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    public void flipExpanded() {
+        setExpanded(!isExpanded());
+    }
+
+    public boolean isExpanded() {
+        return expanded;
     }
 }

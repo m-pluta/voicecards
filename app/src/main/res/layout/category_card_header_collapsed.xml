@@ -7,13 +7,13 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/btnCollapseExpand"
+        android:id="@+id/btnExpand"
         android:layout_width="@dimen/header_height"
         android:layout_height="@dimen/header_height"
         android:src="@drawable/ic_card_closed" />
 
     <TextView
-        android:id="@+id/txtCategoryName"
+        android:id="@+id/txtCategoryName_collapsed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
