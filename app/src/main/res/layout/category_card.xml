@@ -2,16 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/drawerActivity_background"
     android:orientation="vertical">
 
     <include
         android:id="@+id/collapsedHeader"
-        layout="@layout/category_card_header_collapsed" />
+        layout="@layout/category_card_header_collapsed"
+        android:visibility="gone"/>
 
     <include
         android:id="@+id/expandedHeader"
-        layout="@layout/category_card_header_expanded"
-        android:visibility="gone" />
+        layout="@layout/category_card_header_expanded" />
+
+    <include layout="@layout/category_card_item"/>
+    <include layout="@layout/category_card_item"/>
+    <include layout="@layout/category_card_item"/>
+    <include layout="@layout/category_card_item"/>
+    <include layout="@layout/category_card_item"/>
+    <include layout="@layout/category_card_item_new"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardRecView"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btnAddNewItem"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/card_item_height"
+    android:layout_marginRight="@dimen/header_corner_radius"
+    android:background="@drawable/card_item_new"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:src="@drawable/ic_add" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="Add new"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

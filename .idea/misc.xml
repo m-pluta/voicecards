@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v23/ic_google.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/card_header_collapsed.xml" value="0.41384615384615386" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/card_header_expanded.xml" value="0.41384615384615386" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/card_item_new.xml" value="0.2578125" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/custom_email_icon.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/custom_input.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/custom_lock_icon.xml" value="0.19907407407407407" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_back.xml" value="0.346875" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_card_closed.xml" value="0.41384615384615386" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_close.xml" value="0.36018518518518516" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_edit.xml" value="0.2578125" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_email.xml" value="0.3098958333333333" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_email_focused.xml" value="0.19907407407407407" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_google.xml" value="0.3972222222222222" />
@@ -22,6 +24,7 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_menu.xml" value="0.2611111111111111" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_more.xml" value="0.1" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_search.xml" value="0.41384615384615386" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/ic_trash.xml" value="0.2578125" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/rounded_edittext.xml" value="0.41384615384615386" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/switch_thumb.xml" value="0.16614583333333333" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/switch_track.xml" value="0.16614583333333333" />
@@ -37,7 +40,8 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card.xml" value="0.38796296296296295" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card_header_collapsed.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card_header_expanded.xml" value="0.4041666666666667" />
-        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card_item.xml" value="0.4041666666666667" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card_item.xml" value="0.4" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/category_card_item_new.xml" value="0.4" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/main_nav_drawer.xml" value="0.3509259259259259" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/main_toolbar.xml" value="0.387037037037037" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/settings_activity.xml" value="0.24739583333333334" />
