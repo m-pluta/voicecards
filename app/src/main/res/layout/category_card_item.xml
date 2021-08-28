@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/spacer_height"
         android:layout_marginHorizontal="@dimen/card_item_spacer_margins"
-        android:background="@color/black" />
+        android:background="@color/spacer_color" />
 
 
 </LinearLayout>

@@ -23,4 +23,5 @@
     <color name="card_header_bg">#FFF6F6F6</color>
     <color name="card_item_bg">@color/white</color>
     <color name="ripple_colour">#2444</color>
+    <color name="spacer_color">#F888</color>
 </resources>

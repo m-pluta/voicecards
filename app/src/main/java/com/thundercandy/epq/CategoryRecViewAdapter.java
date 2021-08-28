@@ -108,6 +108,11 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
                 c.flipExpanded();
                 notifyItemChanged(getAdapterPosition());
             });
+
+            btnRemoveCategory.setOnClickListener(v -> {
+                Category c = categories.get(getAdapterPosition());
+                Toast.makeText(mContext, "Remove category " + c.getName(), Toast.LENGTH_SHORT).show();
+            });
             
             btnAddNewItem.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
