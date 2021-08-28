@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/drawerActivity_background"
-    android:layout_margin="4dp">
+    android:layout_marginVertical="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
             android:visibility="gone" />
 
         <include
+            android:id="@+id/btnAddNewItem"
             layout="@layout/category_card_item_new"
             android:visibility="gone" />
 

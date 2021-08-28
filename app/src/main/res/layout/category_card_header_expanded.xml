@@ -10,6 +10,7 @@
         android:id="@+id/btnCollapse"
         android:layout_width="@dimen/header_height"
         android:layout_height="@dimen/header_height"
+        android:padding="4dp"
         android:src="@drawable/ic_card_open" />
 
     <TextView
@@ -27,7 +28,7 @@
         android:id="@+id/btnRemoveCategory"
         android:layout_width="@dimen/header_height"
         android:layout_height="@dimen/header_height"
-        android:padding="12dp"
+        android:padding="14dp"
         android:src="@drawable/ic_close" />
 
 </LinearLayout>

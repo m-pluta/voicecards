@@ -10,6 +10,7 @@
         android:id="@+id/btnExpand"
         android:layout_width="@dimen/header_height"
         android:layout_height="@dimen/header_height"
+        android:padding="4dp"
         android:src="@drawable/ic_card_closed" />
 
     <TextView
