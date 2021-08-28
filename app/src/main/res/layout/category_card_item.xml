@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_item"
     android:layout_width="match_parent"
     android:layout_height="@dimen/card_item_height"
     android:layout_marginRight="@dimen/header_corner_radius"
-    android:background="@color/card_item_bg"
+    android:background="@drawable/card_item"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/card_item"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_item_height_no_spacer"
         android:gravity="center_vertical">
