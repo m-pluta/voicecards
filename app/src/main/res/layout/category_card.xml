@@ -7,19 +7,18 @@
 
     <include
         android:id="@+id/collapsedHeader"
-        layout="@layout/category_card_header_collapsed"
-        android:visibility="gone"/>
+        layout="@layout/category_card_header_collapsed" />
 
     <include
         android:id="@+id/expandedHeader"
-        layout="@layout/category_card_header_expanded" />
+        layout="@layout/category_card_header_expanded"
+        android:visibility="gone" />
 
-    <include layout="@layout/category_card_item"/>
-    <include layout="@layout/category_card_item"/>
-    <include layout="@layout/category_card_item"/>
-    <include layout="@layout/category_card_item"/>
-    <include layout="@layout/category_card_item"/>
-    <include layout="@layout/category_card_item_new"/>
+    <!--    <include layout="@layout/category_card_item"/>-->
+    <!--    <include layout="@layout/category_card_item"/>-->
+    <!--    <include layout="@layout/category_card_item"/>-->
+    <!--    <include layout="@layout/category_card_item"/>-->
+    <!--    <include layout="@layout/category_card_item"/>-->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -27,5 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/header_corner_radius" />
+
+    <include
+        android:id="btnAddNewItem"
+        layout="@layout/category_card_item_new"
+        android:visibility="gone" />
 
 </LinearLayout>
