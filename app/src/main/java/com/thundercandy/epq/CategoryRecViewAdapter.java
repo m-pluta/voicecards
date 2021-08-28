@@ -32,7 +32,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtCategoryName.setText(categories.get(position).getCategory_name());
+        holder.txtCategoryName.setText(categories.get(position).getName());
 
         if (categories.get(position).isExpanded()) {
             holder.imgExpandedState.setImageResource(R.drawable.ic_card_open);

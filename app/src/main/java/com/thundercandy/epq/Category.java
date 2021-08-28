@@ -4,35 +4,40 @@ import java.util.ArrayList;
 
 public class Category {
 
-    private int category_id;
-    private String category_name;
-    private ArrayList<String> items;
+    private int id;
+    private String name;
+    private ArrayList<Card> cards;
     private boolean isExpanded = false;
 
-    public Category(int category_id, String category_name, ArrayList<String> items) {
-        this.category_id = category_id;
-        this.category_name = category_name;
-        this.items = items;
+    public Category(int id, String name, ArrayList<Card> cards) {
+        this.id = id;
+        this.name = name;
+        this.cards = cards;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getId() {
+        return id;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getName() {
+        return name;
     }
 
-    public ArrayList<String> getItems() {
-        return items;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "category_id=" + category_id +
-                ", category_name='" + category_name + '\'' +
-                ", items=" + items +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", cards=" + cards +
+                ", isExpanded=" + isExpanded +
                 '}';
     }
 

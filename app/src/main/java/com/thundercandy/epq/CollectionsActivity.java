@@ -62,8 +62,17 @@ public class CollectionsActivity extends DrawerActivity {
         });
 
         ArrayList<Category> categories = new ArrayList<>();
-        categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList("Work done", "Momentum", "Centripetal Force"))));
-        categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList("FDE Cycle", "Hardware", "Software", "NIC"))));
+
+        Card a = new Card(1, "Work done", "The amount of force needed to move an object a certain distance.");
+        Card b = new Card(2, "Momentum", "The product of the mass and velocity of an object.");
+        Card c = new Card(3, "Centripetal Force", "A force, orthogonal to the direction of motion of an object which causes the object to move in a circular path");
+
+        Card d = new Card(4, "FDE Cycle", "The FDE cycle is followed by a processor to process an instruction.");
+        Card e = new Card(5, "Hardware", "The physical components of a computer system");
+        Card f = new Card(6, "Software", "Instructions that tell a computer what to do");
+
+        categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList(a, b, c))));
+        categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList(d, e, f))));
 
         RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
 
