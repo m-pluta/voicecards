@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -106,6 +107,11 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
                 Category c = categories.get(getAdapterPosition());
                 c.flipExpanded();
                 notifyItemChanged(getAdapterPosition());
+            });
+            
+            btnAddNewItem.setOnClickListener(v -> {
+                Category c = categories.get(getAdapterPosition());
+                Toast.makeText(mContext, "'" + c.getName() + "' - Add new item", Toast.LENGTH_SHORT).show();
             });
         }
     }
