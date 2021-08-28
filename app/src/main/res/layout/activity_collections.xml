@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="15dp"
         app:endIconContentDescription="clearSearch"
         app:endIconDrawable="@drawable/ic_close"
         app:endIconMode="custom"
@@ -23,7 +22,7 @@
             android:id="@+id/txtSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/search_bar"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:maxLines="1"
@@ -38,7 +37,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="15dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1" />
 
     <Button

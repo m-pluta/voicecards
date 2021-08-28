@@ -70,9 +70,11 @@ public class CollectionsActivity extends DrawerActivity {
         Card d = new Card(4, "FDE Cycle", "The FDE cycle is followed by a processor to process an instruction.");
         Card e = new Card(5, "Hardware", "The physical components of a computer system");
         Card f = new Card(6, "Software", "Instructions that tell a computer what to do");
+        Card g = new Card(7, "Vector", "A quantity with both a magnitude and direction");
 
         categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList(a, b, c))));
         categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList(d, e, f))));
+        categories.add(new Category(2, "Maths", new ArrayList<>(Arrays.asList(g))));
 
         RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
 
@@ -80,7 +82,6 @@ public class CollectionsActivity extends DrawerActivity {
         collectionsRecView.setAdapter(adapter);
         collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setCategories(categories);
-
 
     }
 
