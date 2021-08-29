@@ -7,7 +7,7 @@ import com.thundercandy.epq.database.CategoryContract.*;
 
 public class Database extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "dbVoiceCards";
+    private static final String DATABASE_NAME = "dbVoiceCards.db";
     private static final int DATABASE_VERSION = 1;
 
     public Database(Context context) {

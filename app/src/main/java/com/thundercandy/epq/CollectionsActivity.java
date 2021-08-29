@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,27 +62,14 @@ public class CollectionsActivity extends DrawerActivity {
             Toast.makeText(CollectionsActivity.this, "Add New Category button clicked", Toast.LENGTH_SHORT).show();
         });
 
-        ArrayList<Category> categories = new ArrayList<>();
-
-        Card a = new Card(1, "Work done", "The amount of force needed to move an object a certain distance.");
-        Card b = new Card(2, "Momentum", "The product of the mass and velocity of an object.");
-        Card c = new Card(3, "Centripetal Force", "A force, orthogonal to the direction of motion of an object which causes the object to move in a circular path");
-
-        Card d = new Card(4, "FDE Cycle", "The FDE cycle is followed by a processor to process an instruction.");
-        Card e = new Card(5, "Hardware", "The physical components of a computer system");
-        Card f = new Card(6, "Software", "Instructions that tell a computer what to do");
-        Card g = new Card(7, "Vector", "A quantity with both a magnitude and direction");
-
-        categories.add(new Category(1, "Physics", new ArrayList<>(Arrays.asList(a, b, c))));
-        categories.add(new Category(2, "Computer Science", new ArrayList<>(Arrays.asList(d, e, f))));
-        categories.add(new Category(2, "Maths", new ArrayList<>(Arrays.asList(g))));
+        DbUtils.addDebugData(this); //TODO: Make sure this only executes once
 
         RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
 
         CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
         collectionsRecView.setAdapter(adapter);
         collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setCategories(categories);
+        adapter.setCategories(DbUtils.getCategories(this));
 
     }
 
