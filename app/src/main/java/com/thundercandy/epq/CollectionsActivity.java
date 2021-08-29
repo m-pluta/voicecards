@@ -2,19 +2,18 @@ package com.thundercandy.epq;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.thundercandy.epq.database.DbUtils;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class CollectionsActivity extends DrawerActivity {
 
@@ -59,19 +58,40 @@ public class CollectionsActivity extends DrawerActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                SearchField.setEndIconVisible(s.length() != 0); // End icon only visible when user has entered something
-
-                String search = s.toString();
-                updateResults(search);
+                setSearchQuery(s.toString());
             }
         });
 
         btnAddNewCategory.setOnClickListener(v -> {
-            if (!txtSearch.getText().toString().equals("")) {
-                adapter.addCategory(txtSearch.getText().toString());
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Name of new category");
 
-            }
+            final EditText txtInput = new EditText(this);
+
+            txtInput.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+            builder.setView(txtInput);
+
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                String input = txtInput.getText().toString();
+                if (input.equals("")) {
+                    Toast.makeText(this, "Category name cannot be empty", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter.addCategory(input);
+                    setSearchQuery("");
+                }
+                //TODO: test if category already exists.
+            });
+
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+            builder.setCancelable(true);
+            builder.show();
         });
+    }
+
+    public void setSearchQuery(String query) {
+        SearchField.setEndIconVisible(query.length() != 0); // End icon only visible when user has entered something
+        updateResults(query);
     }
 
     private void updateResults(String search) {

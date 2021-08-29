@@ -3,7 +3,9 @@ package com.thundercandy.epq.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.thundercandy.epq.Card;
 import com.thundercandy.epq.Category;
@@ -122,5 +124,48 @@ public class DbUtils {
         values.put(CategoryEntry.COLUMN_DATE_CREATED, date);
 
         return (int) db.insert(CategoryEntry.TABLE_NAME, null, values);
+    }
+
+    public static void removeCategory(Context context, int id, boolean removeChildren) {
+
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String selection = CategoryEntry._ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};
+        int deletedRows = db.delete(CategoryEntry.TABLE_NAME, selection, selectionArgs);
+        Toast.makeText(context, deletedRows + " categories deleted", Toast.LENGTH_SHORT).show();
+
+        if (removeChildren) {
+            removeCardsWithCatId(context, id);
+        }
+    }
+
+    private static void removeCardsWithCatId(Context context, int id) {
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String selection = CardEntry.CATEGORY_ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};
+        int deletedRows = db.delete(CardEntry.TABLE_NAME, selection, selectionArgs);
+        Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    public static int countCategories(Context context) {
+        return (int) countEntries(context, CategoryEntry.TABLE_NAME);
+
+    }
+
+    public static int countCards(Context context) {
+        return (int) countEntries(context, CardEntry.TABLE_NAME);
+
+    }
+
+    private static long countEntries(Context context, String tableName) {
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        long count = DatabaseUtils.queryNumEntries(db, tableName);
+        return count;
     }
 }

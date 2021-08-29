@@ -1,5 +1,7 @@
 package com.thundercandy.epq;
 
+import static com.thundercandy.epq.database.DbUtils.removeCategory;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,7 +128,11 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
             btnRemoveCategory.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
-                Toast.makeText(mContext, "Remove category " + c.getName(), Toast.LENGTH_SHORT).show();
+                //TODO: Open a dialog to ask user if they really want to remove the category
+                //TODO: Ask user if they want to the keep the category's categories or remove them as well - this is the boolean `removeChildren`
+                removeCategory(mContext, c.getId(), false);
+                categories.remove(c);
+                notifyItemRemoved(getAdapterPosition());
             });
 
             btnAddNewItem.setOnClickListener(v -> {
