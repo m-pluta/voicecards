@@ -62,7 +62,7 @@ public class CollectionsActivity extends DrawerActivity {
             Toast.makeText(CollectionsActivity.this, "Add New Category button clicked", Toast.LENGTH_SHORT).show();
         });
 
-        DbUtils.addDebugData(this); //TODO: Make sure this only executes once
+        // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
 
         RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
 

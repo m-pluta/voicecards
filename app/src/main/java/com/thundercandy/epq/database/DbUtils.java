@@ -43,16 +43,15 @@ public class DbUtils {
 
             long categoryID = db.insert(CategoryEntry.TABLE_NAME, null, values);
 
-//            for (Card card : cat.getCards()) {
-//                values = new ContentValues();
-//                values.put(CardEntry.CATEGORY_ID, categoryID);
-//                values.put(CardEntry.COLUMN_TERM, card.getTerm());
-//                values.put(CardEntry.COLUMN_DEFINITION, card.getDefinition());
-//                values.put(CardEntry.COLUMN_DATE_CREATED, 0);                       //TODO: change this later on
-//
-//                long cardID = db.insert(CardEntry.TABLE_NAME, null, values);
-//
-//            }
+            for (Card card : cat.getCards()) {
+                values = new ContentValues();
+                values.put(CardEntry.CATEGORY_ID, categoryID);
+                values.put(CardEntry.COLUMN_TERM, card.getTerm());
+                values.put(CardEntry.COLUMN_DEFINITION, card.getDefinition());
+                values.put(CardEntry.COLUMN_DATE_CREATED, 0);                       //TODO: change this later on
+
+                db.insert(CardEntry.TABLE_NAME, null, values);
+            }
 
         }
 
@@ -66,20 +65,45 @@ public class DbUtils {
                 CategoryEntry.COLUMN_NAME
         };
 
-        Cursor c = db.query(CategoryEntry.TABLE_NAME,
+        Cursor c_cat = db.query(CategoryEntry.TABLE_NAME,
                 projection, null, null, null, null, null, null);
 
         ArrayList<Category> categories = new ArrayList<>();
 
         try {
-            while (c.moveToNext()) {
-                int cat_id = c.getPosition();
-                String name = String.valueOf(c.getString(c.getColumnIndexOrThrow(CategoryEntry.COLUMN_NAME)));
-                categories.add(new Category(cat_id, name, null));
-                Toast.makeText(context, new Category(cat_id, name, null).toString(), Toast.LENGTH_SHORT).show();
+            while (c_cat.moveToNext()) {
+                int cat_id = c_cat.getPosition();
+                String category_name = String.valueOf(c_cat.getString(c_cat.getColumnIndexOrThrow(CategoryEntry.COLUMN_NAME)));
+
+                ArrayList<Card> cards = new ArrayList<>();
+
+                projection = new String[]{
+                        CardEntry.COLUMN_TERM,
+                        CardEntry.COLUMN_DEFINITION,
+                        CardEntry.COLUMN_DATE_CREATED
+                };
+                String selection = CardEntry.CATEGORY_ID + " LIKE ?";
+                String[] selectionArgs = {String.valueOf(cat_id+1)};
+
+                Cursor c_card = db.query(CardEntry.TABLE_NAME,
+                        projection, selection, selectionArgs, null, null, null, null);
+
+                try {
+                    while (c_card.moveToNext()) {
+                        int card_id = c_card.getPosition();
+                        String term = String.valueOf(c_card.getString(c_card.getColumnIndexOrThrow(CardEntry.COLUMN_TERM)));
+                        String definition = String.valueOf(c_card.getString(c_card.getColumnIndexOrThrow(CardEntry.COLUMN_DEFINITION)));
+
+                        cards.add(new Card(card_id, term, definition));
+                    }
+                } finally {
+                    c_card.close();
+                }
+
+                categories.add(new Category(cat_id, category_name, cards));
             }
         } finally {
-            c.close();
+            c_cat.close();
         }
 
         return categories;
