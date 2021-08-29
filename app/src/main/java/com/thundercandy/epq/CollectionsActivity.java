@@ -21,6 +21,7 @@ public class CollectionsActivity extends DrawerActivity {
     TextInputLayout SearchField;
     EditText txtSearch;
     Button btnAddNewCategory;
+    RecyclerView collectionsRecView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class CollectionsActivity extends DrawerActivity {
         SearchField = findViewById(R.id.SearchField);
         txtSearch = (EditText) findViewById(R.id.txtSearch);
         btnAddNewCategory = (Button) findViewById(R.id.btnAddNewCategory);
+        collectionsRecView = findViewById(R.id.collectionsRecView);
 
         // Adding functionality to the clear search button
         SearchField.setEndIconOnClickListener(v -> {
@@ -63,8 +65,6 @@ public class CollectionsActivity extends DrawerActivity {
         });
 
         // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
-
-        RecyclerView collectionsRecView = findViewById(R.id.collectionsRecView);
 
         CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
         collectionsRecView.setAdapter(adapter);
