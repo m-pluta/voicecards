@@ -34,11 +34,17 @@ public class CollectionsActivity extends DrawerActivity {
         btnAddNewCategory = (Button) findViewById(R.id.btnAddNewCategory);
         collectionsRecView = findViewById(R.id.collectionsRecView);
 
+        // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
+        CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
+        collectionsRecView.setAdapter(adapter);
+        collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setCategories(DbUtils.getCategories(this));
+
         // Adding functionality to the clear search button
+        SearchField.setEndIconVisible(false);               // Makes clear text end icon visibility to gone
         SearchField.setEndIconOnClickListener(v -> {
             txtSearch.setText("");
         });
-        SearchField.setEndIconVisible(false);       // Makes clear text end icon visibility to gone
 
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -61,16 +67,11 @@ public class CollectionsActivity extends DrawerActivity {
         });
 
         btnAddNewCategory.setOnClickListener(v -> {
-            Toast.makeText(CollectionsActivity.this, "Add New Category button clicked", Toast.LENGTH_SHORT).show();
+            if (!txtSearch.getText().toString().equals("")) {
+                adapter.addCategory(txtSearch.getText().toString());
+
+            }
         });
-
-        // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
-
-        CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
-        collectionsRecView.setAdapter(adapter);
-        collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setCategories(DbUtils.getCategories(this));
-
     }
 
     private void updateResults(String search) {

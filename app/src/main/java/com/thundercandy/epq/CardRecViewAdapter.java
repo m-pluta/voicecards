@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -41,7 +40,10 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
         return cards.size();
     }
 
-    public void setCategories(ArrayList<Card> cards) {
+    public void setCards(ArrayList<Card> cards) {
+        if (cards == null) {
+            cards = new ArrayList<>();
+        }
         this.cards = cards;
         notifyDataSetChanged();
     }

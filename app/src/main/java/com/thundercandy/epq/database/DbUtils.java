@@ -71,7 +71,7 @@ public class DbUtils {
                 int cat_id = c.getInt(c.getColumnIndexOrThrow(CategoryEntry._ID));
                 String category_name = String.valueOf(c.getString(c.getColumnIndexOrThrow(CategoryEntry.COLUMN_NAME)));
 
-                categories.add(new Category(cat_id, category_name, fetchCategoryCards(db, cat_id)));
+                categories.add(new Category(cat_id, category_name, fetchCategoryCards(context, cat_id)));
             }
         } finally {
             c.close();
@@ -80,8 +80,11 @@ public class DbUtils {
         return categories;
     }
 
-    private static ArrayList<Card> fetchCategoryCards(SQLiteDatabase db, int id) {
+    private static ArrayList<Card> fetchCategoryCards(Context context, int id) {
         ArrayList<Card> cards = new ArrayList<>();
+
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
 
         String[] projection = new String[]{
                 CardEntry._ID,
@@ -110,5 +113,14 @@ public class DbUtils {
         return cards;
     }
 
+    public static int addCategory(Context context, String name, int date) {
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(CategoryEntry.COLUMN_NAME, name);
+        values.put(CategoryEntry.COLUMN_DATE_CREATED, date);
+
+        return (int) db.insert(CategoryEntry.TABLE_NAME, null, values);
+    }
 }

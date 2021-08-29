@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
+import com.thundercandy.epq.database.DbUtils;
+
 import java.util.ArrayList;
 
 public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecViewAdapter.ViewHolder> {
@@ -49,7 +51,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             CardRecViewAdapter adapter = new CardRecViewAdapter(mContext);
             holder.cardRecView.setAdapter(adapter);
             holder.cardRecView.setLayoutManager(new LinearLayoutManager(mContext));
-            adapter.setCategories(categories.get(position).getCards());
+            adapter.setCards(categories.get(position).getCards());
 
             holder.btnAddNewItem.setVisibility(View.VISIBLE);
 
@@ -77,8 +79,21 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
     }
 
     public void setCategories(ArrayList<Category> categories) {
+        if (categories == null) {
+            categories = new ArrayList<>();
+        }
         this.categories = categories;
         notifyDataSetChanged();
+    }
+
+    public void addCategory(String cat_name) {
+        int date = 0; //TODO: Change this to an actual date later on
+
+        int cat_id = DbUtils.addCategory(mContext, cat_name, date);
+
+        Category created_category = new Category(cat_id, cat_name, null);
+        categories.add(0, created_category);
+        notifyItemInserted(0);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -113,7 +128,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
                 Category c = categories.get(getAdapterPosition());
                 Toast.makeText(mContext, "Remove category " + c.getName(), Toast.LENGTH_SHORT).show();
             });
-            
+
             btnAddNewItem.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
                 Toast.makeText(mContext, "'" + c.getName() + "' - Add new item", Toast.LENGTH_SHORT).show();
