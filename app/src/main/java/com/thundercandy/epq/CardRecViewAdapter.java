@@ -1,5 +1,10 @@
 package com.thundercandy.epq;
 
+import static com.thundercandy.epq.database.DbUtils.countCards;
+import static com.thundercandy.epq.database.DbUtils.countCategories;
+import static com.thundercandy.epq.database.DbUtils.removeCard;
+import static com.thundercandy.epq.database.DbUtils.removeCategory;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +23,11 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
 
     private ArrayList<Card> cards;
     private Context mContext;
+    private int category_id;
 
-    public CardRecViewAdapter(Context mContext) {
+    public CardRecViewAdapter(Context mContext, int category_id) {
         this.mContext = mContext;
+        this.category_id = category_id;
     }
 
     @NonNull
@@ -71,7 +78,11 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
             });
 
             btnRemove.setOnClickListener(v -> {
-                Toast.makeText(mContext, "Remove button clicked", Toast.LENGTH_SHORT).show();
+                Card c = cards.get(getAdapterPosition());
+                //TODO: Open a dialog to ask user if they really want to remove the card
+                removeCard(mContext, c.getId());
+                cards.remove(c);
+                notifyItemRemoved(getAdapterPosition());
             });
         }
     }

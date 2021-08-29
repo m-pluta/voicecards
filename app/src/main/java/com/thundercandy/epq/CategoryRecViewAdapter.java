@@ -50,7 +50,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             holder.btnRemoveCategory.setVisibility(View.VISIBLE);
             holder.header_buffer.setVisibility(View.GONE);
 
-            CardRecViewAdapter adapter = new CardRecViewAdapter(mContext);
+            CardRecViewAdapter adapter = new CardRecViewAdapter(mContext, categories.get(position).getId());
             holder.cardRecView.setAdapter(adapter);
             holder.cardRecView.setLayoutManager(new LinearLayoutManager(mContext));
             adapter.setCards(categories.get(position).getCards());

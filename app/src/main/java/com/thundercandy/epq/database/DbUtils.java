@@ -168,4 +168,14 @@ public class DbUtils {
         long count = DatabaseUtils.queryNumEntries(db, tableName);
         return count;
     }
+
+    public static void removeCard(Context context, int id) {
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        String selection = CardEntry._ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};
+        int deletedRows = db.delete(CardEntry.TABLE_NAME, selection, selectionArgs);
+        Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
+    }
 }
