@@ -3,7 +3,9 @@ package com.thundercandy.epq.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.thundercandy.epq.database.CategoryContract.*;
+
+import com.thundercandy.epq.database.CategoryContract.CardEntry;
+import com.thundercandy.epq.database.CategoryContract.CategoryEntry;
 
 public class Database extends SQLiteOpenHelper {
 
