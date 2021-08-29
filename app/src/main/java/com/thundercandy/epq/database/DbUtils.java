@@ -58,7 +58,7 @@ public class DbUtils {
         ArrayList<Category> categories = new ArrayList<>();
 
         Database helper = new Database(context);
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         String[] projection = {
                 CategoryEntry._ID,
@@ -86,7 +86,7 @@ public class DbUtils {
         ArrayList<Card> cards = new ArrayList<>();
 
         Database helper = new Database(context);
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         String[] projection = new String[]{
                 CardEntry._ID,
@@ -163,7 +163,7 @@ public class DbUtils {
 
     private static long countEntries(Context context, String tableName) {
         Database helper = new Database(context);
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         long count = DatabaseUtils.queryNumEntries(db, tableName);
         return count;
