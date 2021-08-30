@@ -5,6 +5,7 @@
     android:orientation="horizontal"
     android:gravity="center_vertical"
     android:id="@+id/selectableCategory"
+    android:background="@color/white"
     android:padding="10dp">
 
     <TextView

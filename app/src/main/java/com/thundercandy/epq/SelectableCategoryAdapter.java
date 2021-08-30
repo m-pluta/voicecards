@@ -34,8 +34,7 @@ public class SelectableCategoryAdapter extends RecyclerView.Adapter<SelectableCa
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.txtCategoryName.setText(categories.get(position).getCategoryName());
-        holder.txtCardCount.setText(categories.get(position).getCardCount());
-        holder.cbSelected.setSelected(categories.get(position).isSelected());
+        holder.txtCardCount.setText(String.valueOf(categories.get(position).getCardCount()));
     }
 
     @Override
@@ -64,55 +63,10 @@ public class SelectableCategoryAdapter extends RecyclerView.Adapter<SelectableCa
 
             cbSelected.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 SelectableCategory sc = categories.get(getAdapterPosition());
-                if (sc != null) {
-                    sc.setSelected(isChecked);
-                    notifyItemChanged(getAdapterPosition());
-                } else if (mContext != null) {
-                    Toast.makeText(mContext, "Error selecting this category", Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.d("CAT_SELECT_ERROR", "Error selecting category");
-                }
+                sc.setSelected(isChecked);
+                Log.d("onCheckedListener", categories.get(getAdapterPosition()).getCategoryName() + ": " + isChecked);
             });
         }
     }
 
-    public class SelectableCategory{
-
-        private int id;
-        private String categoryName;
-        private int cardCount;
-        private boolean selected;
-
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getCategoryName() {
-            return categoryName;
-        }
-
-        public void setCategoryName(String categoryName) {
-            this.categoryName = categoryName;
-        }
-
-        public int getCardCount() {
-            return cardCount;
-        }
-
-        public void setCardCount(int cardCount) {
-            this.cardCount = cardCount;
-        }
-
-        public boolean isSelected() {
-            return selected;
-        }
-
-        public void setSelected(boolean selected) {
-            this.selected = selected;
-        }
-    }
 }
