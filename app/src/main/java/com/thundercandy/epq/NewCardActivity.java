@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ public class NewCardActivity extends AppCompatActivity {
 
     private Button btnFinish;
     private EditText txtTerm, txtDefinition;
+    ImageView btnBack;
 
     private static int targetCategoryID = -1;
     private static int targetCategoryPosition = 0;
@@ -26,14 +28,21 @@ public class NewCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_card);
 
+        overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
+
         btnFinish = findViewById(R.id.btnFinish);
         txtTerm = findViewById(R.id.txtTerm);
         txtDefinition = findViewById(R.id.txtDefinition);
+        btnBack = findViewById(R.id.btnBack);
 
         Intent intent = getIntent();
         targetCategoryID = intent.getIntExtra("targetCategoryID", -1);
         targetCategoryPosition = intent.getIntExtra("targetCategoryPosition", 0);
 
+        btnBack.setOnClickListener(v -> {
+            //TODO: Check if user has entered anything into text fields before taking user to previous screen
+            onBackPressed();
+        });
 
         btnFinish.setOnClickListener(v -> {
             String inputTerm = txtTerm.getText().toString();
@@ -54,5 +63,17 @@ public class NewCardActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
     }
 }

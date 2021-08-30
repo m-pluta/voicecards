@@ -243,5 +243,12 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         startActivity(intent);
 
         super.onBackPressed();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
