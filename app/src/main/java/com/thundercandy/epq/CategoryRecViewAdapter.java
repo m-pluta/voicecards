@@ -1,8 +1,10 @@
 package com.thundercandy.epq;
 
+import static com.thundercandy.epq.database.DbUtils.fetchCategoryCards;
 import static com.thundercandy.epq.database.DbUtils.removeCategory;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -137,7 +139,9 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
             btnAddNewItem.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
-                Toast.makeText(mContext, "'" + c.getName() + "' - Add new item", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, NewCardActivity.class);
+                intent.putExtra("targetCategoryID", c.getId());
+                mContext.startActivity(intent);
             });
         }
     }

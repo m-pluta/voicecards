@@ -82,7 +82,7 @@ public class DbUtils {
         return categories;
     }
 
-    private static ArrayList<Card> fetchCategoryCards(Context context, int id) {
+    public static ArrayList<Card> fetchCategoryCards(Context context, int id) {
         ArrayList<Card> cards = new ArrayList<>();
 
         Database helper = new Database(context);
@@ -177,5 +177,18 @@ public class DbUtils {
         String[] selectionArgs = {String.valueOf(id)};
         int deletedRows = db.delete(CardEntry.TABLE_NAME, selection, selectionArgs);
         Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
+    }
+
+    public static int addCard(Context context, int categoryID, String term, String definiton, int date) {
+        Database helper = new Database(context);
+        SQLiteDatabase db = helper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(CardEntry.CATEGORY_ID, categoryID);
+        values.put(CardEntry.COLUMN_TERM, term);
+        values.put(CardEntry.COLUMN_DEFINITION, definiton);
+        values.put(CardEntry.COLUMN_DATE_CREATED, date);
+
+        return (int) db.insert(CardEntry.TABLE_NAME, null, values);
     }
 }

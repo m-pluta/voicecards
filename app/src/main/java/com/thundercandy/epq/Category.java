@@ -52,4 +52,8 @@ public class Category {
     public boolean isExpanded() {
         return isExpanded;
     }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
 }

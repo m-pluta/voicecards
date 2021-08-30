@@ -34,6 +34,7 @@ public class CollectionsActivity extends DrawerActivity {
         collectionsRecView = findViewById(R.id.collectionsRecView);
 
         // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
+
         CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
         collectionsRecView.setAdapter(adapter);
         collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
