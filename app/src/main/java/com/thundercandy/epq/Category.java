@@ -1,5 +1,9 @@
 package com.thundercandy.epq;
 
+import android.content.Context;
+
+import com.thundercandy.epq.database.DbUtils;
+
 import java.util.ArrayList;
 
 public class Category {
@@ -55,5 +59,16 @@ public class Category {
 
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
+    }
+
+    public void addCard(Card card) {
+        if (this.cards == null) {
+            this.cards = new ArrayList<>();
+        }
+        this.cards.add(card);
+    }
+
+    public void updateCategory(Context context) {
+        this.setCards(DbUtils.fetchCategoryCards(context, this.getId()));
     }
 }

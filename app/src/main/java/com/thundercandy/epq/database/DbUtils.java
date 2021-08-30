@@ -65,8 +65,10 @@ public class DbUtils {
                 CategoryEntry.COLUMN_NAME
         };
 
+        String orderBy = CategoryEntry._ID + " DESC";   //Change this to CategoryEntry.COLUMN_DATE_CREATED after dates are fixed
+
         Cursor c = db.query(CategoryEntry.TABLE_NAME,
-                projection, null, null, null, null, null, null);
+                projection, null, null, null, null, orderBy, null);
 
         try {
             while (c.moveToNext()) {
@@ -97,8 +99,10 @@ public class DbUtils {
         String selection = CardEntry.CATEGORY_ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
 
+        String orderBy = CardEntry._ID + " DESC";   //Change this to CardEntry.COLUMN_DATE_CREATED after dates are fixed
+
         Cursor c = db.query(CardEntry.TABLE_NAME,
-                projection, selection, selectionArgs, null, null, null, null);
+                projection, selection, selectionArgs, null, null, orderBy, null);
 
         try {
             while (c.moveToNext()) {

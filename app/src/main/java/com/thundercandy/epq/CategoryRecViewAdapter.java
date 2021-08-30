@@ -1,17 +1,16 @@
 package com.thundercandy.epq;
 
-import static com.thundercandy.epq.database.DbUtils.fetchCategoryCards;
 import static com.thundercandy.epq.database.DbUtils.removeCategory;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,6 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.thundercandy.epq.database.DbUtils;
+import com.thundercandy.epq.events.CardAddedEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -137,12 +140,39 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
                 notifyItemRemoved(getAdapterPosition());
             });
 
+            EventBus.getDefault().register(this);
+
             btnAddNewItem.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
                 Intent intent = new Intent(mContext, NewCardActivity.class);
                 intent.putExtra("targetCategoryID", c.getId());
+                intent.putExtra("targetCategoryPosition", getAdapterPosition());
                 mContext.startActivity(intent);
             });
+        }
+
+        @Subscribe
+        public void onEvent(CardAddedEvent event) {
+            Log.d("CardAddedEvent", "Event received");
+            Log.d("CardAddedEvent", "Card '" + event.getAddedCard().getTerm() + "' to category with id: " + event.getCategory());
+
+            int targetPosition = event.getTargetPosition();
+            if (targetPosition == getAdapterPosition()) {
+                categories.get(targetPosition).updateCategory(mContext);
+                notifyItemChanged(targetPosition);
+            }
+
+//            for (int i = 0; i < categories.size(); i++) {
+//                if (categories.get(i).getId() == event.getCategory()) {
+//                    categories.get(i).updateCategory(mContext);
+//                    notifyItemChanged(i);
+////                    categories.get(i).addCard(event.getAddedCard());
+////                    Log.d("RA_ADD", "Card from event added to arraylist");
+////                    notifyItemChanged(i);
+////                    Log.d("notifyItemChanged", "notifyItemChanged - " + i);
+////                    EventBus.getDefault().removeStickyEvent(event);
+//                }
+//            }
         }
     }
 }

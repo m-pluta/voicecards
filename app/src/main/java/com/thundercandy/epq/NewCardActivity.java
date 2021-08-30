@@ -1,13 +1,17 @@
 package com.thundercandy.epq;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.thundercandy.epq.database.DbUtils;
+import com.thundercandy.epq.events.CardAddedEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class NewCardActivity extends AppCompatActivity {
 
@@ -15,6 +19,7 @@ public class NewCardActivity extends AppCompatActivity {
     private EditText txtTerm, txtDefinition;
 
     private static int targetCategoryID = -1;
+    private static int targetCategoryPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,8 @@ public class NewCardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         targetCategoryID = intent.getIntExtra("targetCategoryID", -1);
+        targetCategoryPosition = intent.getIntExtra("targetCategoryPosition", 0);
+
 
         btnFinish.setOnClickListener(v -> {
             String inputTerm = txtTerm.getText().toString();
@@ -34,8 +41,17 @@ public class NewCardActivity extends AppCompatActivity {
 
             if (inputTerm.length() > 0 && inputDefinition.length() > 0 && targetCategoryID != -1) {
                 //TODO: Make sure to pass an actual date instead of 0
-                DbUtils.addCard(this, targetCategoryID, inputTerm, inputDefinition, 0);
-                onBackPressed();
+                int card_id = DbUtils.addCard(this, targetCategoryID, inputTerm, inputDefinition, 0);
+                Log.d("DB_ADD", "ID: "+ card_id + ", Term: " + inputTerm + " added to DB");
+                CardAddedEvent event = new CardAddedEvent();
+                event.setCategory(targetCategoryID);
+                event.setAddedCard(new Card(card_id, inputTerm, inputDefinition));
+                event.setTargetPosition(targetCategoryPosition);
+                Log.d("DB_ADD", "Event Pre-fire");
+                EventBus.getDefault().post(event);
+                Log.d("DB_ADD", "Event Fired");
+
+                finish();
             }
         });
     }
