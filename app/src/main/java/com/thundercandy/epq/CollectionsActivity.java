@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.thundercandy.epq.database.DbUtils;
+import com.thundercandy.epq.events.CardAddedEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class CollectionsActivity extends DrawerActivity {
 
@@ -21,6 +26,7 @@ public class CollectionsActivity extends DrawerActivity {
     EditText txtSearch;
     Button btnAddNewCategory;
     RecyclerView collectionsRecView;
+    CategoryRecViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +39,11 @@ public class CollectionsActivity extends DrawerActivity {
         btnAddNewCategory = (Button) findViewById(R.id.btnAddNewCategory);
         collectionsRecView = findViewById(R.id.collectionsRecView);
 
+        EventBus.getDefault().register(this);
+
         // DbUtils.addDebugData(this); //TODO: Make sure this only executes once
 
-        CategoryRecViewAdapter adapter = new CategoryRecViewAdapter(this);
+        adapter = new CategoryRecViewAdapter(this);
         collectionsRecView.setAdapter(adapter);
         collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setCategories(DbUtils.getCategories(this));
@@ -90,6 +98,15 @@ public class CollectionsActivity extends DrawerActivity {
         });
     }
 
+    @Subscribe
+    public void onEvent(CardAddedEvent event) {
+        Log.d("CardAddedEvent", "Event received");
+        Log.d("CardAddedEvent", "Card '" + event.getAddedCard().getTerm() + "' to category with id: " + event.getCategory());
+
+        int targetPosition = event.getTargetPosition();
+        adapter.updateCategory(targetPosition);
+    }
+
     public void setSearchQuery(String query) {
         SearchField.setEndIconVisible(query.length() != 0); // End icon only visible when user has entered something
         updateResults(query);
@@ -98,4 +115,6 @@ public class CollectionsActivity extends DrawerActivity {
     private void updateResults(String search) {
         // TODO: Make this update the the RecyclerView Adapter
     }
+
+
 }

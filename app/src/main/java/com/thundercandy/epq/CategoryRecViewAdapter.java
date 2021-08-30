@@ -103,6 +103,11 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
         notifyItemInserted(0);
     }
 
+    public void updateCategory(int targetPosition) {
+        categories.get(targetPosition).updateCategory(mContext);
+        notifyItemChanged(targetPosition);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView parent;                                         // Initializes all the GUI component variables
@@ -140,8 +145,6 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
                 notifyItemRemoved(getAdapterPosition());
             });
 
-            EventBus.getDefault().register(this);
-
             btnAddNewItem.setOnClickListener(v -> {
                 Category c = categories.get(getAdapterPosition());
                 Intent intent = new Intent(mContext, NewCardActivity.class);
@@ -151,28 +154,5 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             });
         }
 
-        @Subscribe
-        public void onEvent(CardAddedEvent event) {
-            Log.d("CardAddedEvent", "Event received");
-            Log.d("CardAddedEvent", "Card '" + event.getAddedCard().getTerm() + "' to category with id: " + event.getCategory());
-
-            int targetPosition = event.getTargetPosition();
-            if (targetPosition == getAdapterPosition()) {
-                categories.get(targetPosition).updateCategory(mContext);
-                notifyItemChanged(targetPosition);
-            }
-
-//            for (int i = 0; i < categories.size(); i++) {
-//                if (categories.get(i).getId() == event.getCategory()) {
-//                    categories.get(i).updateCategory(mContext);
-//                    notifyItemChanged(i);
-////                    categories.get(i).addCard(event.getAddedCard());
-////                    Log.d("RA_ADD", "Card from event added to arraylist");
-////                    notifyItemChanged(i);
-////                    Log.d("notifyItemChanged", "notifyItemChanged - " + i);
-////                    EventBus.getDefault().removeStickyEvent(event);
-//                }
-//            }
-        }
     }
 }
