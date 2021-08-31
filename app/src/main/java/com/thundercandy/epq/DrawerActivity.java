@@ -106,7 +106,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         findViewById(R.id.btnCollections).setOnClickListener(this);
         findViewById(R.id.btnStatistics).setOnClickListener(this);
         findViewById(R.id.btnPomodoro).setOnClickListener(this);
-        findViewById(R.id.btnFriends).setOnClickListener(this);
         findViewById(R.id.btnSettings).setOnClickListener(this);
     }
 
@@ -135,9 +134,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.btnPomodoro:          // The Pomodoro Navigation Item in the navigation view
                 redirectActivity(this, PomodoroActivity.class);
-                break;
-            case R.id.btnFriends:           // The Friends Navigation Item in the navigation view
-                redirectActivity(this, FriendsActivity.class);
                 break;
             case R.id.btnSettings:          // The Settings Item in the navigation drawer
                 redirectActivity(this, SettingsActivity.class);
@@ -201,8 +197,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             selectNavItem(R.id.navView_statistics_selected, R.id.navView_statistics_Icon, R.id.navView_statistics_SelectedIcon);
         } else if (context.getClass().equals(PomodoroActivity.class)) {
             selectNavItem(R.id.navView_pomodoro_selected, R.id.navView_pomodoro_Icon, R.id.navView_pomodoro_SelectedIcon);
-        } else if (context.getClass().equals(FriendsActivity.class)) {
-            selectNavItem(R.id.navView_friends_selected, R.id.navView_friends_Icon, R.id.navView_friends_SelectedIcon);
         }
     }
 

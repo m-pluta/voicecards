@@ -240,49 +240,6 @@
 
             </LinearLayout>
 
-            <!--This layout is the background for navigation item-->
-            <LinearLayout
-                android:id="@+id/navView_friends_selected"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/btnFriends"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center_vertical"
-                    android:paddingVertical="@dimen/navItem_paddingVertical"
-                    android:paddingStart="@dimen/navItem_paddingStart"
-                    android:paddingEnd="@dimen/navItem_paddingEnd">
-
-                    <ImageView
-                        android:id="@+id/navView_friends_Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_friends" />
-
-                    <TextView
-                        android:id="@+id/navView_friends_Text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/navItem_IconTextGap"
-                        android:layout_weight="1"
-                        android:text="@string/friends"
-                        android:textSize="@dimen/navItem_textSize" />
-
-                    <ImageView
-                        android:id="@+id/navView_friends_SelectedIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arrow_right" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
         </LinearLayout>
 
     </ScrollView>
