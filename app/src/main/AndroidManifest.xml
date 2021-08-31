@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EPQ.NoActionBar">
         <activity
+            android:name=".SessionActivity"
+            android:exported="true" />
+        <activity
             android:name=".NewCardActivity"
             android:exported="true" />
         <activity

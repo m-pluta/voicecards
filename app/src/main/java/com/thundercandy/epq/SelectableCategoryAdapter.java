@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +44,17 @@ public class SelectableCategoryAdapter extends RecyclerView.Adapter<SelectableCa
     public void setSelectableCategories(ArrayList<SelectableCategory> categories) {
         this.categories = categories;
         notifyDataSetChanged();
+    }
+
+    public ArrayList<Integer> getSelectedCategories() {
+        ArrayList<Integer> out = new ArrayList<>();
+
+        for (SelectableCategory sc : categories) {
+            if (sc.isSelected()) {
+                out.add(sc.getId());
+            }
+        }
+        return out;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
