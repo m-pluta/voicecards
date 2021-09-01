@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
+                android:padding="5dp"
                 android:background="@color/white"
                 android:minLines="9"
                 android:textSize="20sp" />
@@ -76,19 +77,27 @@
             <Button
                 android:id="@+id/btnKnown"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_marginVertical="10dp"
                 android:layout_marginLeft="10dp"
+                android:text="Knew it!"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@color/white"
                 android:layout_weight="1"
-                android:background="#0F0" />
+                android:background="#6FE28D" />
 
             <Button
                 android:id="@+id/btnUnknown"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:layout_weight="1"
+                android:text="Need more practice"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:textColor="@color/white"
                 android:background="@color/defaultRed_100" />
 
         </LinearLayout>
