@@ -2,27 +2,36 @@ package com.thundercandy.epq.data;
 
 public class SessionCard extends Card {
 
-    int timesUnknown = 0;
-    boolean known = false;
+    int timesSeen = 0;
+    int timesKnown = 0;
 
     public SessionCard(int id, String term, String definition) {
         super(id, term, definition);
     }
 
+    public int getTimesSeen() {
+        return timesSeen;
+    }
+
+    public int getTimesKnown() {
+        return timesKnown;
+    }
+
     public int getTimesUnknown() {
-        return timesUnknown;
+        return timesSeen - timesKnown;
     }
 
-    public void setTimesUnknown(int timesUnknown) {
-        this.timesUnknown = timesUnknown;
+    public void known() {
+        seen();
+        timesKnown++;
     }
 
-    public boolean isKnown() {
-        return known;
+    public void unknown() {
+        seen();
     }
 
-    public void setKnown(boolean known) {
-        this.known = known;
+    public void seen() {
+        timesSeen++;
     }
 
     @Override
@@ -31,8 +40,9 @@ public class SessionCard extends Card {
                 "id=" + this.getId() +
                 ", term=" + this.getTerm() +
                 ", definition=" + this.getDefinition() +
-                ", timesUnknown=" + timesUnknown +
-                ", known=" + known +
+                ", timesSeen=" + timesSeen +
+                ", timesKnown=" + timesKnown +
+                ", timesUnknown=" + (timesSeen - timesKnown) +
                 '}';
     }
 }
