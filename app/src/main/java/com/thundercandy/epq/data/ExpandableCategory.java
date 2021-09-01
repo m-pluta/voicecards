@@ -26,7 +26,4 @@ public class ExpandableCategory extends Category {
         setExpanded(!isExpanded());
     }
 
-    public void updateCategory(Context context) {
-        this.setCards(DbUtils.fetchCategoryCards(context, this.getId()));
-    }
 }

@@ -197,37 +197,37 @@ public class DbUtils {
         return (int) db.insert(CardEntry.TABLE_NAME, null, values);
     }
 
-    public static ArrayList<SelectableCategory> getSelectableCategories(Context context) {
-        ArrayList<SelectableCategory> output = new ArrayList<>();
-
-        String sql = "SELECT cats." + CategoryEntry._ID + ", " + CategoryEntry.COLUMN_NAME + ", cat.categoryCount AS CategoryCount" +
-                " FROM " + CategoryEntry.TABLE_NAME + " AS cats" +
-                " LEFT JOIN" +
-                " (SELECT " + CardEntry.CATEGORY_ID + ", COUNT(" + CardEntry.CATEGORY_ID + ") AS categoryCount" +
-                " FROM " + CardEntry.TABLE_NAME + " AS cards" +
-                " GROUP BY " + CardEntry.CATEGORY_ID + ")" +
-                " AS cat" +
-                " ON cats." + CategoryEntry._ID + " = cat." + CardEntry.CATEGORY_ID +
-                " ORDER BY cat.categoryCount DESC";
-
-        Database helper = new Database(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
-
-        Cursor c = db.rawQuery(sql, null);
-
-        try {
-            while (c.moveToNext()) {
-                int cat_id = c.getInt(c.getColumnIndexOrThrow(CategoryEntry._ID));
-                String cat_name = c.getString(c.getColumnIndexOrThrow(CategoryEntry.COLUMN_NAME));
-                int cat_count = c.getInt(c.getColumnIndexOrThrow("CategoryCount"));
-                if (cat_count != 0) {
-                    SelectableCategory sc = new SelectableCategory(cat_id, cat_name, cat_count, false);
-                    output.add(sc);
-                }
-            }
-        } finally {
-            c.close();
-        }
-        return output;
-    }
+//    public static ArrayList<SelectableCategory> getSelectableCategories(Context context) {
+//        ArrayList<SelectableCategory> output = new ArrayList<>();
+//
+//        String sql = "SELECT cats." + CategoryEntry._ID + ", " + CategoryEntry.COLUMN_NAME + ", cat.categoryCount AS CategoryCount" +
+//                " FROM " + CategoryEntry.TABLE_NAME + " AS cats" +
+//                " LEFT JOIN" +
+//                " (SELECT " + CardEntry.CATEGORY_ID + ", COUNT(" + CardEntry.CATEGORY_ID + ") AS categoryCount" +
+//                " FROM " + CardEntry.TABLE_NAME + " AS cards" +
+//                " GROUP BY " + CardEntry.CATEGORY_ID + ")" +
+//                " AS cat" +
+//                " ON cats." + CategoryEntry._ID + " = cat." + CardEntry.CATEGORY_ID +
+//                " ORDER BY cat.categoryCount DESC";
+//
+//        Database helper = new Database(context);
+//        SQLiteDatabase db = helper.getReadableDatabase();
+//
+//        Cursor c = db.rawQuery(sql, null);
+//
+//        try {
+//            while (c.moveToNext()) {
+//                int cat_id = c.getInt(c.getColumnIndexOrThrow(CategoryEntry._ID));
+//                String cat_name = c.getString(c.getColumnIndexOrThrow(CategoryEntry.COLUMN_NAME));
+//                int cat_count = c.getInt(c.getColumnIndexOrThrow("CategoryCount"));
+//                if (cat_count != 0) {
+//                    SelectableCategory sc = new SelectableCategory(cat_id, cat_name, cat_count, false);
+//                    output.add(sc);
+//                }
+//            }
+//        } finally {
+//            c.close();
+//        }
+//        return output;
+//    }
 }

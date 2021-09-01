@@ -23,6 +23,10 @@ public class Category extends DataItem {
         return new ExpandableCategory(this.getId(), this.getName(), this.getCards());
     }
 
+    public SelectableCategory toSelectableCategory() {
+        return new SelectableCategory(this.getId(), this.getName(), this.cards.size(), false);
+    }
+
     public ArrayList<Card> getCards() {
         return cards;
     }
@@ -35,7 +39,7 @@ public class Category extends DataItem {
         this.cards.add(card);
     }
 
-    public void updateCategoryCards(Context context) {
+    public void update(Context context) {
         this.setCards(DbUtils.fetchCategoryCards(context, this.getId()));
     }
 }

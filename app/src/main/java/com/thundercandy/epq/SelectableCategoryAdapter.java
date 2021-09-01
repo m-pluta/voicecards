@@ -12,9 +12,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thundercandy.epq.data.Category;
 import com.thundercandy.epq.data.SelectableCategory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SelectableCategoryAdapter extends RecyclerView.Adapter<SelectableCategoryAdapter.ViewHolder> {
 
@@ -43,8 +45,13 @@ public class SelectableCategoryAdapter extends RecyclerView.Adapter<SelectableCa
         return categories.size();
     }
 
-    public void setSelectableCategories(ArrayList<SelectableCategory> categories) {
-        this.categories = categories;
+    public void setCategories(ArrayList<Category> inputCategories) {
+        for (Category c : inputCategories) {
+            if (c.getCards().size() != 0) {
+                categories.add(c.toSelectableCategory());
+            }
+        }
+        Collections.sort(categories);
         notifyDataSetChanged();
     }
 

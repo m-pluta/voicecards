@@ -5,12 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.thundercandy.epq.data.SelectableCategory;
+import com.thundercandy.epq.data.Category;
 import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
@@ -33,12 +32,12 @@ public class HomeActivity extends DrawerActivity {
         btnStartSession = findViewById(R.id.btnStartSession);
 
         // Requests an arraylist of type SelectableCategory to show the user in the home screen
-        ArrayList<SelectableCategory> scs = DbUtils.getSelectableCategories(this);
+        ArrayList<Category> scs = DbUtils.getCategories(this);
         if (scs.size() != 0) {
             adapter = new SelectableCategoryAdapter(this);
             recView.setAdapter(adapter);
             recView.setLayoutManager(new LinearLayoutManager(this));
-            adapter.setSelectableCategories(scs);
+            adapter.setCategories(scs);
 
             // Enables the recycler view and disables the UI components meant for showing the user a 'no categories found' message
             txtSelectText.setVisibility(View.VISIBLE);

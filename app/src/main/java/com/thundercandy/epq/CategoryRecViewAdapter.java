@@ -110,7 +110,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
     }
 
     public void updateCategory(int targetPosition) {
-        categories.get(targetPosition).updateCategory(mContext);
+        categories.get(targetPosition).update(mContext);
         notifyItemChanged(targetPosition);
     }
 

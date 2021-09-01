@@ -1,6 +1,6 @@
 package com.thundercandy.epq.data;
 
-public class SelectableCategory extends DataItem {
+public class SelectableCategory extends DataItem implements Comparable{
 
     private int cardCount;
     private boolean selected;
@@ -33,5 +33,13 @@ public class SelectableCategory extends DataItem {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    @Override
+    public int compareTo(Object compareCategory) {
+        SelectableCategory sc = (SelectableCategory) compareCategory;
+        int compareCardCount = sc.getCardCount();
+
+        return compareCardCount - this.getCardCount();
     }
 }
