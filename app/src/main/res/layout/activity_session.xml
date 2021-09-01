@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SessionActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SessionActivity">
 
     <include layout="@layout/back_toolbar" />
 
@@ -12,7 +12,88 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/drawerActivity_background" />
+        android:background="@color/drawerActivity_background"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnEndSession"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:background="@drawable/default_button"
+            android:text="End Session"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTerm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:text="Example Word"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnReadTerm"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_speaker" />
+
+            <TextView
+                android:id="@+id/txtDefinition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:minLines="9"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="25dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnKnown"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#0F0" />
+
+            <Button
+                android:id="@+id/btnUnknown"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_weight="1"
+                android:background="@color/defaultRed_100" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>
