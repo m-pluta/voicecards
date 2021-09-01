@@ -1,21 +1,23 @@
 package com.thundercandy.epq;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.data.SessionCard;
 import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SessionActivity extends AppCompatActivity {
 
     ImageView btnBack;
+    SessionManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,15 @@ public class SessionActivity extends AppCompatActivity {
         Intent receivedIntent = getIntent();
         ArrayList<Integer> selectedCats = receivedIntent.getIntegerArrayListExtra("selectedCategories");
 
-        extractCardsFromCategories(selectedCats);
+        ArrayList<SessionCard> scs = extractCardsFromCategories(selectedCats);
+        Collections.shuffle(scs);
+        manager = new SessionManager(scs);
+        manager.start();
 
     }
 
     public ArrayList<SessionCard> extractCardsFromCategories(ArrayList<Integer> selectedCategoryIDs) {
-        ArrayList<SessionCard> scs = new ArrayList<>()
-                ;
+        ArrayList<SessionCard> scs = new ArrayList<>();
         for (Integer i : selectedCategoryIDs) {
             ArrayList<Card> cards = DbUtils.fetchCategoryCards(this, i);
 
@@ -65,4 +69,27 @@ public class SessionActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
     }
 
+    public class SessionManager {
+
+        ArrayList<SessionCard> cards;
+
+        public SessionManager(ArrayList<SessionCard> cards) {
+            this.cards = cards;
+        }
+
+        public void start() {
+        }
+
+        public void conclude() {
+        }
+
+        public void known() {
+        }
+
+        public void unknown() {
+        }
+
+        public void loadNextCard() {
+        }
+    }
 }
