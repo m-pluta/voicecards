@@ -93,7 +93,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
         }
 
         for (Category c : inputCategories) {
-            categories.add(new ExpandableCategory(c));
+            categories.add(c.toExpandableCategory());
         }
 
         notifyDataSetChanged();

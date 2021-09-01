@@ -14,10 +14,6 @@ public class ExpandableCategory extends Category {
         super(id, name, cards);
     }
 
-    public ExpandableCategory(Category c) {
-        super(c.getId(), c.getName(), c.getCards());
-    }
-
     public boolean isExpanded() {
         return isExpanded;
     }

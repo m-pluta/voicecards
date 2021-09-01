@@ -19,6 +19,10 @@ public class Category extends DataItem {
         this.cards = cards;
     }
 
+    public ExpandableCategory toExpandableCategory() {
+        return new ExpandableCategory(this.getId(), this.getName(), this.getCards());
+    }
+
     public ArrayList<Card> getCards() {
         return cards;
     }
