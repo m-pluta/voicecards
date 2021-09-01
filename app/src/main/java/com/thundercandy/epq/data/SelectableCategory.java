@@ -1,6 +1,7 @@
 package com.thundercandy.epq.data;
 
 public class SelectableCategory extends DataItem {
+
     private int cardCount;
     private boolean selected;
 

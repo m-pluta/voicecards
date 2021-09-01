@@ -1,31 +1,20 @@
 package com.thundercandy.epq.data;
 
-public class Card {
+public class Card extends DataItem {
 
-    private int id;
-    private String term;
     private String definition;
 
     public Card(int id, String term, String definition) {
-        this.id = id;
-        this.term = term;
+        super(id, term);
         this.definition = definition;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTerm() {
-        return term;
+        return super.getName();
     }
 
     public void setTerm(String term) {
-        this.term = term;
+        super.setName(term);
     }
 
     public String getDefinition() {
