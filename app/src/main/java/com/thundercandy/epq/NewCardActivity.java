@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.database.DbUtils;
 import com.thundercandy.epq.events.CardAddedEvent;
 

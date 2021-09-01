@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thundercandy.epq.data.SelectableCategory;
 import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;

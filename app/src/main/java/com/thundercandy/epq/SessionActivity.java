@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
@@ -57,15 +57,6 @@ public class SessionActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
-    }
-
-    private class SessionCard {
-
-        private int card_id;
-
-
-
-
     }
 
 }

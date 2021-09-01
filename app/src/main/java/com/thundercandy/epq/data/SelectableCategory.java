@@ -11,6 +11,14 @@ public class SelectableCategory extends DataItem {
         this.selected = selected;
     }
 
+    public String getCategoryName() {
+        return super.getName();
+    }
+
+    public void setCategoryName(String name) {
+        super.setName(name);
+    }
+
     public int getCardCount() {
         return cardCount;
     }

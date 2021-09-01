@@ -7,9 +7,9 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
-import com.thundercandy.epq.Card;
-import com.thundercandy.epq.Category;
-import com.thundercandy.epq.SelectableCategory;
+import com.thundercandy.epq.data.Card;
+import com.thundercandy.epq.data.Category;
+import com.thundercandy.epq.data.SelectableCategory;
 import com.thundercandy.epq.database.CategoryContract.CardEntry;
 import com.thundercandy.epq.database.CategoryContract.CategoryEntry;
 

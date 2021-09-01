@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
+import com.thundercandy.epq.data.Category;
+import com.thundercandy.epq.data.ExpandableCategory;
 import com.thundercandy.epq.database.DbUtils;
 import com.thundercandy.epq.events.CardAddedEvent;
 
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 
 public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecViewAdapter.ViewHolder> {
 
-    private ArrayList<Category> categories;
+    private ArrayList<ExpandableCategory> categories = new ArrayList<>();
     private Context mContext;
 
     public CategoryRecViewAdapter(Context mContext) {
@@ -85,11 +87,15 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
         return categories.size();
     }
 
-    public void setCategories(ArrayList<Category> categories) {
-        if (categories == null) {
+    public void setCategories(ArrayList<Category> inputCategories) {
+        if (inputCategories == null) {
             categories = new ArrayList<>();
         }
-        this.categories = categories;
+
+        for (Category c : inputCategories) {
+            categories.add(new ExpandableCategory(c));
+        }
+
         notifyDataSetChanged();
     }
 
@@ -98,7 +104,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
 
         int cat_id = DbUtils.addCategory(mContext, cat_name, date);
 
-        Category created_category = new Category(cat_id, cat_name, null);
+        ExpandableCategory created_category = new ExpandableCategory(cat_id, cat_name, null);
         categories.add(0, created_category);
         notifyItemInserted(0);
     }
@@ -131,7 +137,7 @@ public class CategoryRecViewAdapter extends RecyclerView.Adapter<CategoryRecView
             btnAddNewItem = itemView.findViewById(R.id.btnAddNewItem);
 
             header.setOnClickListener(v -> {
-                Category c = categories.get(getAdapterPosition());
+                ExpandableCategory c = categories.get(getAdapterPosition());
                 c.flipExpanded();
                 notifyItemChanged(getAdapterPosition());
             });

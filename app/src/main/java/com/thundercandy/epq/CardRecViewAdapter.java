@@ -1,9 +1,6 @@
 package com.thundercandy.epq;
 
-import static com.thundercandy.epq.database.DbUtils.countCards;
-import static com.thundercandy.epq.database.DbUtils.countCategories;
 import static com.thundercandy.epq.database.DbUtils.removeCard;
-import static com.thundercandy.epq.database.DbUtils.removeCategory;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,11 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thundercandy.epq.data.Card;
+
 import java.util.ArrayList;
 
 public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.ViewHolder> {
 
-    private ArrayList<Card> cards;
+    private ArrayList<Card> cards = new ArrayList<>();
     private Context mContext;
     private int category_id;
 

@@ -1,6 +1,7 @@
 package com.thundercandy.epq.events;
 
-import com.thundercandy.epq.Card;
+
+import com.thundercandy.epq.data.Card;
 
 public class CardAddedEvent {
 

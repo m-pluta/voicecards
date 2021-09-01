@@ -24,4 +24,6 @@ public class Card extends DataItem {
     public void setDefinition(String definition) {
         this.definition = definition;
     }
+
+
 }

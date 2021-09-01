@@ -1,5 +1,9 @@
 package com.thundercandy.epq.data;
 
+import android.content.Context;
+
+import com.thundercandy.epq.database.DbUtils;
+
 import java.util.ArrayList;
 
 public class Category extends DataItem {
@@ -27,7 +31,7 @@ public class Category extends DataItem {
         this.cards.add(card);
     }
 
-//    public void updateCategory(Context context) {
-//        this.setCards(DbUtils.fetchCategoryCards(context, this.getId()));
-//    }
+    public void updateCategoryCards(Context context) {
+        this.setCards(DbUtils.fetchCategoryCards(context, this.getId()));
+    }
 }
