@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
 
@@ -25,15 +29,21 @@ public class SessionActivity extends AppCompatActivity {
         });
 
         Intent receivedIntent = getIntent();
-
         ArrayList<Integer> selectedCats = receivedIntent.getIntegerArrayListExtra("selectedCategories");
+
+        extractCardsFromCategories(selectedCats);
 
     }
 
     public ArrayList<Card> extractCardsFromCategories(ArrayList<Integer> selectedCategoryIDs) {
         ArrayList<Card> cards = new ArrayList<>();
+        for (Integer i : selectedCategoryIDs) {
+            cards.addAll(DbUtils.fetchCategoryCards(this, i));
+        }
 
-
+        for (Card c : cards) {
+            Log.d("CARD_FETCH", c.toString());
+        }
         return cards;
     }
 
@@ -48,4 +58,14 @@ public class SessionActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
     }
+
+    private class SessionCard {
+
+        private int card_id;
+
+
+
+
+    }
+
 }

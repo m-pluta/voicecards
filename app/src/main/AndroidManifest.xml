@@ -33,9 +33,6 @@
             android:exported="true"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".FriendsActivity"
-            android:exported="true" />
-        <activity
             android:name=".PomodoroActivity"
             android:exported="true" />
         <activity
