@@ -25,5 +25,8 @@ public class Card extends DataItem {
         this.definition = definition;
     }
 
+    public SessionCard toSessionCard() {
+        return new SessionCard(this.getId(), this.getTerm(), this.getDefinition());
+    }
 
 }

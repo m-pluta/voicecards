@@ -24,4 +24,15 @@ public class SessionCard extends Card {
     public void setKnown(boolean known) {
         this.known = known;
     }
+
+    @Override
+    public String toString() {
+        return "SessionCard{" +
+                "id=" + this.getId() +
+                ", term=" + this.getTerm() +
+                ", definition=" + this.getDefinition() +
+                ", timesUnknown=" + timesUnknown +
+                ", known=" + known +
+                '}';
+    }
 }

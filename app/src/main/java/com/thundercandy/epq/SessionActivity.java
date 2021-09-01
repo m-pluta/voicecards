@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.thundercandy.epq.data.Card;
+import com.thundercandy.epq.data.SessionCard;
 import com.thundercandy.epq.database.DbUtils;
 
 import java.util.ArrayList;
@@ -35,16 +36,21 @@ public class SessionActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<Card> extractCardsFromCategories(ArrayList<Integer> selectedCategoryIDs) {
-        ArrayList<Card> cards = new ArrayList<>();
+    public ArrayList<SessionCard> extractCardsFromCategories(ArrayList<Integer> selectedCategoryIDs) {
+        ArrayList<SessionCard> scs = new ArrayList<>()
+                ;
         for (Integer i : selectedCategoryIDs) {
-            cards.addAll(DbUtils.fetchCategoryCards(this, i));
+            ArrayList<Card> cards = DbUtils.fetchCategoryCards(this, i);
+
+            for (Card c : cards) {
+                scs.add(c.toSessionCard());
+            }
         }
 
-        for (Card c : cards) {
-            Log.d("CARD_FETCH", c.toString());
+        for (SessionCard sc : scs) {
+            Log.d("CARD_FETCH", sc.toString());
         }
-        return cards;
+        return scs;
     }
 
     @Override
