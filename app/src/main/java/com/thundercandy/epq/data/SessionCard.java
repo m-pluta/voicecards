@@ -52,10 +52,12 @@ public class SessionCard extends Card {
     public void known() {
         seen();
         timesKnown++;
+        checkLearnt();
     }
 
     public void unknown() {
         seen();
+        checkLearnt();
     }
 
     public void seen() {
