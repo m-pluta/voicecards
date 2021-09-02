@@ -9,8 +9,8 @@ import java.util.Collections;
 
 public class SessionManager {
 
-    public static final double learntThreshold = 0.8;
-    public static final double seenThreshold = 5;
+    public static final double learntThreshold = 0.9;   //TODO: Fetch these values form sharedPreferences
+    public static final double seenThreshold = 3;
 
     private final SessionActivity sessionActivity;
     ArrayList<SessionCard> cards;

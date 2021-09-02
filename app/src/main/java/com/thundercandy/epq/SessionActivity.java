@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.thundercandy.epq.data.Card;
@@ -38,9 +39,6 @@ public class SessionActivity extends AppCompatActivity {
         btnReadTerm = findViewById(R.id.btnReadTerm);
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
-        btnBack.setOnClickListener(v -> {
-            onBackPressed();
-        });
 
         // This part starts the session with the categories the user selected
         Intent receivedIntent = getIntent();
@@ -73,6 +71,20 @@ public class SessionActivity extends AppCompatActivity {
             if (!manager.isEnded()) {
                 manager.revealDefinition();
             }
+        });
+
+        btnBack.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SessionActivity.this);
+            builder.setMessage("Are you sure you want to go back?\nThis will end your current session.");
+            builder.setPositiveButton("Go Back", (dialog, which) -> {
+                manager.end();
+                onBackPressed();
+            });
+
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+            builder.setCancelable(true);
+            builder.show();
         });
 
 
