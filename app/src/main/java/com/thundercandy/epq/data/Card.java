@@ -29,4 +29,12 @@ public class Card extends DataItem {
         return new SessionCard(this.getId(), this.getTerm(), this.getDefinition());
     }
 
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id='" + this.getId() +
+                ", term='" + this.getTerm() +
+                ", definition='" + definition +
+                '}';
+    }
 }
