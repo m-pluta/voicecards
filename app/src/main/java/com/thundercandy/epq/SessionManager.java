@@ -52,18 +52,15 @@ public class SessionManager {
 
     public void known() {
         loadedCard.known();
-
-        if (checkSessionEnd()) {
-            end();
-        } else {
-            Collections.rotate(cards, -1);
-            loadNextCard();
-        }
+        afterChoice();
     }
 
     public void unknown() {
         loadedCard.unknown();
+        afterChoice();
+    }
 
+    public void afterChoice() {
         if (checkSessionEnd()) {
             end();
         } else {
