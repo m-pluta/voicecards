@@ -3,7 +3,6 @@ package com.thundercandy.epq;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,7 +47,7 @@ public class SessionActivity extends AppCompatActivity {
         ArrayList<Integer> selectedCats = receivedIntent.getIntegerArrayListExtra("selectedCategories");
         ArrayList<SessionCard> scs = extractCardsFromCategories(selectedCats);
         Collections.shuffle(scs);
-        manager = new SessionManager(scs);
+        manager = new SessionManager(this, scs);
         manager.start();
 
         btnEndSession.setOnClickListener(v -> {
@@ -95,83 +94,4 @@ public class SessionActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
     }
 
-    public class SessionManager {
-
-        ArrayList<SessionCard> cards;
-        boolean definitionRevealed = false;
-        SessionCard loadedCard;
-        boolean ended = false;
-        int lastCardID = -1;
-
-        public SessionManager(ArrayList<SessionCard> cards) {
-            this.cards = cards;
-        }
-
-        public void start() {
-            btnEndSession.setEnabled(true);
-            btnKnown.setEnabled(true);
-            btnUnknown.setEnabled(true);
-            loadNextCard();
-        }
-
-        public void end() {
-            ended = true;
-            logData();
-        }
-
-        private void logData() {
-            String result = "cards={";
-            for (SessionCard sc : cards) {
-                result += sc.toShortString() + ", ";
-            }
-            result += "}";
-
-            Log.d("SESSION_END", result);
-        }
-
-        public void known() {
-            loadedCard.known();
-            Collections.rotate(cards, -1);
-            loadNextCard();
-        }
-
-        public void unknown() {
-            loadedCard.unknown();
-            Collections.rotate(cards, -1);
-            loadNextCard();
-        }
-
-        public void revealDefinition() {
-            txtDefinition.setText(loadedCard.getDefinition());
-            definitionRevealed = true;
-            btnKnown.setEnabled(true);
-            btnUnknown.setEnabled(true);
-        }
-
-        int cardsCycled = 0;
-        public void loadNextCard() {
-            if (loadedCard != null) {
-                lastCardID = loadedCard.getId();
-            }
-            if (cardsCycled == cards.size()) {
-                Collections.shuffle(cards);
-                cardsCycled = 0;
-            }
-
-            definitionRevealed = false;
-            btnKnown.setEnabled(false);     //TODO: replace this with grey buttons or something
-            btnUnknown.setEnabled(false);
-
-
-            if (cards.get(0).getId() == lastCardID) {               // So the user doesnt see the same card two times in a row
-                Collections.swap(cards, 0, cards.size() - 1);
-            }
-            loadedCard = cards.get(0);
-            cardsCycled++;
-
-            txtTerm.setText(loadedCard.getTerm());
-            txtDefinition.setText("Click to see definition");
-
-        }
-    }
 }
