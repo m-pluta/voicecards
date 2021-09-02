@@ -52,15 +52,27 @@ public class SessionActivity extends AppCompatActivity {
 
         btnEndSession.setOnClickListener(v -> {
             manager.end();
+            btnKnown.setEnabled(false);
+            btnUnknown.setEnabled(false);
         });
         btnKnown.setOnClickListener(v -> {
-            manager.known();
+            if (manager.isEnded()) {
+                btnKnown.setEnabled(false);
+            } else {
+                manager.known();
+            }
         });
         btnUnknown.setOnClickListener(v -> {
-            manager.unknown();
+            if (manager.isEnded()) {
+                btnUnknown.setEnabled(false);
+            } else {
+                manager.unknown();
+            }
         });
         txtDefinition.setOnClickListener(v -> {
-            manager.revealDefinition();
+            if (!manager.isEnded()) {
+                manager.revealDefinition();
+            }
         });
 
 

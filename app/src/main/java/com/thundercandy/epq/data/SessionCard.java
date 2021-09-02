@@ -1,9 +1,10 @@
 package com.thundercandy.epq.data;
 
+import static com.thundercandy.epq.SessionManager.learntThreshold;
+import static com.thundercandy.epq.SessionManager.seenThreshold;
+
 public class SessionCard extends Card {
 
-    public static final double learntThreshold = 0.8;
-    public static final double seenThreshold = 3;
     int timesSeen = 0;
     int timesKnown = 0;
     boolean learnt = false;

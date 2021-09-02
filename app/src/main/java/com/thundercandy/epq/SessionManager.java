@@ -9,6 +9,9 @@ import java.util.Collections;
 
 public class SessionManager {
 
+    public static final double learntThreshold = 0.8;
+    public static final double seenThreshold = 5;
+
     private final SessionActivity sessionActivity;
     ArrayList<SessionCard> cards;
     boolean definitionRevealed = false;
@@ -33,6 +36,10 @@ public class SessionManager {
         logData();
     }
 
+    public boolean isEnded() {
+        return ended;
+    }
+
     private void logData() {
         String result = "cards={";
         for (SessionCard sc : cards) {
@@ -45,14 +52,24 @@ public class SessionManager {
 
     public void known() {
         loadedCard.known();
-        Collections.rotate(cards, -1);
-        loadNextCard();
+
+        if (checkSessionEnd()) {
+            end();
+        } else {
+            Collections.rotate(cards, -1);
+            loadNextCard();
+        }
     }
 
     public void unknown() {
         loadedCard.unknown();
-        Collections.rotate(cards, -1);
-        loadNextCard();
+
+        if (checkSessionEnd()) {
+            end();
+        } else {
+            Collections.rotate(cards, -1);
+            loadNextCard();
+        }
     }
 
     public void revealDefinition() {
@@ -78,7 +95,7 @@ public class SessionManager {
         sessionActivity.btnUnknown.setEnabled(false);
 
 
-        if (cards.get(0).getId() == lastCardID) {               // So the user doesnt see the same card two times in a row
+        if (cards.get(0).getId() == lastCardID) {               // So the user doesn't see the same card two times in a row
             Collections.swap(cards, 0, cards.size() - 1);
         }
         loadedCard = cards.get(0);
@@ -86,6 +103,19 @@ public class SessionManager {
 
         sessionActivity.txtTerm.setText(loadedCard.getTerm());
         sessionActivity.txtDefinition.setText("Click to see definition");
-
     }
+
+    public boolean checkSessionEnd() {
+        boolean outcome = true;
+        for (SessionCard sc : cards) {
+            if (!sc.isLearnt() || sc.getTimesSeen() < seenThreshold) {
+                outcome = false;
+                break;
+            }
+        }
+        logData();
+        Log.d("outcome", String.valueOf(outcome));
+        return outcome;
+    }
+
 }
