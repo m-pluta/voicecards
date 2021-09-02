@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/default_button"
+        android:background="@drawable/default_button_large_red"
         android:text="Start Session"
         android:textAlignment="center"
         android:textAllCaps="false"

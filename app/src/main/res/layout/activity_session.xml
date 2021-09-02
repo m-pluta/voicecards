@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_margin="10dp"
-            android:background="@drawable/default_button"
+            android:background="@drawable/default_button_small_red"
             android:enabled="false"
             android:text="End Session"
             android:textAllCaps="false"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
-                android:background="@color/white"
+                android:background="@drawable/bg_large"
                 android:gravity="center"
                 android:minLines="9"
                 android:padding="5dp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="25dp"
-            android:background="@color/white"
+            android:background="@drawable/bg_normal"
             android:orientation="horizontal">
 
             <Button
@@ -83,21 +83,26 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:background="#6FE28D"
+                android:background="@drawable/default_button_normal_green"
                 android:enabled="false"
                 android:text="Knew it!"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
+            <!--Spacer-->
+            <View
+                android:layout_width="10dp"
+                android:layout_height="0dp" />
+
             <Button
                 android:id="@+id/btnUnknown"
                 android:layout_width="0dp"
                 android:layout_height="70dp"
-                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@color/defaultRed_100"
+                android:background="@drawable/default_button_normal_red"
                 android:enabled="false"
                 android:text="Need more practice"
                 android:textAllCaps="false"

@@ -62,7 +62,7 @@
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/default_button"
+            android:background="@drawable/default_button_large_red"
             android:text="Finish"
             android:textAlignment="center"
             android:textAllCaps="false"

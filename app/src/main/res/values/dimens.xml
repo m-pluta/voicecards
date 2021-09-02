@@ -22,4 +22,9 @@
     <dimen name="spacer_height">1dp</dimen>
     <dimen name="card_header_font_size">18sp</dimen>
     <dimen name="card_item_font_size">14sp</dimen>
+
+    <!--Buttons-->
+    <dimen name="small_button_corners">4dp</dimen>
+    <dimen name="normal_button_corners">8dp</dimen>
+    <dimen name="large_button_corners">16dp</dimen>
 </resources>
