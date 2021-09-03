@@ -119,7 +119,7 @@ public class SessionManager {
         return outcome;
     }
 
-    public void setOnEndedListener(onEventListener listener) {
+    public void setOnEventListener(onEventListener listener) {
         this.listener = listener;
     }
 

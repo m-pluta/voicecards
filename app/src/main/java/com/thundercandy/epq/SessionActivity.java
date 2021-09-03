@@ -86,7 +86,7 @@ public class SessionActivity extends AppCompatActivity {
             builder.show();
         });
 
-        manager.setOnEndedListener(new SessionManager.onEventListener() {
+        manager.setOnEventListener(new SessionManager.onEventListener() {
             @Override
             public void onStart() {
                 btnEndSession.setEnabled(true);
