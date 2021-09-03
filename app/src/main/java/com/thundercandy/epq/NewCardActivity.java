@@ -1,14 +1,27 @@
 package com.thundercandy.epq;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.database.DbUtils;
@@ -16,12 +29,20 @@ import com.thundercandy.epq.events.CardAddedEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 public class NewCardActivity extends AppCompatActivity {
 
-    private Button btnFinish;
-    private EditText txtTerm, txtDefinition;
-    private Spinner spCategory;
     private ImageView btnBack;
+    private Spinner spCategory;
+    private EditText txtTerm, txtDefinition;
+    private Button btnFinish;
+
+    private EditText selectedTextField;
+
+    private SpeechRecognizer speechRecognizer;
+    private Intent defaultSpeechIntent;
 
     private static int targetCategoryID = -1;
     private static int targetCategoryPosition = 0;
@@ -30,6 +51,8 @@ public class NewCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_card);
+
+        checkVoiceCommandPermission();
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
@@ -56,7 +79,7 @@ public class NewCardActivity extends AppCompatActivity {
 
                 //TODO: Make sure to pass an actual date instead of 0
                 int card_id = DbUtils.addCard(this, targetCategoryID, inputTerm, inputDefinition, 0);
-                Log.d("DB_ADD", "ID: "+ card_id + ", Term: " + inputTerm + " added to DB");
+                Log.d("DB_ADD", "ID: " + card_id + ", Term: " + inputTerm + " added to DB");
 
                 CardAddedEvent event = new CardAddedEvent();
                 event.setCategory(targetCategoryID);
@@ -69,6 +92,98 @@ public class NewCardActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Creates the SpeechRecognizer
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+        // Sets up the default speech intent
+        defaultSpeechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        defaultSpeechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        defaultSpeechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_on);
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+            }
+
+            @Override
+            public void onError(int error) {
+                switch (error) {
+                    case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                        break;
+                    case SpeechRecognizer.ERROR_NETWORK:
+                        break;
+                    case SpeechRecognizer.ERROR_AUDIO:
+                        break;
+                    case SpeechRecognizer.ERROR_SERVER:
+                        break;
+                    case SpeechRecognizer.ERROR_CLIENT:
+                        break;
+                    case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                            selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+                        break;
+                    case SpeechRecognizer.ERROR_NO_MATCH:
+                        break;
+                    case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                        break;
+                    case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                        break;
+                }
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                ArrayList<String> spokenStringArray = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                if (spokenStringArray != null) {
+                    String newText = selectedTextField.getText().toString() + spokenStringArray.get(0);
+                    selectedTextField.setText(newText);
+                }
+                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+                onResults(partialResults);
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+        });
+
+        txtTerm.setOnTouchListener((v, event) -> {
+            selectedTextField = txtTerm;
+            speechRecognizer.startListening(defaultSpeechIntent);
+            return false;
+        });
+        txtDefinition.setOnTouchListener((v, event) -> {
+            selectedTextField = txtDefinition;
+            speechRecognizer.startListening(defaultSpeechIntent);
+            return false;
+        });
+
     }
 
     @Override
@@ -81,5 +196,50 @@ public class NewCardActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+    }
+
+    private void checkVoiceCommandPermission() {
+        if (isAtLeastMarshmellow()) {
+            if (!isMicPermissionGranted()) {
+                ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                    if (isGranted) {
+                        Toast.makeText(NewCardActivity.this, "Permission granted", Toast.LENGTH_SHORT).show();
+                    } else {
+                        showPermissionRequestDialog();
+                    }
+                });
+                requestMicPermission(launcher);
+            } else {
+                Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void showPermissionRequestDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Permission necessary");
+        builder.setMessage("Without the microphone permission, voice recognition will not work.\n"
+                + "Are you sure you want to deny this permission");
+        builder.setPositiveButton("Allow", (dialog, which) -> {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+            finish();
+        });
+        builder.setNegativeButton("Deny", (dialog, which) -> {
+        });
+        builder.setCancelable(true);
+        builder.create().show();
+    }
+
+    private void requestMicPermission(ActivityResultLauncher<String> launcher) {
+        launcher.launch(Manifest.permission.RECORD_AUDIO);
+    }
+
+    public boolean isAtLeastMarshmellow() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
+    public boolean isMicPermissionGranted() {
+        return (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
     }
 }
