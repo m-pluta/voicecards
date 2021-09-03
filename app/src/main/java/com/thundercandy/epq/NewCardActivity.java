@@ -11,6 +11,8 @@ import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -104,7 +106,7 @@ public class NewCardActivity extends AppCompatActivity {
 
             @Override
             public void onReadyForSpeech(Bundle params) {
-                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_on);
+                setTextField_ON(selectedTextField);
             }
 
             @Override
@@ -124,7 +126,7 @@ public class NewCardActivity extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+                setTextField_OFF(selectedTextField);
             }
 
             @Override
@@ -137,7 +139,7 @@ public class NewCardActivity extends AppCompatActivity {
                     case SpeechRecognizer.ERROR_SERVER:
                     case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
                     case SpeechRecognizer.ERROR_NO_MATCH:
-                        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+                        setTextField_OFF(selectedTextField);
                         break;
                     case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
                     case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
@@ -149,10 +151,16 @@ public class NewCardActivity extends AppCompatActivity {
             public void onResults(Bundle results) {
                 ArrayList<String> spokenStringArray = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 if (spokenStringArray != null) {
-                    String newText = selectedTextField.getText().toString() + spokenStringArray.get(0);
+                    String oldText = selectedTextField.getText().toString();
+                    String newText = "";
+                    if (oldText.length() != 0) {
+                        newText = oldText + (oldText.charAt(oldText.length() - 1) == ' ' ? "" : " ");
+                    }
+                    newText += spokenStringArray.get(0);
                     selectedTextField.setText(newText);
                 }
-                selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+                setTextField_OFF(selectedTextField);
+                //TODO: hide soft keyboard input
             }
 
             @Override
@@ -166,17 +174,50 @@ public class NewCardActivity extends AppCompatActivity {
             }
         });
 
+        final GestureDetector gDetectorTerm = new GestureDetector(getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                selectedTextField = txtTerm;
+                speechRecognizer.startListening(defaultSpeechIntent);
+                return true;
+            }
+        });
+        final GestureDetector gDetectorDefinition = new GestureDetector(getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                selectedTextField = txtDefinition;
+                speechRecognizer.startListening(defaultSpeechIntent);
+                return true;
+            }
+        });
         txtTerm.setOnTouchListener((v, event) -> {
-            selectedTextField = txtTerm;
-            speechRecognizer.startListening(defaultSpeechIntent);
+            gDetectorTerm.onTouchEvent(event);
             return false;
         });
         txtDefinition.setOnTouchListener((v, event) -> {
-            selectedTextField = txtDefinition;
-            speechRecognizer.startListening(defaultSpeechIntent);
+            gDetectorDefinition.onTouchEvent(event);
             return false;
         });
+    }
 
+    public void setTextField_ON(EditText field) {
+        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_on);
+        field.clearFocus();
+    }
+
+    public void setTextField_OFF(EditText field) {
+        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
+        field.setSelection(field.getText().length());
     }
 
     @Override
