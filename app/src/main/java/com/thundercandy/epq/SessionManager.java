@@ -12,6 +12,7 @@ public class SessionManager {
     public static final double learntThreshold = 0.9;   //TODO: Fetch these values form sharedPreferences
     public static final double seenThreshold = 3;
 
+    private onEndedListener listener;
     private final SessionActivity sessionActivity;
     ArrayList<SessionCard> cards;
     boolean definitionRevealed = false;
@@ -20,6 +21,7 @@ public class SessionManager {
     int lastCardID = -1;
 
     public SessionManager(SessionActivity sessionActivity, ArrayList<SessionCard> cards) {
+        this.listener = null;
         this.sessionActivity = sessionActivity;
         this.cards = cards;
     }
@@ -33,6 +35,7 @@ public class SessionManager {
 
     public void end() {
         ended = true;
+        listener.onEnded();
         logData();
     }
 
@@ -113,6 +116,14 @@ public class SessionManager {
         logData();
         Log.d("outcome", String.valueOf(outcome));
         return outcome;
+    }
+
+    public void setOnEndedListener(onEndedListener listener) {
+        this.listener = listener;
+    }
+
+    public interface onEndedListener {
+        public void onEnded();
     }
 
 }

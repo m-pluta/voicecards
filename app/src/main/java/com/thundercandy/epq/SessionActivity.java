@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,6 +86,12 @@ public class SessionActivity extends AppCompatActivity {
 
             builder.setCancelable(true);
             builder.show();
+        });
+
+        manager.setOnEndedListener(() -> {
+            Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
+            btnKnown.setEnabled(false);
+            btnUnknown.setEnabled(false);
         });
 
 
