@@ -46,13 +46,11 @@ public class SessionActivity extends AppCompatActivity {
         ArrayList<Integer> selectedCats = receivedIntent.getIntegerArrayListExtra("selectedCategories");
         ArrayList<SessionCard> scs = extractCardsFromCategories(selectedCats);
         Collections.shuffle(scs);
-        manager = new SessionManager(this, scs);
-        manager.start();
+
+        manager = new SessionManager(scs);
 
         btnEndSession.setOnClickListener(v -> {
             manager.end();
-            btnKnown.setEnabled(false);
-            btnUnknown.setEnabled(false);
         });
         btnKnown.setOnClickListener(v -> {
             if (manager.isEnded()) {
@@ -88,11 +86,37 @@ public class SessionActivity extends AppCompatActivity {
             builder.show();
         });
 
-        manager.setOnEndedListener(() -> {
-            Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
-            btnKnown.setEnabled(false);
-            btnUnknown.setEnabled(false);
+        manager.setOnEndedListener(new SessionManager.onEventListener() {
+            @Override
+            public void onStart() {
+                btnEndSession.setEnabled(true);
+                txtDefinition.setText("Click to see definition");
+            }
+
+            @Override
+            public void onEnded() {
+                Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
+                btnKnown.setEnabled(false);
+                btnUnknown.setEnabled(false);
+            }
+
+            @Override
+            public void onDefinitionRevealed(String definition) {
+                txtDefinition.setText(definition);
+                btnKnown.setEnabled(true);
+                btnUnknown.setEnabled(true);
+            }
+
+            @Override
+            public void onReady(String term) {
+                btnKnown.setEnabled(false);     //TODO: replace this with grey buttons or something
+                btnUnknown.setEnabled(false);
+                txtTerm.setText(term);
+                txtDefinition.setText("Click to see definition");
+            }
         });
+
+        manager.start();
 
 
     }
