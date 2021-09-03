@@ -26,19 +26,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="25dp" />
 
             <EditText
                 android:id="@+id/txtTerm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/custom_input_default_red_normal"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/custom_input_mic_off"
+                android:gravity="center"
                 android:hint="Term"
-                android:maxLines="1"
+                android:lines="1"
+                android:maxLines="2"
                 android:padding="10dp"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/txtDefinition"
@@ -46,12 +48,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="50dp"
-                android:lines="5"
-                android:background="@drawable/custom_input_default_red_normal"
+                android:background="@drawable/custom_input_mic_off"
+                android:gravity="center"
                 android:hint="Definition"
-                android:gravity="top"
+                android:lines="10"
+                android:maxLines="15"
                 android:padding="10dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
 
