@@ -34,7 +34,7 @@ public class SessionManager {
 
     public void end() {
         if (listener != null && !ended) { // Fire listener
-            listener.onEnded();
+            listener.onEnded(cards);
         }
         ended = true;
     }
@@ -126,7 +126,7 @@ public class SessionManager {
     public interface onEventListener {
         public void onStart();
 
-        public void onEnded();
+        public void onEnded(ArrayList<SessionCard> cards);
 
         public void onDefinitionRevealed(String definition);
 

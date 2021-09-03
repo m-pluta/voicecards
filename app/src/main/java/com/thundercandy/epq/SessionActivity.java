@@ -94,10 +94,11 @@ public class SessionActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onEnded() {
+            public void onEnded(ArrayList<SessionCard> cards) {
                 Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
                 btnKnown.setEnabled(false);
                 btnUnknown.setEnabled(false);
+                //TODO: Send user to results screen using the cards arraylist result
             }
 
             @Override
