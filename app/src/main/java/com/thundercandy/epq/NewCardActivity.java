@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,8 @@ public class NewCardActivity extends AppCompatActivity {
 
     private Button btnFinish;
     private EditText txtTerm, txtDefinition;
-    ImageView btnBack;
+    private Spinner spCategory;
+    private ImageView btnBack;
 
     private static int targetCategoryID = -1;
     private static int targetCategoryPosition = 0;
@@ -31,10 +33,11 @@ public class NewCardActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
-        btnFinish = findViewById(R.id.btnFinish);
+        btnBack = findViewById(R.id.btnBack);
+        spCategory = findViewById(R.id.spCategory);
         txtTerm = findViewById(R.id.txtTerm);
         txtDefinition = findViewById(R.id.txtDefinition);
-        btnBack = findViewById(R.id.btnBack);
+        btnFinish = findViewById(R.id.btnFinish);
 
         Intent intent = getIntent();
         targetCategoryID = intent.getIntExtra("targetCategoryID", -1);
@@ -50,9 +53,11 @@ public class NewCardActivity extends AppCompatActivity {
             String inputDefinition = txtDefinition.getText().toString();
 
             if (inputTerm.length() > 0 && inputDefinition.length() > 0 && targetCategoryID != -1) {
+
                 //TODO: Make sure to pass an actual date instead of 0
                 int card_id = DbUtils.addCard(this, targetCategoryID, inputTerm, inputDefinition, 0);
                 Log.d("DB_ADD", "ID: "+ card_id + ", Term: " + inputTerm + " added to DB");
+
                 CardAddedEvent event = new CardAddedEvent();
                 event.setCategory(targetCategoryID);
                 event.setAddedCard(new Card(card_id, inputTerm, inputDefinition));
