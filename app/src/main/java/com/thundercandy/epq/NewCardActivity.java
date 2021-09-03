@@ -131,22 +131,15 @@ public class NewCardActivity extends AppCompatActivity {
             public void onError(int error) {
                 switch (error) {
                     case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                        break;
                     case SpeechRecognizer.ERROR_NETWORK:
-                        break;
                     case SpeechRecognizer.ERROR_AUDIO:
-                        break;
-                    case SpeechRecognizer.ERROR_SERVER:
-                        break;
                     case SpeechRecognizer.ERROR_CLIENT:
-                        break;
+                    case SpeechRecognizer.ERROR_SERVER:
                     case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                            selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
-                        break;
                     case SpeechRecognizer.ERROR_NO_MATCH:
+                        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
                         break;
                     case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                        break;
                     case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
                         break;
                 }
