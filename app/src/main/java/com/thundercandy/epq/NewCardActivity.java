@@ -124,15 +124,17 @@ public class NewCardActivity extends AppCompatActivity {
         txtTerm.setOnTouchListener((v, event) -> {
             selectedTextField = txtTerm;
             gDetector.onTouchEvent(event);
+            txtTerm.clearFocus();
             return false;
         });
         txtDefinition.setOnTouchListener((v, event) -> {
             selectedTextField = txtDefinition;
             gDetector.onTouchEvent(event);
+            txtDefinition.clearFocus();
             return false;
         });
         txtTerm.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
+            if (txtTerm.getText().length() != 0 || hasFocus) {
                 txtTerm.setGravity(Gravity.CENTER_HORIZONTAL);
                 txtTerm.setHint("");
             } else {
@@ -141,7 +143,7 @@ public class NewCardActivity extends AppCompatActivity {
             }
         });
         txtDefinition.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
+            if (txtDefinition.getText().length() != 0 || hasFocus) {
                 txtDefinition.setGravity(Gravity.CENTER_HORIZONTAL);
                 txtDefinition.setHint("");
             } else {
@@ -203,12 +205,12 @@ public class NewCardActivity extends AppCompatActivity {
                 ArrayList<String> spokenStringArray = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                 if (spokenStringArray != null) {
                     String oldText = selectedTextField.getText().toString();
-                    String newText = "";
-                    if (oldText.length() != 0) {
-                        newText = oldText + (oldText.charAt(oldText.length() - 1) == ' ' ? "" : " ");
+                    if (oldText.length() != 0) {                                            // Checks if there is a space at the end of the string in the Textview, if not then it adds one.
+                        oldText += oldText.charAt(oldText.length() - 1) == ' ' ? "" : " ";
                     }
-                    newText += spokenStringArray.get(0);
-                    selectedTextField.setText(newText);
+                    String newText = spokenStringArray.get(0) + ". ";
+
+                    selectedTextField.setText(oldText + newText);
                 }
                 setTextFieldState(selectedTextField, false);
                 //TODO: hide soft keyboard input
