@@ -38,4 +38,9 @@
     <string name="remember_me">Remember me</string>
     <string name="developed_by">Developed by Michal Pluta</string>
     <string name="already_a_user_log_in">Already a user? Log In</string>
+
+    <!--NewCardActivity-->
+    <string name="term">Term</string>
+    <string name="definition">Definition</string>
+    <string name="finish">Finish</string>
 </resources>

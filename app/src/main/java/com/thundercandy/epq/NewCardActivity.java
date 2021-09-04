@@ -12,11 +12,11 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -131,6 +131,25 @@ public class NewCardActivity extends AppCompatActivity {
             gDetector.onTouchEvent(event);
             return false;
         });
+        txtTerm.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                txtTerm.setGravity(Gravity.CENTER_HORIZONTAL);
+                txtTerm.setHint("");
+            } else {
+                txtTerm.setGravity(Gravity.CENTER);
+                txtTerm.setHint(R.string.term);
+            }
+        });
+        txtDefinition.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                txtDefinition.setGravity(Gravity.CENTER_HORIZONTAL);
+                txtDefinition.setHint("");
+            } else {
+                txtDefinition.setGravity(Gravity.CENTER);
+                txtDefinition.setHint(R.string.definition);
+            }
+        });
+
     }
 
     public void createRecognitionListener() {

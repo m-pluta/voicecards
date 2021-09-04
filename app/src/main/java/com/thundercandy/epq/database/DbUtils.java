@@ -222,6 +222,6 @@ public class DbUtils {
             c.close();
         }
 
-        return "";
+        return null;
     }
 }
