@@ -1,6 +1,7 @@
 package com.thundercandy.epq;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -213,7 +215,8 @@ public class NewCardActivity extends AppCompatActivity {
                     selectedTextField.setText(oldText + newText);
                 }
                 setTextFieldState(selectedTextField, false);
-                //TODO: hide soft keyboard input
+                selectedTextField.setSelection(selectedTextField.getText().length());
+                hideKeyboard();
             }
 
             @Override
@@ -233,11 +236,18 @@ public class NewCardActivity extends AppCompatActivity {
         setTextFieldState(txtDefinition, false);
     }
 
+    public void hideKeyboard() {
+        final InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(txtTerm.getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(txtDefinition.getWindowToken(), 0);
+    }
+
     public void setTextFieldState(EditText field, boolean state) {
         if (state) {
             field.setBackgroundResource(R.drawable.custom_input_mic_on);
         } else {
             field.setBackgroundResource(R.drawable.custom_input_mic_off);
+            hideKeyboard();
         }
     }
 
