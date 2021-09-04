@@ -21,12 +21,21 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Spinner
-                android:id="@+id/spCategory"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="25dp" />
+                android:layout_marginTop="5dp"
+                android:text="Category"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/txtTerm"
@@ -37,8 +46,8 @@
                 android:background="@drawable/custom_input_mic_off"
                 android:gravity="center"
                 android:hint="Term"
-                android:minLines="1"
                 android:maxLines="2"
+                android:minLines="1"
                 android:padding="10dp"
                 android:textSize="18sp" />
 
@@ -51,8 +60,8 @@
                 android:background="@drawable/custom_input_mic_off"
                 android:gravity="center"
                 android:hint="Definition"
-                android:minLines="10"
                 android:maxLines="15"
+                android:minLines="10"
                 android:padding="10dp"
                 android:textSize="18sp" />
 

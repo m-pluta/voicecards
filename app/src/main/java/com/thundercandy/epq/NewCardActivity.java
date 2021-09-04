@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -37,7 +38,7 @@ import java.util.Locale;
 public class NewCardActivity extends AppCompatActivity {
 
     private ImageView btnBack;
-    private Spinner spCategory;
+    private TextView txtCategoryName;
     private EditText txtTerm, txtDefinition;
     private Button btnFinish;
 
@@ -60,7 +61,7 @@ public class NewCardActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
         btnBack = findViewById(R.id.btnBack);
-        spCategory = findViewById(R.id.spCategory);
+        txtCategoryName = findViewById(R.id.txtCategoryName);
         txtTerm = findViewById(R.id.txtTerm);
         txtDefinition = findViewById(R.id.txtDefinition);
         btnFinish = findViewById(R.id.btnFinish);
@@ -68,6 +69,7 @@ public class NewCardActivity extends AppCompatActivity {
         Intent intent = getIntent();
         targetCategoryID = intent.getIntExtra("targetCategoryID", -1);
         targetCategoryPosition = intent.getIntExtra("targetCategoryPosition", 0);
+        txtCategoryName.setText(DbUtils.getCategoryNameByID(this, targetCategoryID));
 
         btnBack.setOnClickListener(v -> {
             //TODO: Check if user has entered anything into text fields before taking user to previous screen
