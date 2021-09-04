@@ -41,6 +41,7 @@ public class NewCardActivity extends AppCompatActivity {
     private EditText txtTerm, txtDefinition;
     private Button btnFinish;
 
+    private GestureDetector gDetector;
     private EditText selectedTextField;
 
     private SpeechRecognizer speechRecognizer;
@@ -102,11 +103,40 @@ public class NewCardActivity extends AppCompatActivity {
         defaultSpeechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         defaultSpeechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
+        gDetector = new GestureDetector(getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                setTextFields_OFF();
+                speechRecognizer.destroy();
+                createRecognitionListener();
+                speechRecognizer.startListening(defaultSpeechIntent);
+                return true;
+            }
+        });
+
+        txtTerm.setOnTouchListener((v, event) -> {
+            selectedTextField = txtTerm;
+            gDetector.onTouchEvent(event);
+            return false;
+        });
+        txtDefinition.setOnTouchListener((v, event) -> {
+            selectedTextField = txtDefinition;
+            gDetector.onTouchEvent(event);
+            return false;
+        });
+    }
+
+    public void createRecognitionListener() {
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
 
             @Override
             public void onReadyForSpeech(Bundle params) {
-                setTextField_ON(selectedTextField);
+                setTextFieldState(selectedTextField, true);
             }
 
             @Override
@@ -126,7 +156,7 @@ public class NewCardActivity extends AppCompatActivity {
 
             @Override
             public void onEndOfSpeech() {
-                setTextField_OFF(selectedTextField);
+                setTextFieldState(selectedTextField, false);
             }
 
             @Override
@@ -139,7 +169,7 @@ public class NewCardActivity extends AppCompatActivity {
                     case SpeechRecognizer.ERROR_SERVER:
                     case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
                     case SpeechRecognizer.ERROR_NO_MATCH:
-                        setTextField_OFF(selectedTextField);
+                        setTextFieldState(selectedTextField, false);
                         break;
                     case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
                     case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
@@ -159,7 +189,7 @@ public class NewCardActivity extends AppCompatActivity {
                     newText += spokenStringArray.get(0);
                     selectedTextField.setText(newText);
                 }
-                setTextField_OFF(selectedTextField);
+                setTextFieldState(selectedTextField, false);
                 //TODO: hide soft keyboard input
             }
 
@@ -173,51 +203,19 @@ public class NewCardActivity extends AppCompatActivity {
 
             }
         });
-
-        final GestureDetector gDetectorTerm = new GestureDetector(getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                selectedTextField = txtTerm;
-                speechRecognizer.startListening(defaultSpeechIntent);
-                return true;
-            }
-        });
-        final GestureDetector gDetectorDefinition = new GestureDetector(getBaseContext(), new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public boolean onDoubleTap(MotionEvent e) {
-                selectedTextField = txtDefinition;
-                speechRecognizer.startListening(defaultSpeechIntent);
-                return true;
-            }
-        });
-        txtTerm.setOnTouchListener((v, event) -> {
-            gDetectorTerm.onTouchEvent(event);
-            return false;
-        });
-        txtDefinition.setOnTouchListener((v, event) -> {
-            gDetectorDefinition.onTouchEvent(event);
-            return false;
-        });
     }
 
-    public void setTextField_ON(EditText field) {
-        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_on);
-        field.clearFocus();
+    public void setTextFields_OFF() {
+        setTextFieldState(txtTerm, false);
+        setTextFieldState(txtDefinition, false);
     }
 
-    public void setTextField_OFF(EditText field) {
-        selectedTextField.setBackgroundResource(R.drawable.custom_input_mic_off);
-        field.setSelection(field.getText().length());
+    public void setTextFieldState(EditText field, boolean state) {
+        if (state) {
+            field.setBackgroundResource(R.drawable.custom_input_mic_on);
+        } else {
+            field.setBackgroundResource(R.drawable.custom_input_mic_off);
+        }
     }
 
     @Override
