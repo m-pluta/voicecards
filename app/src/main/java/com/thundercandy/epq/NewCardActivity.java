@@ -209,7 +209,7 @@ public class NewCardActivity extends AppCompatActivity {
                         oldText += oldText.charAt(oldText.length() - 1) == ' ' ? "" : " ";
                     }
                     String newText = spokenStringArray.get(0) + ". ";
-
+                    newText = Utils.capitalize(newText);
                     selectedTextField.setText(oldText + newText);
                 }
                 setTextFieldState(selectedTextField, false);
