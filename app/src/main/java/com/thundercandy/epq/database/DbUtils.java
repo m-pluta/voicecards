@@ -222,7 +222,6 @@ public class DbUtils {
             c.close();
         }
 
-        Log.d("NO_CATEGORY_FOUND", "NONE");
         return "";
     }
 }

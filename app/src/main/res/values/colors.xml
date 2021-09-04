@@ -27,4 +27,5 @@
 
     <!--NewCardActivity-->
     <color name="mic_on">#FF32CE32</color>
+    <color name="category_name_bar_bg">#FFE8EAEd</color>
 </resources>
