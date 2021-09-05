@@ -40,7 +40,7 @@ public class PomodoroActivity extends DrawerActivity {
                 paint.setStrokeWidth(strokeWidth);
 
 
-                for (int i = 0; i <= 35; i++) {
+                for (int i = 0; i <= 36; i++) {
                     canvas.drawArc(rectF, startingDeg, deg, false, paint);
                     try {
                         Thread.sleep(1000);
