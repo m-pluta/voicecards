@@ -46,7 +46,8 @@
                 android:maxLines="2"
                 android:minLines="1"
                 android:padding="10dp"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:tooltipText="Double click to activate speech to text" />
 
             <EditText
                 android:id="@+id/txtDefinition"
@@ -60,7 +61,8 @@
                 android:maxLines="15"
                 android:minLines="10"
                 android:padding="10dp"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:tooltipText="Double click to activate speech to text" />
 
         </LinearLayout>
 
