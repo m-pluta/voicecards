@@ -1,34 +1,43 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/messages_header">
+    <PreferenceCategory app:title="Session Options">
 
-        <EditTextPreference
-            app:key="signature"
-            app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+        <SeekBarPreference
+            android:defaultValue="85"
+            android:max="95"
+            app:key="learntThreshold"
+            app:min="0"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="Larger value = You need to click "
+            app:title="Cards are learnt after you know them __% of the time" />
 
-        <ListPreference
-            app:defaultValue="reply"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="reply"
-            app:title="@string/reply_title"
-            app:useSimpleSummaryProvider="true" />
+        <SeekBarPreference
+            android:defaultValue="3"
+            android:max="10"
+            app:key="seenThreshold"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="The amount of times you need to see all the cards before the session can finish automatically"
+            app:title="See all cards at least __ times" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
+    <PreferenceCategory app:title="Speech Recognition">
 
         <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+            app:key="auto_capitalize"
+            android:defaultValue="true"
+            app:title="Capitalize all text from speech input" />
 
         <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+            app:key="auto_full_stop"
+            android:defaultValue="true"
+            app:summaryOff="Full-stops are not automatically inserted"
+            app:summaryOn="Full-stops are automatically inserted"
+            app:title="Put full-stops after all speech input text" />
 
     </PreferenceCategory>
 
