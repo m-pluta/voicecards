@@ -128,13 +128,13 @@ public class SessionManager {
     }
 
     public interface onEventListener {
-        public void onStart();
+        void onStart();
 
-        public void onEnded(ArrayList<SessionCard> cards);
+        void onEnded(ArrayList<SessionCard> cards);
 
-        public void onDefinitionRevealed(String definition);
+        void onDefinitionRevealed(String definition);
 
-        public void onReady(String term);
+        void onReady(String term);
     }
 
 }
