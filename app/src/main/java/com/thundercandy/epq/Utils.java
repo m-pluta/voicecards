@@ -7,6 +7,9 @@ import android.view.View;
 
 import androidx.preference.PreferenceManager;
 
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 public class Utils {
 
     public static String capitalize(String str) {
@@ -71,5 +74,20 @@ public class Utils {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    }
+
+    public static String getDurationBreakdown(long diff) {
+        long millis = diff;
+        if (millis <= 0) {
+            return "00:00:00";
+        }
+        long hours = TimeUnit.MILLISECONDS.toHours(millis);
+        millis -= TimeUnit.HOURS.toMillis(hours);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
+        millis -= TimeUnit.MINUTES.toMillis(minutes);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
+
+        return String.format(Locale.ENGLISH, "%02d:%02d:%02d", hours, minutes, seconds);
+        //return "${getWithLeadZero(hours)}:${getWithLeadZero(minutes)}:${getWithLeadZero(seconds)}"
     }
 }
