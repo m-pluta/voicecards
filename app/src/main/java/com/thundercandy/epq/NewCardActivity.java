@@ -304,14 +304,14 @@ public class NewCardActivity extends AppCompatActivity {
             if (!isMicPermissionGranted()) {
                 ActivityResultLauncher<String> launcher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                     if (isGranted) {
-                        Toast.makeText(NewCardActivity.this, "Permission granted", Toast.LENGTH_SHORT).show();
+                        Log.d("RECORD_AUDIO_PERM", "Permission granted");
                     } else {
                         showPermissionRequestDialog();
                     }
                 });
                 requestMicPermission(launcher);
             } else {
-                Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
+                Log.d("RECORD_AUDIO_PERM", "Permission already granted");
             }
         }
     }
