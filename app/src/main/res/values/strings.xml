@@ -2,6 +2,7 @@
     <!--Main-->
     <string name="app_name">VoiceCards</string>
 
+
     <!--Navigation Drawer-->
     <string name="full_name">Full Name</string>
     <string name="home">Home</string>
@@ -11,6 +12,7 @@
     <string name="friends">Friends</string>
     <string name="settings">Settings</string>
     <string name="title_activity_settings">SettingsActivity</string>
+
 
     <!--Login Activities-->
     <string name="email">Email</string>
@@ -24,25 +26,58 @@
     <string name="developed_by">Developed by Michal Pluta 2021</string>
     <string name="already_a_user_log_in">Already a user? Log In</string>
 
+
     <!--NewCardActivity-->
     <string name="term">Term</string>
     <string name="definition">Definition</string>
     <string name="finish">Finish</string>
 
 
-
-    <string name="KEY_learntThreshold">learntThreshold</string>
-    <string name="learntThreshold_summary">Larger value = You need to click</string>
-    <string name="learntThreshold_title">Cards are learnt after you know them __% of the time</string>
-    <string name="KEY_seenThreshold">seenThreshold</string>
-    <string name="seenThreshold_summary">The amount of times you need to see all the cards before the session can finish automatically</string>
-    <string name="seenThreshold_title">See all cards at least __ times</string>
+    <!--Preference Categories-->
     <string name="Category_Session_Options">Session Options</string>
     <string name="Category_Speech_Recognition">Speech Recognition</string>
+    <string name="Category_Pomodoro_Options">Pomodoro Options</string>
+
+    <!--Preference - learntThreshold-->
+    <string name="KEY_learntThreshold">learntThreshold</string>
+    <string name="learntThreshold_title">Cards are learnt after you know them __% of the time</string>
+    <string name="learntThreshold_summary">Larger value = You need to click</string>
+
+    <!--Preference - seenThreshold-->
+    <string name="KEY_seenThreshold">seenThreshold</string>
+    <string name="seenThreshold_title">See all cards at least __ times</string>
+    <string name="seenThreshold_summary">The amount of times you need to see all the cards before the session can finish automatically</string>
+
+    <!--Preference - auto_capitalize-->
     <string name="KEY_auto_capitalize">auto_capitalize</string>
     <string name="auto_capitalize_title">Capitalize all text from speech input</string>
+
+    <!--Preference - auto_full_stop-->
     <string name="KEY_auto_full_stop">auto_full_stop</string>
-    <string name="auto_full_stop_summaryOff">Full-stops are not automatically inserted</string>
-    <string name="auto_full_stop_summaryOn">Full-stops are automatically inserted</string>
     <string name="auto_full_stop_title">Put full-stops after all speech input text</string>
+    <string name="auto_full_stop_summaryOn">Full-stops are automatically inserted</string>
+    <string name="auto_full_stop_summaryOff">Full-stops are not automatically inserted</string>
+
+    <!--Preference - pomodoro_length-->
+    <string name="KEY_pomodoro_length">pomodoro_length</string>
+    <string name="pomodoro_length_title">Pomodoro Length</string>
+    <string name="pomodoro_length_summary">Length of each pomodoro in minutes</string>
+
+    <!--Preference - breaks-->
+    <string name="KEY_breaks">breaks</string>
+    <string name="breaks_title">Breaks</string>
+    <string name="breaks_summaryOn">Have breaks between each pomodoro</string>
+    <string name="breaks_summaryOff">No breaks between each pomodoro</string>
+
+    <!--Preference - break_length-->
+    <string name="KEY_break_length">break_length</string>
+    <string name="break_length_title">Break Length</string>
+    <string name="break_length_summary">Length of each break in minutes</string>
+
+    <!--Preference - breaks_auto_start-->
+    <string name="KEY_breaks_auto_start">breaks_auto_start</string>
+    <string name="breaks_auto_start_title">Automatically start break</string>
+    <string name="breaks_auto_start_summaryOn">Break automatically starts after pomodoro is finished</string>
+    <string name="breaks_auto_start_summaryOff">Break needs to be started by you</string>
+
 </resources>

@@ -43,4 +43,46 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/Category_Pomodoro_Options">
+
+        <SeekBarPreference
+            android:defaultValue="@integer/default_pomodoro_length"
+            android:max="60"
+            app:key="@string/KEY_pomodoro_length"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="@string/pomodoro_length_summary"
+            app:title="@string/pomodoro_length_title" />
+
+        <SwitchPreference
+            android:defaultValue="@bool/default_breaks"
+            app:key="@string/KEY_breaks"
+            app:singleLineTitle="false"
+            app:summaryOff="@string/breaks_summaryOff"
+            app:summaryOn="@string/breaks_summaryOn"
+            app:title="@string/breaks_title" />
+
+        <SeekBarPreference
+            android:defaultValue="@integer/default_break_length"
+            android:dependency="breaks"
+            android:max="10"
+            app:key="@string/KEY_break_length"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="@string/break_length_summary"
+            app:title="@string/break_length_title" />
+
+        <SwitchPreference
+            android:defaultValue="@bool/default_breaks_auto_start"
+            android:dependency="breaks"
+            app:key="@string/KEY_breaks_auto_start"
+            app:singleLineTitle="false"
+            app:summaryOff="@string/breaks_auto_start_summaryOff"
+            app:summaryOn="@string/breaks_auto_start_summaryOn"
+            app:title="@string/breaks_auto_start_title" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

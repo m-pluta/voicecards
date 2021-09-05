@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Session Preferences-->
     <integer name="default_learntThreshold">85</integer>
     <integer name="default_seenThreshold">3</integer>
+
+    <!--Speech Recognition Preferences-->
     <bool name="default_auto_capitalize">true</bool>
     <bool name="default_auto_full_stops">true</bool>
+
+    <!--Pomodoro Preferences-->
+    <integer name="default_pomodoro_length">25</integer>
+    <bool name="default_breaks">true</bool>
+    <integer name="default_break_length">5</integer>
+    <bool name="default_breaks_auto_start">false</bool>
 </resources>
