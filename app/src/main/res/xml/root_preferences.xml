@@ -30,11 +30,13 @@
         <SwitchPreferenceCompat
             android:defaultValue="@bool/default_auto_capitalize"
             app:key="@string/KEY_auto_capitalize"
+            app:singleLineTitle="false"
             app:title="@string/auto_capitalize_title" />
 
         <SwitchPreferenceCompat
             android:defaultValue="@bool/default_auto_full_stops"
             app:key="@string/KEY_auto_full_stop"
+            app:singleLineTitle="false"
             app:summaryOff="@string/auto_full_stop_summaryOff"
             app:summaryOn="@string/auto_full_stop_summaryOn"
             app:title="@string/auto_full_stop_title" />
