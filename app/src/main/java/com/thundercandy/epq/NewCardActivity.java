@@ -74,8 +74,22 @@ public class NewCardActivity extends AppCompatActivity {
         txtCategoryName.setText(DbUtils.getCategoryNameByID(this, targetCategoryID));
 
         btnBack.setOnClickListener(v -> {
-            //TODO: Check if user has entered anything into text fields before taking user to previous screen
-            onBackPressed();
+            if (!txtTerm.getText().toString().trim().isEmpty() || !txtDefinition.getText().toString().trim().isEmpty()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(NewCardActivity.this);
+
+                builder.setTitle("Are you sure?");
+                builder.setMessage("Anything you have entered will be lost.");
+                builder.setPositiveButton("Yes", (dialog, which) -> {
+                    onBackPressed();
+                });
+                builder.setNegativeButton("No", (dialog, which) -> {
+                    dialog.cancel();
+                });
+                builder.setCancelable(true);
+                builder.show();
+            } else {
+                onBackPressed();
+            }
         });
 
         btnFinish.setOnClickListener(v -> {
