@@ -43,7 +43,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Removing the android system bottom navigation bar    //TODO: Find a better way to do this - maybe place this in the onCreate method instead
-        removeBottomNavigation();
+        Utils.removeBottomNavigation(this);
 
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
@@ -84,18 +84,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         }
 
         Toast.makeText(this, "User type: " + User.LOGIN_TYPE, Toast.LENGTH_SHORT).show();
-    }
-
-    private void removeBottomNavigation() {
-        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {       // Use this if statement for backwards compatibility, When SDK_INT < 19
-        // }
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 
     private void addListeners() {
@@ -248,7 +236,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 
     @Override
     protected void onResume() {
-        removeBottomNavigation();
+        Utils.removeBottomNavigation(this);
         super.onResume();
     }
 }

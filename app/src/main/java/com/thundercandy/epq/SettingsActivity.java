@@ -23,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        Utils.removeBottomNavigation(this);
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
@@ -30,5 +31,11 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
     }
 }

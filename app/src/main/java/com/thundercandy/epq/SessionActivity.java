@@ -39,6 +39,8 @@ public class SessionActivity extends AppCompatActivity {
         txtDefinition = findViewById(R.id.txtDefinition);
         btnReadTerm = findViewById(R.id.btnReadTerm);
 
+        Utils.removeBottomNavigation(this);
+
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
         // This part starts the session with the categories the user selected
@@ -150,4 +152,9 @@ public class SessionActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
     }
 
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
+    }
 }

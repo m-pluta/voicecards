@@ -64,6 +64,8 @@ public class NewCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_card);
 
+        Utils.removeBottomNavigation(this);
+
         updatePreferenceValues();
 
         checkVoiceCommandPermission();
@@ -353,5 +355,11 @@ public class NewCardActivity extends AppCompatActivity {
 
     public boolean isMicPermissionGranted() {
         return (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
     }
 }

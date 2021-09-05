@@ -36,6 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Utils.removeBottomNavigation(this);
+
         // Assign variables
         passwordField = (TextInputLayout) findViewById(R.id.PasswordField);
         signupTextButton = findViewById(R.id.NoAccount_Register);
@@ -107,5 +109,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         startActivity(intent);
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
     }
 }

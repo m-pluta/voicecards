@@ -44,6 +44,8 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
 
+        Utils.removeBottomNavigation(this);
+
         btnGoogleSignUp = findViewById(R.id.btnGoogleSignUp);
         btnSignUp = findViewById(R.id.btnSignUp);
         btnContinueAsGuest = findViewById(R.id.btnContinueAsGuest);
@@ -171,5 +173,11 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
     public void onBackPressed() {
         finishAndRemoveTask();
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
     }
 }

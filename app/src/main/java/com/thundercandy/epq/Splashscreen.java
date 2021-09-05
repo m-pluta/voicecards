@@ -12,6 +12,8 @@ public class Splashscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
+        Utils.removeBottomNavigation(this);
+
         Thread background = new Thread() {
             public void run() {
                 try {
@@ -41,5 +43,11 @@ public class Splashscreen extends AppCompatActivity {
         finishAndRemoveTask();
 
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onResume() {
+        Utils.removeBottomNavigation(this);
+        super.onResume();
     }
 }

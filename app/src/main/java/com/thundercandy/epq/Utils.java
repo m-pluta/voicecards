@@ -1,7 +1,9 @@
 package com.thundercandy.epq;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 
 import androidx.preference.PreferenceManager;
 
@@ -57,6 +59,17 @@ public class Utils {
         boolean default_auto_full_stop = context.getResources().getBoolean(R.bool.default_auto_full_stops);
 
         return sharedPreferences.getBoolean(KEY_auto_full_stop, default_auto_full_stop);
+    }
 
+    public static void removeBottomNavigation(Activity activity) {
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {       // Use this if statement for backwards compatibility, When SDK_INT < 19
+        // }
+        activity.getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
 }
