@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_learntThreshold">85</integer>
+    <integer name="default_seenThreshold">3</integer>
+    <bool name="default_auto_capitalize">true</bool>
+    <bool name="default_auto_full_stops">true</bool>
+</resources>

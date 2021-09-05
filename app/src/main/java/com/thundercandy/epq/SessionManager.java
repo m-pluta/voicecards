@@ -1,5 +1,6 @@
 package com.thundercandy.epq;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.thundercandy.epq.data.SessionCard;
@@ -9,8 +10,9 @@ import java.util.Collections;
 
 public class SessionManager {
 
-    public static final double learntThreshold = 0.9;   //TODO: Fetch these values form sharedPreferences
-    public static final double seenThreshold = 3;
+
+    public static double learntThreshold = 0.9;
+    public static double seenThreshold = 3;
 
     onEventListener listener;
     ArrayList<SessionCard> cards;
@@ -20,9 +22,11 @@ public class SessionManager {
     int lastCardID = -1;
     boolean definitionRevealed = false;
 
-    public SessionManager(ArrayList<SessionCard> cards) {
+    public SessionManager(ArrayList<SessionCard> cards, Context context) {
         this.listener = null;
         this.cards = cards;
+        learntThreshold = Utils.getLearntThreshold(context);
+        seenThreshold = Utils.getSeenThreshold(context);
     }
 
     public void start() {

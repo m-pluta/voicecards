@@ -1,43 +1,43 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="Session Options">
+    <PreferenceCategory app:title="@string/Category_Session_Options">
 
         <SeekBarPreference
-            android:defaultValue="85"
+            android:defaultValue="@integer/default_learntThreshold"
             android:max="95"
-            app:key="learntThreshold"
+            app:key="@string/KEY_learntThreshold"
             app:min="0"
             app:showSeekBarValue="true"
             app:singleLineTitle="false"
-            app:summary="Larger value = You need to click "
-            app:title="Cards are learnt after you know them __% of the time" />
+            app:summary="@string/learntThreshold_summary"
+            app:title="@string/learntThreshold_title" />
 
         <SeekBarPreference
-            android:defaultValue="3"
+            android:defaultValue="@integer/default_seenThreshold"
             android:max="10"
-            app:key="seenThreshold"
+            app:key="@string/KEY_seenThreshold"
             app:min="1"
             app:showSeekBarValue="true"
             app:singleLineTitle="false"
-            app:summary="The amount of times you need to see all the cards before the session can finish automatically"
-            app:title="See all cards at least __ times" />
+            app:summary="@string/seenThreshold_summary"
+            app:title="@string/seenThreshold_title" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Speech Recognition">
+    <PreferenceCategory app:title="@string/Category_Speech_Recognition">
 
         <SwitchPreferenceCompat
-            app:key="auto_capitalize"
-            android:defaultValue="true"
-            app:title="Capitalize all text from speech input" />
+            android:defaultValue="@bool/default_auto_capitalize"
+            app:key="@string/KEY_auto_capitalize"
+            app:title="@string/auto_capitalize_title" />
 
         <SwitchPreferenceCompat
-            app:key="auto_full_stop"
-            android:defaultValue="true"
-            app:summaryOff="Full-stops are not automatically inserted"
-            app:summaryOn="Full-stops are automatically inserted"
-            app:title="Put full-stops after all speech input text" />
+            android:defaultValue="@bool/default_auto_full_stops"
+            app:key="@string/KEY_auto_full_stop"
+            app:summaryOff="@string/auto_full_stop_summaryOff"
+            app:summaryOn="@string/auto_full_stop_summaryOn"
+            app:title="@string/auto_full_stop_title" />
 
     </PreferenceCategory>
 

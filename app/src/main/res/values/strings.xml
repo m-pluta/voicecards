@@ -21,11 +21,28 @@
     <string name="policy">I agree to the Terms of Services and Privacy Policy.</string>
     <string name="no_account_signup">Don\'t have an account? Sign up</string>
     <string name="remember_me">Remember me</string>
-    <string name="developed_by">Developed by Michal Pluta</string>
+    <string name="developed_by">Developed by Michal Pluta 2021</string>
     <string name="already_a_user_log_in">Already a user? Log In</string>
 
     <!--NewCardActivity-->
     <string name="term">Term</string>
     <string name="definition">Definition</string>
     <string name="finish">Finish</string>
+
+
+
+    <string name="KEY_learntThreshold">learntThreshold</string>
+    <string name="learntThreshold_summary">Larger value = You need to click</string>
+    <string name="learntThreshold_title">Cards are learnt after you know them __% of the time</string>
+    <string name="KEY_seenThreshold">seenThreshold</string>
+    <string name="seenThreshold_summary">The amount of times you need to see all the cards before the session can finish automatically</string>
+    <string name="seenThreshold_title">See all cards at least __ times</string>
+    <string name="Category_Session_Options">Session Options</string>
+    <string name="Category_Speech_Recognition">Speech Recognition</string>
+    <string name="KEY_auto_capitalize">auto_capitalize</string>
+    <string name="auto_capitalize_title">Capitalize all text from speech input</string>
+    <string name="KEY_auto_full_stop">auto_full_stop</string>
+    <string name="auto_full_stop_summaryOff">Full-stops are not automatically inserted</string>
+    <string name="auto_full_stop_summaryOn">Full-stops are automatically inserted</string>
+    <string name="auto_full_stop_title">Put full-stops after all speech input text</string>
 </resources>

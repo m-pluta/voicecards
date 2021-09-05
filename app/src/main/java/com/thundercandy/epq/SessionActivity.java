@@ -47,7 +47,7 @@ public class SessionActivity extends AppCompatActivity {
         ArrayList<SessionCard> scs = extractCardsFromCategories(selectedCats);
         Collections.shuffle(scs);
 
-        manager = new SessionManager(scs);
+        manager = new SessionManager(scs, this);
 
         btnEndSession.setOnClickListener(v -> {
             manager.end();
