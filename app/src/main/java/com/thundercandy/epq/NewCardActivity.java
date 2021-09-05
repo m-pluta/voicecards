@@ -19,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.database.DbUtils;
 import com.thundercandy.epq.events.CardAddedEvent;
@@ -38,6 +40,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class NewCardActivity extends AppCompatActivity {
+
+    private LinearLayout parent;
 
     private ImageView btnBack;
     private TextView txtCategoryName;
@@ -62,6 +66,7 @@ public class NewCardActivity extends AppCompatActivity {
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
+        parent = findViewById(R.id.parent);
         btnBack = findViewById(R.id.btnBack);
         txtCategoryName = findViewById(R.id.txtCategoryName);
         txtTerm = findViewById(R.id.txtTerm);
@@ -96,8 +101,25 @@ public class NewCardActivity extends AppCompatActivity {
             String inputTerm = txtTerm.getText().toString();
             String inputDefinition = txtDefinition.getText().toString();
 
-            if (inputTerm.length() > 0 && inputDefinition.length() > 0 && targetCategoryID != -1) {
-
+            if (inputTerm.length() == 0 && inputDefinition.length() == 0) {
+                Snackbar.make(parent, "You must enter something for the Term and Definition.", Snackbar.LENGTH_LONG)
+                        .setAction("Dismiss", v1 -> {
+                        })
+                        .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+                        .show();
+            } else if (inputTerm.length() == 0) {
+                Snackbar.make(parent, "You must enter something for the Term.", Snackbar.LENGTH_LONG)
+                        .setAction("Dismiss", v1 -> {
+                        })
+                        .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+                        .show();
+            } else if (inputDefinition.length() == 0) {
+                Snackbar.make(parent, "You must enter something for the Definition.", Snackbar.LENGTH_LONG)
+                        .setAction("Dismiss", v1 -> {
+                        })
+                        .setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+                        .show();
+            } else {
                 //TODO: Make sure to pass an actual date instead of 0
                 int card_id = DbUtils.addCard(this, targetCategoryID, inputTerm, inputDefinition, 0);
                 Log.d("DB_ADD", "ID: " + card_id + ", Term: " + inputTerm + " added to DB");
