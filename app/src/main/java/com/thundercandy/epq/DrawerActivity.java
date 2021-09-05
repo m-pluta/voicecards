@@ -43,7 +43,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // Removing the android system bottom navigation bar    //TODO: Find a better way to do this - maybe place this in the onCreate method instead
-        // removeBottomNavigation(); //TODO: Disabled for now since after pressing the back button in the settings activity, the bottom navigation bar covers up the settings button
+        removeBottomNavigation();
 
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
@@ -244,5 +244,11 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+
+    @Override
+    protected void onResume() {
+        removeBottomNavigation();
+        super.onResume();
     }
 }
