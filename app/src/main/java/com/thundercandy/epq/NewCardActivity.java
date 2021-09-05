@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -57,10 +56,15 @@ public class NewCardActivity extends AppCompatActivity {
     private static int targetCategoryID = -1;
     private static int targetCategoryPosition = 0;
 
+    private boolean auto_capitalize;
+    private boolean auto_full_stop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_card);
+
+        updatePreferenceValues();
 
         checkVoiceCommandPermission();
 
@@ -192,6 +196,11 @@ public class NewCardActivity extends AppCompatActivity {
 
     }
 
+    private void updatePreferenceValues() {
+        auto_capitalize = Utils.getAutoCapitalize(this);
+        auto_full_stop = Utils.getAutoFullStop(this);
+    }
+
     public void createRecognitionListener() {
         speechRecognizer.setRecognitionListener(new RecognitionListener() {
 
@@ -246,8 +255,10 @@ public class NewCardActivity extends AppCompatActivity {
                     if (oldText.length() != 0) {                                            // Checks if there is a space at the end of the string in the Textview, if not then it adds one.
                         oldText += oldText.charAt(oldText.length() - 1) == ' ' ? "" : " ";
                     }
-                    String newText = spokenStringArray.get(0) + ". ";
-                    newText = Utils.capitalize(newText);
+
+                    String newText = spokenStringArray.get(0) + (auto_full_stop ? ". " : "");
+                    newText = (auto_capitalize ? Utils.capitalize(newText) : newText);
+
                     selectedTextField.setText(oldText + newText);
                 }
                 setTextFieldState(selectedTextField, false);
