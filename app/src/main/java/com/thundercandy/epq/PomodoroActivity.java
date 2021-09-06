@@ -134,9 +134,15 @@ public class PomodoroActivity extends DrawerActivity {
         if (pastBreaks >= Utils.getLongBreakAfter(this)) {
             sharedPreferences.edit().putInt(KEY_BREAKS, 0).apply();
             updateUI(UI_State.LONG_BREAK_START);
+            if (Utils.getBreaksAutoStart(this)) {
+                btnStartLongBreak.performClick();
+            }
         } else {
             sharedPreferences.edit().putInt(KEY_BREAKS, pastBreaks).apply();
             updateUI(UI_State.BREAK_START);
+            if (Utils.getBreaksAutoStart(this)) {
+                btnStartBreak.performClick();
+            }
         }
     }
 
