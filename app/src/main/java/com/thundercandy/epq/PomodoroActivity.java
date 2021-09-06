@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 public class PomodoroActivity extends DrawerActivity {
 
-    private static final int DEFAULT_INTERVAL = 1000;                   // One second //TODO: allow smooth intervals
-
     CountDownTimer timer;
 
     ImageView timerCircle;
@@ -42,7 +40,7 @@ public class PomodoroActivity extends DrawerActivity {
         changeTimerUIVisibility(true);
 
         long duration = Utils.getPomodoroLength(this);
-        long interval = DEFAULT_INTERVAL;
+        long interval = Utils.getTimerInterval(this, duration);
 
         timer = new CountDownTimer(duration, interval) {
             @Override
@@ -67,7 +65,7 @@ public class PomodoroActivity extends DrawerActivity {
         changeTimerUIVisibility(true);
 
         long duration = Utils.getBreakLength(this);
-        long interval = DEFAULT_INTERVAL;
+        long interval = Utils.getTimerInterval(this, duration);
 
         timer = new CountDownTimer(duration, interval) {
             @Override

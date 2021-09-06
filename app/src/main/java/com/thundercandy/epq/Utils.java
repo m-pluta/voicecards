@@ -12,7 +12,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Utils {
 
-    public static final int UNIT_MINUTE = 60000;
+    public static final long UNIT_SECOND = 1000;
+    public static final long UNIT_MINUTE = 60 * UNIT_SECOND;
+
+    public static final long DEFAULT_INTERVAL = UNIT_SECOND;
+    public static final long DEFAULT_SMOOTH_INTERVAL = UNIT_SECOND / 10;
+    public static final long DEFAULT_EXTRA_SMOOTH_INTERVAL = UNIT_SECOND / 50;
 
     public static String capitalize(String str) {
         if (str == null || str.length() == 0) {
@@ -66,6 +71,26 @@ public class Utils {
         return sharedPreferences.getBoolean(key, defValue);
     }
 
+    public static boolean getSmoothTimerCircle(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getResources().getString(R.string.KEY_smooth_timer_circle);
+        boolean defValue = context.getResources().getBoolean(R.bool.default_smooth_timer_circle);
+
+        return sharedPreferences.getBoolean(key, defValue);
+    }
+
+    public static long getTimerInterval(Context context, long duration) {
+        if (getSmoothTimerCircle(context)) {
+            if (duration < UNIT_MINUTE * 5) {
+                return DEFAULT_EXTRA_SMOOTH_INTERVAL;
+            } else {
+                return DEFAULT_SMOOTH_INTERVAL;
+            }
+        } else {
+            return DEFAULT_INTERVAL;
+        }
+    }
+
     public static long getPomodoroLength(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getResources().getString(R.string.KEY_pomodoro_length);
@@ -113,15 +138,13 @@ public class Utils {
     public static String getDurationBreakdown(long diff) {
         long millis = diff;
         if (millis <= 0) {
-            return "00:00:00";
+            return "00:00";
         }
-        long hours = TimeUnit.MILLISECONDS.toHours(millis);
-        millis -= TimeUnit.HOURS.toMillis(hours);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
         millis -= TimeUnit.MINUTES.toMillis(minutes);
         long seconds = TimeUnit.MILLISECONDS.toSeconds(millis);
 
-        return String.format(Locale.ENGLISH, "%02d:%02d:%02d", hours, minutes, seconds);
+        return String.format(Locale.ENGLISH, "%02d:%02d", minutes, seconds);
         //return "${getWithLeadZero(hours)}:${getWithLeadZero(minutes)}:${getWithLeadZero(seconds)}"
     }
 }
