@@ -45,6 +45,13 @@
 
     <PreferenceCategory app:title="@string/Category_Pomodoro_Options">
 
+        <SwitchPreference
+            android:defaultValue="@bool/default_smooth_timer_circle"
+            app:key="@string/KEY_smooth_timer_circle"
+            app:singleLineTitle="false"
+            app:summaryOn="@string/smooth_timer_circle_summaryOn"
+            app:title="@string/smooth_timer_circle_title" />
+
         <SeekBarPreference
             android:defaultValue="@integer/default_pomodoro_length"
             android:max="60"

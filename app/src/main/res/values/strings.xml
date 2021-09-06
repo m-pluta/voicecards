@@ -80,4 +80,9 @@
     <string name="breaks_auto_start_summaryOn">Break automatically starts after pomodoro is finished</string>
     <string name="breaks_auto_start_summaryOff">Break needs to be started by you</string>
 
+    <!--Preference - smooth_timer_circle-->
+    <string name="KEY_smooth_timer_circle">smooth_timer_circle</string>
+    <string name="smooth_timer_circle_title">Smooth timer circle</string>
+    <string name="smooth_timer_circle_summaryOn">Warning this may cause more battery consumption </string>
+
 </resources>
