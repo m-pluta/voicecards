@@ -16,9 +16,13 @@ import android.widget.Toast;
 public class PomodoroActivity extends DrawerActivity {
 
     CountDownTimer timer;
+
     ImageView btnQuickSettings, timerCircle;
     TextView txtTimeRemaining;
     Button btnStartPomodoro;
+
+    public static final int strokeWidth = 18;
+    public static final int timerSize = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,9 @@ public class PomodoroActivity extends DrawerActivity {
         txtTimeRemaining = findViewById(R.id.txtTimeRemaining);
         btnStartPomodoro = findViewById(R.id.btnStartPomodoro);
         btnQuickSettings = findViewById(R.id.btnQuickSettings);     //TODO: make the ripple shape circular instead of square
+
+        // Default values
+        resetTimerUI();
 
         btnQuickSettings.setOnClickListener(v -> {
             findViewById(R.id.btnSettings).performClick();
@@ -45,7 +52,7 @@ public class PomodoroActivity extends DrawerActivity {
         long duration = Utils.getPomodoroLength(this);
         long interval = Utils.getTimerInterval(this, duration);
 
-        CountDownTimer timer = new CountDownTimer(duration, interval) {
+        timer = new CountDownTimer(duration, interval) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateProgressCircle((float) millisUntilFinished / duration);
@@ -56,6 +63,8 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 changeTimerUIVisibility(false);
+                timer = null;
+                resetTimerUI();
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
                 //TODO: show break option or next pomodoro
@@ -81,6 +90,8 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 changeTimerUIVisibility(false);
+                timer = null;
+                resetTimerUI();
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
                 //TODO: show next pomodoro
@@ -88,9 +99,6 @@ public class PomodoroActivity extends DrawerActivity {
         };
         timer.start();
     }
-
-    public static final int strokeWidth = 12;
-    public static final int timerSize = 400;
 
     private void updateProgressCircle(float prg) {
         int halfStrokeWidth = strokeWidth / 2;
@@ -119,5 +127,10 @@ public class PomodoroActivity extends DrawerActivity {
         } else {
             timerUI.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void resetTimerUI() {
+        updateProgressCircle(1);
+        txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getPomodoroLength(this)));
     }
 }
