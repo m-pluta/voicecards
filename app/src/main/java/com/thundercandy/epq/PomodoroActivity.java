@@ -257,6 +257,7 @@ public class PomodoroActivity extends DrawerActivity {
         hideAllButtons();
         switch (id) {
             case UI_State.POMODORO_START:
+                NEXT_TIMER = Timer.POMODORO;
                 resetTimeRemaining(Timer.POMODORO);
                 btnStartPomodoro.setVisibility(View.VISIBLE);
                 txtTimerType.setText("Pomodoro");
@@ -265,11 +266,13 @@ public class PomodoroActivity extends DrawerActivity {
                 btnStopPomodoro.setVisibility(View.VISIBLE);
                 break;
             case UI_State.BREAK_START:
+                NEXT_TIMER = Timer.BREAK;
                 resetTimeRemaining(Timer.BREAK);
                 btnStartBreak.setVisibility(View.VISIBLE);
                 txtTimerType.setText("Break");
                 break;
             case UI_State.LONG_BREAK_START:
+                NEXT_TIMER = Timer.LONG_BREAK;
                 resetTimeRemaining(Timer.LONG_BREAK);
                 btnStartLongBreak.setVisibility(View.VISIBLE);
                 txtTimerType.setText("Long Break");
@@ -278,5 +281,15 @@ public class PomodoroActivity extends DrawerActivity {
                 btnStopBreak.setVisibility(View.VISIBLE);
                 break;
         }
+    }
+
+    public static int NEXT_TIMER = Timer.POMODORO;
+    @Override
+    protected void onResume() {
+        // Update time remaining
+        if (timer == null) {
+            resetTimeRemaining(NEXT_TIMER);
+        }
+        super.onResume();
     }
 }
