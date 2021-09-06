@@ -127,21 +127,28 @@ public class PomodoroActivity extends DrawerActivity {
     }
 
     private void endOfPomodoro(boolean autoStartLock) {
-        int pastBreaks = sharedPreferences.getInt(KEY_BREAKS, 0);
-        pastBreaks++;
-        Log.d("pastBreaks", "" + pastBreaks);
+        if (Utils.getBreaks(this)) {
+            int pastBreaks = sharedPreferences.getInt(KEY_BREAKS, 0);
+            pastBreaks++;
+            Log.d("pastBreaks", "" + pastBreaks);
 
-        if (pastBreaks >= Utils.getLongBreakAfter(this)) {
-            sharedPreferences.edit().putInt(KEY_BREAKS, 0).apply();
-            updateUI(UI_State.LONG_BREAK_START);
-            if (Utils.getBreaksAutoStart(this) && autoStartLock) {
-                btnStartLongBreak.performClick();
+            if (pastBreaks >= Utils.getLongBreakAfter(this)) {
+                sharedPreferences.edit().putInt(KEY_BREAKS, 0).apply();
+                updateUI(UI_State.LONG_BREAK_START);
+                if (Utils.getBreaksAutoStart(this) && autoStartLock) {
+                    btnStartLongBreak.performClick();
+                }
+            } else {
+                sharedPreferences.edit().putInt(KEY_BREAKS, pastBreaks).apply();
+                updateUI(UI_State.BREAK_START);
+                if (Utils.getBreaksAutoStart(this) && autoStartLock) {
+                    btnStartBreak.performClick();
+                }
             }
         } else {
-            sharedPreferences.edit().putInt(KEY_BREAKS, pastBreaks).apply();
-            updateUI(UI_State.BREAK_START);
-            if (Utils.getBreaksAutoStart(this) && autoStartLock) {
-                btnStartBreak.performClick();
+            updateUI(UI_State.POMODORO_START);
+            if (Utils.getPomodoroAutoStart(this) && autoStartLock) {
+                btnStartPomodoro.performClick();
             }
         }
     }
@@ -284,9 +291,9 @@ public class PomodoroActivity extends DrawerActivity {
     }
 
     public static int NEXT_TIMER = Timer.POMODORO;
+
     @Override
     protected void onResume() {
-        // Update time remaining
         if (timer == null) {
             resetTimeRemaining(NEXT_TIMER);
         }
