@@ -163,13 +163,14 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                updateUI(UI_State.POMODORO_START);
+                endOfBreak();
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
             }
         };
         timer.start();
     }
+
 
     private void startLongBreak() {
 
@@ -188,7 +189,7 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                updateUI(UI_State.POMODORO_START);
+                endOfBreak();
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
             }
@@ -199,7 +200,14 @@ public class PomodoroActivity extends DrawerActivity {
     private void stopBreak() {
         timer.cancel();
         timer = null;
+        endOfBreak();
+    }
+
+    private void endOfBreak() {
         updateUI(UI_State.POMODORO_START);
+        if (Utils.getPomodoroAutoStart(this)) {
+            btnStartPomodoro.performClick();
+        }
     }
 
     private void updateProgressCircle(float prg) {

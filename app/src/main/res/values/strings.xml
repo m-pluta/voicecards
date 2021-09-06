@@ -63,6 +63,12 @@
     <string name="pomodoro_length_title">Pomodoro Length</string>
     <string name="pomodoro_length_summary">Length of each pomodoro in minutes</string>
 
+    <!--Preference - pomodoro_auto_start-->
+    <string name="KEY_pomodoro_auto_start">pomodoro_auto_start</string>
+    <string name="pomodoro_auto_start_title">Automatically start pomodoro sessions</string>
+    <string name="pomodoro_auto_start_summaryOn">Pomodoro sessions are automatically started after the previous timer finishes</string>
+    <string name="pomodoro_auto_start_summaryOff">Pomodoro sessions need to be started by you</string>
+
     <!--Preference - breaks-->
     <string name="KEY_breaks">breaks</string>
     <string name="breaks_title">Breaks</string>

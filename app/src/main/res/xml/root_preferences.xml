@@ -63,6 +63,14 @@
             app:title="@string/pomodoro_length_title" />
 
         <SwitchPreference
+            android:defaultValue="@bool/default_pomodoro_auto_start"
+            app:key="@string/KEY_pomodoro_auto_start"
+            app:singleLineTitle="false"
+            app:summaryOff="@string/pomodoro_auto_start_summaryOff"
+            app:summaryOn="@string/pomodoro_auto_start_summaryOn"
+            app:title="@string/pomodoro_auto_start_title" />
+
+        <SwitchPreference
             android:defaultValue="@bool/default_breaks"
             app:key="@string/KEY_breaks"
             app:singleLineTitle="false"

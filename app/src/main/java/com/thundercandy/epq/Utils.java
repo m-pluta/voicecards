@@ -99,6 +99,14 @@ public class Utils {
         return (long) sharedPreferences.getInt(key, defValue) * UNIT_MINUTE;
     }
 
+    public static boolean getPomodoroAutoStart(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getResources().getString(R.string.KEY_pomodoro_auto_start);
+        boolean defValue = context.getResources().getBoolean(R.bool.default_pomodoro_auto_start);
+
+        return sharedPreferences.getBoolean(key, defValue);
+    }
+
     public static boolean getBreaks(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getResources().getString(R.string.KEY_breaks);

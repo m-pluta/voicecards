@@ -11,6 +11,7 @@
     <!--Pomodoro Preferences-->
     <bool name="default_smooth_timer_circle">false</bool>
     <integer name="default_pomodoro_length">25</integer>
+    <bool name="default_pomodoro_auto_start">false</bool>
     <bool name="default_breaks">true</bool>
     <integer name="default_break_length">5</integer>
     <integer name="default_long_break_after">3</integer>
