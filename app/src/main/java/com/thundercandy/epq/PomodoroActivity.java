@@ -1,5 +1,6 @@
 package com.thundercandy.epq;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -7,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -38,7 +40,7 @@ public class PomodoroActivity extends DrawerActivity {
     TextView txtTimerType, txtTimeRemaining;
     Button btnStartPomodoro, btnStopPomodoro, btnStartBreak, btnStartLongBreak, btnStopBreak;
 
-    public static final int strokeWidth = 18;
+    public static final int strokeWidth = 30;
     public static final int timerSize = 1000;
 
     @Override
@@ -56,7 +58,7 @@ public class PomodoroActivity extends DrawerActivity {
         btnStopBreak = findViewById(R.id.btnStopBreak);
         btnQuickSettings = findViewById(R.id.btnQuickSettings);
 
-//        initBackgroundStorage();
+        initBackgroundStorage();
 
         // Default values
         updateUI(UI_State.POMODORO_START);
@@ -83,15 +85,15 @@ public class PomodoroActivity extends DrawerActivity {
 
     }
 
-//    private void initBackgroundStorage() {
-//        sharedPreferences = this.getSharedPreferences("DB", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//
-//        if (sharedPreferences.getInt(KEY_BREAKS, -1) == -1) {
-//            editor.putInt(KEY_BREAKS, 0);
-//            editor.apply();
-//        }
-//    }
+    private void initBackgroundStorage() {
+        sharedPreferences = this.getSharedPreferences("DB", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (sharedPreferences.getInt(KEY_BREAKS, -1) == -1) {
+            editor.putInt(KEY_BREAKS, 0);
+            editor.apply();
+        }
+    }
 
     public void startPomodoro() {
 
@@ -110,10 +112,9 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                updateUI(UI_State.BREAK_START);
+                endOfPomodoro();
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
-                //TODO: show break option or next pomodoro
             }
         };
         timer.start();
@@ -122,7 +123,21 @@ public class PomodoroActivity extends DrawerActivity {
     private void stopPomodoro() {
         timer.cancel();
         timer = null;
-        updateUI(UI_State.BREAK_START);
+        endOfPomodoro();
+    }
+
+    private void endOfPomodoro() {
+        int pastBreaks = sharedPreferences.getInt(KEY_BREAKS, 0);
+        pastBreaks++;
+        Log.d("pastBreaks", "" + pastBreaks);
+
+        if (pastBreaks >= Utils.getLongBreakAfter(this)) {
+            sharedPreferences.edit().putInt(KEY_BREAKS, 0).apply();
+            updateUI(UI_State.LONG_BREAK_START);
+        } else {
+            sharedPreferences.edit().putInt(KEY_BREAKS, pastBreaks).apply();
+            updateUI(UI_State.BREAK_START);
+        }
     }
 
     public void startBreak() {
@@ -145,13 +160,34 @@ public class PomodoroActivity extends DrawerActivity {
                 updateUI(UI_State.POMODORO_START);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
-                //TODO: show next pomodoro
             }
         };
         timer.start();
     }
 
     private void startLongBreak() {
+
+        long duration = Utils.getLongBreakLength(this);
+        long interval = Utils.getTimerInterval(this, duration);
+
+        updateUI(UI_State.BREAK_END);
+        timer = new CountDownTimer(duration, interval) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updateProgressCircle((float) millisUntilFinished / duration);
+                String timeRemaining = Utils.getDurationBreakdown(millisUntilFinished);
+                txtTimeRemaining.setText(timeRemaining);
+            }
+
+            @Override
+            public void onFinish() {
+                timer = null;
+                updateUI(UI_State.POMODORO_START);
+
+                Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
+            }
+        };
+        timer.start();
     }
 
     private void stopBreak() {

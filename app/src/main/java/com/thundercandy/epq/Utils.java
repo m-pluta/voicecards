@@ -123,12 +123,12 @@ public class Utils {
         return sharedPreferences.getInt(key, defValue);
     }
 
-    public static int getLongBreakLength(Context context) {
+    public static long getLongBreakLength(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getResources().getString(R.string.KEY_long_break_length);
         int defValue = context.getResources().getInteger(R.integer.default_long_break_length);
 
-        return sharedPreferences.getInt(key, defValue);
+        return (long) sharedPreferences.getInt(key, defValue) * UNIT_MINUTE;
     }
 
     public static boolean getBreaksAutoStart(Context context) {
