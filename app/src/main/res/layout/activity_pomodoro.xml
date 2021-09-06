@@ -13,11 +13,13 @@
         android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/timerUI"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/timerCircle"
@@ -37,7 +39,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnStart"
+        android:id="@+id/btnStartPomodoro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
