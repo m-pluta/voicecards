@@ -81,6 +81,28 @@
             app:summary="@string/break_length_summary"
             app:title="@string/break_length_title" />
 
+        <SeekBarPreference
+            android:defaultValue="@integer/default_long_break_after"
+            android:dependency="breaks"
+            android:max="5"
+            app:key="@string/KEY_long_break_after"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="@string/long_break_after_summary"
+            app:title="@string/long_break_after_title" />
+
+        <SeekBarPreference
+            android:defaultValue="@integer/default_long_break_length"
+            android:dependency="breaks"
+            android:max="30"
+            app:key="@string/KEY_long_break_length"
+            app:min="1"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:summary="@string/long_break_length_summary"
+            app:title="@string/long_break_length_title" />
+
         <SwitchPreference
             android:defaultValue="@bool/default_breaks_auto_start"
             android:dependency="breaks"

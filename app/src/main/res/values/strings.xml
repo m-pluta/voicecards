@@ -85,4 +85,14 @@
     <string name="smooth_timer_circle_title">Smooth timer circle</string>
     <string name="smooth_timer_circle_summaryOn">Warning this may cause more battery consumption </string>
 
+    <!--Preference - long_break_after-->
+    <string name="KEY_long_break_after">long_break_after</string>
+    <string name="long_break_after_title">Long Break after __ pomodoros</string>
+    <string name="long_break_after_summary">How many pomodoros you need to complete to get a longer break</string>
+
+    <!--Preference - long_break_length-->
+    <string name="KEY_long_break_length">long_break_length</string>
+    <string name="long_break_length_title">Long Break Length</string>
+    <string name="long_break_length_summary">Length of each long break in minutes</string>
+
 </resources>

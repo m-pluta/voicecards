@@ -115,6 +115,22 @@ public class Utils {
         return (long) sharedPreferences.getInt(key, defValue) * UNIT_MINUTE;
     }
 
+    public static int getLongBreakAfter(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getResources().getString(R.string.KEY_long_break_after);
+        int defValue = context.getResources().getInteger(R.integer.default_long_break_after);
+
+        return sharedPreferences.getInt(key, defValue);
+    }
+
+    public static int getLongBreakLength(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getResources().getString(R.string.KEY_long_break_length);
+        int defValue = context.getResources().getInteger(R.integer.default_long_break_length);
+
+        return sharedPreferences.getInt(key, defValue);
+    }
+
     public static boolean getBreaksAutoStart(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String key = context.getResources().getString(R.string.KEY_breaks_auto_start);
