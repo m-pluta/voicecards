@@ -2,7 +2,6 @@ package com.thundercandy.epq;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -17,8 +16,7 @@ import android.widget.Toast;
 public class PomodoroActivity extends DrawerActivity {
 
     CountDownTimer timer;
-
-    ImageView timerCircle;
+    ImageView btnQuickSettings, timerCircle;
     TextView txtTimeRemaining;
     Button btnStartPomodoro;
 
@@ -30,6 +28,11 @@ public class PomodoroActivity extends DrawerActivity {
         timerCircle = findViewById(R.id.timerCircle);
         txtTimeRemaining = findViewById(R.id.txtTimeRemaining);
         btnStartPomodoro = findViewById(R.id.btnStartPomodoro);
+        btnQuickSettings = findViewById(R.id.btnQuickSettings);     //TODO: make the ripple shape circular instead of square
+
+        btnQuickSettings.setOnClickListener(v -> {
+            findViewById(R.id.btnSettings).performClick();
+        });
 
         btnStartPomodoro.setOnClickListener(v -> {
             startPomodoro();
@@ -42,7 +45,7 @@ public class PomodoroActivity extends DrawerActivity {
         long duration = Utils.getPomodoroLength(this);
         long interval = Utils.getTimerInterval(this, duration);
 
-        timer = new CountDownTimer(duration, interval) {
+        CountDownTimer timer = new CountDownTimer(duration, interval) {
             @Override
             public void onTick(long millisUntilFinished) {
                 updateProgressCircle((float) millisUntilFinished / duration);
@@ -86,20 +89,22 @@ public class PomodoroActivity extends DrawerActivity {
         timer.start();
     }
 
+    public static final int strokeWidth = 12;
+    public static final int timerSize = 400;
+
     private void updateProgressCircle(float prg) {
-        int strokeWidth = 6;
         int halfStrokeWidth = strokeWidth / 2;
 
-        final Bitmap bitmap = Bitmap.createBitmap(200 + strokeWidth, 200 + strokeWidth, Bitmap.Config.ARGB_8888);
+        final Bitmap bitmap = Bitmap.createBitmap(timerSize + strokeWidth, timerSize + strokeWidth, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
         float startingAngle = -90f;
         float endingAngle = prg * 360f;
 
-        RectF rectF = new RectF(halfStrokeWidth, halfStrokeWidth, 200 + halfStrokeWidth, 200 + halfStrokeWidth);
+        RectF rectF = new RectF(halfStrokeWidth, halfStrokeWidth, timerSize + halfStrokeWidth, timerSize + halfStrokeWidth);
         Paint paint;
         paint = new Paint();
-        paint.setColor(Color.GREEN);
+        paint.setColor(getResources().getColor(R.color.timer_color));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(strokeWidth);
 

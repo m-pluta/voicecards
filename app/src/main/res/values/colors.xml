@@ -28,4 +28,8 @@
     <!--NewCardActivity-->
     <color name="mic_on">#FF32CE32</color>
     <color name="category_name_bar_bg">#FFE8EAEd</color>
+
+    <!--Pomodoro Activity-->
+    <color name="timer_color">#FF80BFE6</color>
+
 </resources>
