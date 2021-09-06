@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +16,17 @@ import android.widget.Toast;
 public class PomodoroActivity extends DrawerActivity {
 
     private static class Timer {
-        public static final int POMODORO = 0;
-        public static final int BREAK = 1;
-        public static final int LONG_BREAK = 2;
+        public static final int POMODORO = 1;
+        public static final int BREAK = 2;
+        public static final int LONG_BREAK = 3;
+    }
+
+    private static class UI_State {
+        public static final int POMODORO_START = 1;
+        public static final int POMODORO_END = 2;
+        public static final int BREAK_START = 3;
+        public static final int LONG_BREAK_START = 4;
+        public static final int BREAK_END = 5;
     }
 
     private SharedPreferences sharedPreferences;
@@ -29,10 +36,10 @@ public class PomodoroActivity extends DrawerActivity {
 
     ImageView btnQuickSettings, timerCircle;
     TextView txtTimeRemaining;
-    Button btnStartPomodoro, btnStopPomodoro, btnStartBreak, btnStopBreak;
+    Button btnStartPomodoro, btnStopPomodoro, btnStartBreak, btnStartLongBreak, btnStopBreak;
 
     public static final int strokeWidth = 18;
-    public static final int timerSize = 700;
+        public static final int timerSize = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +51,14 @@ public class PomodoroActivity extends DrawerActivity {
         btnStartPomodoro = findViewById(R.id.btnStartPomodoro);
         btnStopPomodoro = findViewById(R.id.btnStopPomodoro);
         btnStartBreak = findViewById(R.id.btnStartBreak);
+        btnStartLongBreak = findViewById(R.id.btnStartLongBreak);
         btnStopBreak = findViewById(R.id.btnStopBreak);
         btnQuickSettings = findViewById(R.id.btnQuickSettings);
 
 //        initBackgroundStorage();
 
         // Default values
-        resetTimerUI(Timer.POMODORO);
+        updateUI(UI_State.POMODORO_START);
 
         btnQuickSettings.setOnClickListener(v -> {
             findViewById(R.id.btnSettings).performClick();
@@ -64,6 +72,9 @@ public class PomodoroActivity extends DrawerActivity {
         });
         btnStartBreak.setOnClickListener(v -> {
             startBreak();
+        });
+        btnStartLongBreak.setOnClickListener(v -> {
+            startLongBreak();
         });
         btnStopBreak.setOnClickListener(v -> {
             stopBreak();
@@ -82,11 +93,11 @@ public class PomodoroActivity extends DrawerActivity {
 //    }
 
     public void startPomodoro() {
-        changeTimerUIVisibility(true);
 
         long duration = Utils.getPomodoroLength(this);
         long interval = Utils.getTimerInterval(this, duration);
 
+        updateUI(UI_State.POMODORO_END);
         timer = new CountDownTimer(duration, interval) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -97,34 +108,28 @@ public class PomodoroActivity extends DrawerActivity {
 
             @Override
             public void onFinish() {
-                changeTimerUIVisibility(false);
                 timer = null;
-                resetTimerUI(Timer.BREAK);
-                btnStopPomodoro.setVisibility(View.GONE);
-                btnStartBreak.setVisibility(View.VISIBLE);
+                updateUI(UI_State.BREAK_START);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
                 //TODO: show break option or next pomodoro
             }
         };
         timer.start();
-        btnStartPomodoro.setVisibility(View.GONE);
-        btnStopPomodoro.setVisibility(View.VISIBLE);
     }
 
     private void stopPomodoro() {
         timer.cancel();
         timer = null;
-        btnStopPomodoro.setVisibility(View.GONE);
-        btnStartBreak.setVisibility(View.VISIBLE);
+        updateUI(UI_State.BREAK_START);
     }
 
     public void startBreak() {
-        changeTimerUIVisibility(true);
 
         long duration = Utils.getBreakLength(this);
         long interval = Utils.getTimerInterval(this, duration);
 
+        updateUI(UI_State.BREAK_END);
         timer = new CountDownTimer(duration, interval) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -135,26 +140,23 @@ public class PomodoroActivity extends DrawerActivity {
 
             @Override
             public void onFinish() {
-                changeTimerUIVisibility(false);
                 timer = null;
-                resetTimerUI(Timer.POMODORO);
-                btnStopBreak.setVisibility(View.GONE);
-                btnStartPomodoro.setVisibility(View.VISIBLE);
+                updateUI(UI_State.POMODORO_START);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
                 //TODO: show next pomodoro
             }
         };
         timer.start();
-        btnStartBreak.setVisibility(View.GONE);
-        btnStopBreak.setVisibility(View.VISIBLE);
+    }
+
+    private void startLongBreak() {
     }
 
     private void stopBreak() {
         timer.cancel();
         timer = null;
-        btnStopBreak.setVisibility(View.GONE);
-        btnStartPomodoro.setVisibility(View.VISIBLE);
+        updateUI(UI_State.POMODORO_START);
     }
 
     private void updateProgressCircle(float prg) {
@@ -177,16 +179,7 @@ public class PomodoroActivity extends DrawerActivity {
         runOnUiThread(() -> timerCircle.setImageBitmap(bitmap));
     }
 
-    public void changeTimerUIVisibility(boolean vis) {
-        FrameLayout timerUI = findViewById(R.id.timerUI);
-        if (vis) {
-            timerUI.setVisibility(View.VISIBLE);
-        } else {
-            timerUI.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    public void resetTimerUI(int TYPE) {
+    public void resetTimeRemaining(int TYPE) {
         updateProgressCircle(1);
         switch (TYPE) {
             case Timer.BREAK:
@@ -200,6 +193,37 @@ public class PomodoroActivity extends DrawerActivity {
                 txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getPomodoroLength(this)));
                 break;
         }
+    }
 
+    private void hideAllButtons() {
+        btnStartPomodoro.setVisibility(View.GONE);
+        btnStopPomodoro.setVisibility(View.GONE);
+        btnStartBreak.setVisibility(View.GONE);
+        btnStartLongBreak.setVisibility(View.GONE);
+        btnStopBreak.setVisibility(View.GONE);
+    }
+
+    public void updateUI(int id) {
+        hideAllButtons();
+        switch (id) {
+            case UI_State.POMODORO_START:
+                resetTimeRemaining(Timer.POMODORO);
+                btnStartPomodoro.setVisibility(View.VISIBLE);
+                break;
+            case UI_State.POMODORO_END:
+                btnStopPomodoro.setVisibility(View.VISIBLE);
+                break;
+            case UI_State.BREAK_START:
+                resetTimeRemaining(Timer.BREAK);
+                btnStartBreak.setVisibility(View.VISIBLE);
+                break;
+            case UI_State.LONG_BREAK_START:
+                resetTimeRemaining(Timer.LONG_BREAK);
+                btnStartLongBreak.setVisibility(View.VISIBLE);
+                break;
+            case UI_State.BREAK_END:
+                btnStopBreak.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 }

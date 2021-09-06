@@ -90,6 +90,18 @@
             android:visibility="gone" />
 
         <Button
+            android:id="@+id/btnStartLongBreak"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/default_button_normal_red"
+            android:text="Start Long Break"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/btnStopBreak"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
