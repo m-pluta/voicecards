@@ -295,7 +295,11 @@ public class PomodoroActivity extends DrawerActivity {
     @Override
     protected void onResume() {
         if (timer == null) {
-            resetTimeRemaining(NEXT_TIMER);
+            if (!Utils.getBreaks(this) && (NEXT_TIMER == Timer.BREAK || NEXT_TIMER == Timer.LONG_BREAK)) {
+                updateUI(UI_State.POMODORO_START);
+            } else {
+                resetTimeRemaining(NEXT_TIMER);
+            }
         }
         super.onResume();
     }
