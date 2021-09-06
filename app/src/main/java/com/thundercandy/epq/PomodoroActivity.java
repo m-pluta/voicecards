@@ -1,5 +1,6 @@
 package com.thundercandy.epq;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -71,7 +72,16 @@ public class PomodoroActivity extends DrawerActivity {
             startPomodoro();
         });
         btnStopPomodoro.setOnClickListener(v -> {
-            stopPomodoro();
+            AlertDialog.Builder builder = new AlertDialog.Builder(PomodoroActivity.this);
+            builder.setMessage("Are you sure you want to stop this pomodoro?");
+            builder.setPositiveButton("I'm sure", (dialog, which) -> {
+                stopPomodoro();
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                dialog.cancel();
+            });
+            builder.setCancelable(true);
+            builder.show();
         });
         btnStartBreak.setOnClickListener(v -> {
             startBreak();
@@ -80,7 +90,16 @@ public class PomodoroActivity extends DrawerActivity {
             startLongBreak();
         });
         btnStopBreak.setOnClickListener(v -> {
-            stopBreak();
+            AlertDialog.Builder builder = new AlertDialog.Builder(PomodoroActivity.this);
+            builder.setMessage("Are you sure you want to stop this break?");
+            builder.setPositiveButton("I'm sure", (dialog, which) -> {
+                stopBreak();
+            });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                dialog.cancel();
+            });
+            builder.setCancelable(true);
+            builder.show();
         });
 
     }
