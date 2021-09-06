@@ -16,8 +16,11 @@ import android.widget.Toast;
 
 public class PomodoroActivity extends DrawerActivity {
 
-    public static final int POMODORO = 0;
-    public static final int BREAK = 1;
+    private static class Timer {
+        public static final int POMODORO = 0;
+        public static final int BREAK = 1;
+        public static final int LONG_BREAK = 2;
+    }
 
     private SharedPreferences sharedPreferences;
     public static final String KEY_BREAKS = "KEY_BREAKS";
@@ -47,7 +50,7 @@ public class PomodoroActivity extends DrawerActivity {
 //        initBackgroundStorage();
 
         // Default values
-        resetTimerUI(POMODORO);
+        resetTimerUI(Timer.POMODORO);
 
         btnQuickSettings.setOnClickListener(v -> {
             findViewById(R.id.btnSettings).performClick();
@@ -96,7 +99,7 @@ public class PomodoroActivity extends DrawerActivity {
             public void onFinish() {
                 changeTimerUIVisibility(false);
                 timer = null;
-                resetTimerUI(BREAK);
+                resetTimerUI(Timer.BREAK);
                 btnStopPomodoro.setVisibility(View.GONE);
                 btnStartBreak.setVisibility(View.VISIBLE);
 
@@ -134,7 +137,7 @@ public class PomodoroActivity extends DrawerActivity {
             public void onFinish() {
                 changeTimerUIVisibility(false);
                 timer = null;
-                resetTimerUI(POMODORO);
+                resetTimerUI(Timer.POMODORO);
                 btnStopBreak.setVisibility(View.GONE);
                 btnStartPomodoro.setVisibility(View.VISIBLE);
 
@@ -186,11 +189,15 @@ public class PomodoroActivity extends DrawerActivity {
     public void resetTimerUI(int TYPE) {
         updateProgressCircle(1);
         switch (TYPE) {
-            case POMODORO:
-                txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getPomodoroLength(this)));
-                break;
-            case BREAK:
+            case Timer.BREAK:
                 txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getBreakLength(this)));
+                break;
+            case Timer.LONG_BREAK:
+                txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getLongBreakLength(this)));
+                break;
+            case Timer.POMODORO:
+            default:
+                txtTimeRemaining.setText(Utils.getDurationBreakdown(Utils.getPomodoroLength(this)));
                 break;
         }
 
