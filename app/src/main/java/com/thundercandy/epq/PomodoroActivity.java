@@ -112,7 +112,7 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                endOfPomodoro();
+                endOfPomodoro(true);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
             }
@@ -123,10 +123,10 @@ public class PomodoroActivity extends DrawerActivity {
     private void stopPomodoro() {
         timer.cancel();
         timer = null;
-        endOfPomodoro();
+        endOfPomodoro(false);
     }
 
-    private void endOfPomodoro() {
+    private void endOfPomodoro(boolean autoStartLock) {
         int pastBreaks = sharedPreferences.getInt(KEY_BREAKS, 0);
         pastBreaks++;
         Log.d("pastBreaks", "" + pastBreaks);
@@ -134,13 +134,13 @@ public class PomodoroActivity extends DrawerActivity {
         if (pastBreaks >= Utils.getLongBreakAfter(this)) {
             sharedPreferences.edit().putInt(KEY_BREAKS, 0).apply();
             updateUI(UI_State.LONG_BREAK_START);
-            if (Utils.getBreaksAutoStart(this)) {
+            if (Utils.getBreaksAutoStart(this) && autoStartLock) {
                 btnStartLongBreak.performClick();
             }
         } else {
             sharedPreferences.edit().putInt(KEY_BREAKS, pastBreaks).apply();
             updateUI(UI_State.BREAK_START);
-            if (Utils.getBreaksAutoStart(this)) {
+            if (Utils.getBreaksAutoStart(this) && autoStartLock) {
                 btnStartBreak.performClick();
             }
         }
@@ -163,14 +163,13 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                endOfBreak();
+                endOfBreak(true);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
             }
         };
         timer.start();
     }
-
 
     private void startLongBreak() {
 
@@ -189,7 +188,7 @@ public class PomodoroActivity extends DrawerActivity {
             @Override
             public void onFinish() {
                 timer = null;
-                endOfBreak();
+                endOfBreak(true);
 
                 Toast.makeText(PomodoroActivity.this, "Timer finished", Toast.LENGTH_SHORT).show();
             }
@@ -200,12 +199,12 @@ public class PomodoroActivity extends DrawerActivity {
     private void stopBreak() {
         timer.cancel();
         timer = null;
-        endOfBreak();
+        endOfBreak(false);
     }
 
-    private void endOfBreak() {
+    private void endOfBreak(boolean autoStartLock) {
         updateUI(UI_State.POMODORO_START);
-        if (Utils.getPomodoroAutoStart(this)) {
+        if (Utils.getPomodoroAutoStart(this) && autoStartLock) {
             btnStartPomodoro.performClick();
         }
     }
