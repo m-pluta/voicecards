@@ -35,11 +35,11 @@ public class PomodoroActivity extends DrawerActivity {
     CountDownTimer timer;
 
     ImageView btnQuickSettings, timerCircle;
-    TextView txtTimeRemaining;
+    TextView txtTimerType, txtTimeRemaining;
     Button btnStartPomodoro, btnStopPomodoro, btnStartBreak, btnStartLongBreak, btnStopBreak;
 
     public static final int strokeWidth = 18;
-        public static final int timerSize = 1000;
+    public static final int timerSize = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class PomodoroActivity extends DrawerActivity {
         setContentView(R.layout.activity_pomodoro);
         setToolbarTitle("Pomodoro");
         timerCircle = findViewById(R.id.timerCircle);
+        txtTimerType = findViewById(R.id.txtTimerType);
         txtTimeRemaining = findViewById(R.id.txtTimeRemaining);
         btnStartPomodoro = findViewById(R.id.btnStartPomodoro);
         btnStopPomodoro = findViewById(R.id.btnStopPomodoro);
@@ -209,6 +210,7 @@ public class PomodoroActivity extends DrawerActivity {
             case UI_State.POMODORO_START:
                 resetTimeRemaining(Timer.POMODORO);
                 btnStartPomodoro.setVisibility(View.VISIBLE);
+                txtTimerType.setText("Pomodoro");
                 break;
             case UI_State.POMODORO_END:
                 btnStopPomodoro.setVisibility(View.VISIBLE);
@@ -216,10 +218,12 @@ public class PomodoroActivity extends DrawerActivity {
             case UI_State.BREAK_START:
                 resetTimeRemaining(Timer.BREAK);
                 btnStartBreak.setVisibility(View.VISIBLE);
+                txtTimerType.setText("Break");
                 break;
             case UI_State.LONG_BREAK_START:
                 resetTimeRemaining(Timer.LONG_BREAK);
                 btnStartLongBreak.setVisibility(View.VISIBLE);
+                txtTimerType.setText("Long Break");
                 break;
             case UI_State.BREAK_END:
                 btnStopBreak.setVisibility(View.VISIBLE);
