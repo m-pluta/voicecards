@@ -1,9 +1,7 @@
 package com.thundercandy.epq;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +11,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.thundercandy.epq.database.DbUtils;
 import com.thundercandy.epq.events.CardAddedEvent;
 
@@ -22,8 +19,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class CollectionsActivity extends DrawerActivity {
 
-    TextInputLayout SearchField;
-    EditText txtSearch;
     Button btnAddNewCategory;
     RecyclerView collectionsRecView;
     CategoryRecViewAdapter adapter;
@@ -33,9 +28,6 @@ public class CollectionsActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collections);
         setToolbarTitle("Collections");
-
-        SearchField = findViewById(R.id.SearchField);
-        txtSearch = (EditText) findViewById(R.id.txtSearch);
         btnAddNewCategory = (Button) findViewById(R.id.btnAddNewCategory);
         collectionsRecView = findViewById(R.id.collectionsRecView);
 
@@ -47,29 +39,6 @@ public class CollectionsActivity extends DrawerActivity {
         collectionsRecView.setAdapter(adapter);
         collectionsRecView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setCategories(DbUtils.getCategories(this));
-
-        // Adding functionality to the clear search button
-        SearchField.setEndIconVisible(false);               // Makes clear text end icon visibility to gone
-        SearchField.setEndIconOnClickListener(v -> {
-            txtSearch.setText("");
-        });
-
-        txtSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                setSearchQuery(s.toString());
-            }
-        });
 
         btnAddNewCategory.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -86,7 +55,6 @@ public class CollectionsActivity extends DrawerActivity {
                     Toast.makeText(this, "Category name cannot be empty", Toast.LENGTH_SHORT).show();
                 } else {
                     adapter.addCategory(input);
-                    setSearchQuery("");
                 }
                 //TODO: test if category already exists.
             });
@@ -106,15 +74,5 @@ public class CollectionsActivity extends DrawerActivity {
         int targetPosition = event.getTargetPosition();
         adapter.updateCategory(targetPosition);
     }
-
-    public void setSearchQuery(String query) {
-        SearchField.setEndIconVisible(query.length() != 0); // End icon only visible when user has entered something
-        updateResults(query);
-    }
-
-    private void updateResults(String search) {
-        // TODO: Make this update the the RecyclerView Adapter
-    }
-
 
 }
