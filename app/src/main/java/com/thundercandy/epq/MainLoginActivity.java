@@ -1,23 +1,9 @@
 package com.thundercandy.epq;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -30,7 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
-public class MainLoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainLoginActivity extends AppCompatActivity {
 
     private LinearLayout btnGoogleSignUp;
     private Button btnContinueAsGuest;
@@ -48,8 +34,16 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
         btnGoogleSignUp = findViewById(R.id.btnGoogleSignUp);
         btnContinueAsGuest = findViewById(R.id.btnContinueAsGuest);
 
-        btnGoogleSignUp.setOnClickListener(this);
-        btnContinueAsGuest.setOnClickListener(this);
+        btnGoogleSignUp.setOnClickListener(v -> {
+            GoogleSignIn();
+            Toast.makeText(MainLoginActivity.this, "Google sign up clicked", Toast.LENGTH_SHORT).show();
+        });
+
+        btnContinueAsGuest.setOnClickListener(v -> {
+            User.setGuestUser();
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+        });
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -81,22 +75,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
             User.imageUri = account.getPhotoUrl();
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.btnGoogleSignUp:
-                GoogleSignIn();
-                Toast.makeText(MainLoginActivity.this, "Google sign up clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btnContinueAsGuest:
-                User.setGuestUser();
-                intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-                break;
         }
     }
 
