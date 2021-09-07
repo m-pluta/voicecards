@@ -3,7 +3,6 @@ package com.thundercandy.epq;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -14,9 +13,10 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +32,7 @@ import com.google.android.gms.tasks.Task;
 
 public class MainLoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button btnGoogleSignUp;
-    private Button btnSignUp;
+    private LinearLayout btnGoogleSignUp;
     private Button btnContinueAsGuest;
 
     private GoogleSignInClient googleSignInClient;
@@ -47,11 +46,9 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
         Utils.removeBottomNavigation(this);
 
         btnGoogleSignUp = findViewById(R.id.btnGoogleSignUp);
-        btnSignUp = findViewById(R.id.btnSignUp);
         btnContinueAsGuest = findViewById(R.id.btnContinueAsGuest);
 
         btnGoogleSignUp.setOnClickListener(this);
-        btnSignUp.setOnClickListener(this);
         btnContinueAsGuest.setOnClickListener(this);
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -62,9 +59,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
 
         // Build a GoogleSignInClient with the options specified by gso.
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // Makes the log in text clickable
-        setLogInTextClickable();
     }
 
     @Override
@@ -90,37 +84,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private void setLogInTextClickable() {
-        SpannableStringBuilder builder = new SpannableStringBuilder();
-        SpannableString ss = new SpannableString(getString(R.string.already_a_user_log_in));
-
-        ClickableSpan clickableSpan = new ClickableSpan() {
-            @Override
-            public void onClick(View textView) {
-                startActivity(new Intent(MainLoginActivity.this, LoginActivity.class));
-            }
-
-            @Override
-            public void updateDrawState(TextPaint ds) {
-                super.updateDrawState(ds);
-                ds.setUnderlineText(false);
-            }
-        };
-        StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
-        ForegroundColorSpan fcs = new ForegroundColorSpan(getResources().getColor(R.color.defaultRed_100));
-
-        ss.setSpan(clickableSpan, 16, 22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(boldSpan, 16, 22, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(fcs, 16, 22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        builder.append(ss);
-
-        TextView textView = (TextView) findViewById(R.id.btnHaveAccount_LogIn);
-        textView.setText(ss);
-        textView.setMovementMethod(LinkMovementMethod.getInstance());
-        textView.setHighlightColor(Color.TRANSPARENT);
-    }
-
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -128,9 +91,6 @@ public class MainLoginActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnGoogleSignUp:
                 GoogleSignIn();
                 Toast.makeText(MainLoginActivity.this, "Google sign up clicked", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btnSignUp:
-                Toast.makeText(MainLoginActivity.this, "Sign up button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnContinueAsGuest:
                 User.setGuestUser();

@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v23/ic_google.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v24/default_button_normal_green.xml" value="0.3943589743589744" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v24/default_button_normal_red.xml" value="0.3943589743589744" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v24/default_button_small_blue.xml" value="0.3148148148148148" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable-v24/default_button_small_red.xml" value="0.3943589743589744" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/bg_large.xml" value="0.3943589743589744" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/drawable/bg_normal.xml" value="0.3943589743589744" />
@@ -49,7 +50,7 @@
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_friends.xml" value="0.271875" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_home.xml" value="0.4041666666666667" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_login.xml" value="0.35648148148148145" />
-        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_main_login.xml" value="0.39794871794871794" />
+        <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_main_login.xml" value="0.2722222222222222" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_new_card.xml" value="0.30974358974358973" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_pomodoro.xml" value="0.2638888888888889" />
         <entry key="..\:/Users/Michal/AndroidStudioProjects/EPQ/app/src/main/res/layout/activity_session.xml" value="0.264" />
