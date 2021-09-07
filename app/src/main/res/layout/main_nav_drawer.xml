@@ -16,6 +16,7 @@
             android:layout_width="54dp"
             android:layout_height="54dp"
             android:layout_gravity="start"
+            android:background="?android:attr/actionBarItemBackground"
             android:padding="14dp"
             android:src="@drawable/ic_close" />
 

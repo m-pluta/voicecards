@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/back_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:id="@+id/back_toolbar">
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="54dp"
         android:layout_height="54dp"
-        android:background="?attr/selectableItemBackground"
+        android:background="?android:attr/actionBarItemBackground"
         android:clickable="true"
         android:focusable="true"
         android:padding="15dp"
