@@ -65,15 +65,10 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
 
             card_item = itemView.findViewById(R.id.card_item);                 // Initializes all the GUI components
             txtCardName = itemView.findViewById(R.id.txtCardName);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
             btnRemove = itemView.findViewById(R.id.btnRemove);
 
             card_item.setOnClickListener(v -> {
                 Toast.makeText(mContext, cards.get(getAdapterPosition()).toString(), Toast.LENGTH_SHORT).show();
-            });
-
-            btnEdit.setOnClickListener(v -> {
-                Toast.makeText(mContext, "Edit button clicked", Toast.LENGTH_SHORT).show();
             });
 
             btnRemove.setOnClickListener(v -> {
