@@ -58,7 +58,7 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
 
         private LinearLayout card_item;
         private TextView txtCardName;
-        private ImageView btnEdit, btnRemove;
+        private ImageView btnRemove;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
