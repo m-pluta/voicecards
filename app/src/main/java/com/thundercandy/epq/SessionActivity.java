@@ -16,7 +16,6 @@ import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.data.SessionCard;
 import com.thundercandy.epq.database.DbUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -74,17 +73,7 @@ public class SessionActivity extends AppCompatActivity {
         });
 
         btnBack.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(SessionActivity.this);
-            builder.setMessage("Are you sure you want to go back?\nThis will end your current session.");
-            builder.setPositiveButton("Go Back", (dialog, which) -> {
-                manager.end();
-                onBackPressed();
-            });
-
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
-
-            builder.setCancelable(true);
-            builder.show();
+            onBackPressed();
         });
 
         manager.setOnEventListener(new SessionManager.onEventListener() {
@@ -102,6 +91,7 @@ public class SessionActivity extends AppCompatActivity {
 
                 Gson gson = new Gson();
                 Intent intent = new Intent(SessionActivity.this, SessionResultsActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("SessionCards", gson.toJson(cards));
                 startActivity(intent);
             }
@@ -145,8 +135,23 @@ public class SessionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+        boolean goBack = false;
+        if (!manager.isEnded()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SessionActivity.this);
+            builder.setMessage("Are you sure you want to go back?\nThis will end your current session.");
+            builder.setPositiveButton("Go Back", (dialog, which) -> {
+                manager.end();
+            });
+
+            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+            builder.setCancelable(true);
+            builder.show();
+        }
+        if (manager.isEnded()) {
+            super.onBackPressed();
+            overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+        }
     }
 
     @Override
