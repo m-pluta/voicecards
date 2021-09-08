@@ -11,10 +11,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.thundercandy.epq.data.Card;
 import com.thundercandy.epq.data.SessionCard;
 import com.thundercandy.epq.database.DbUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -100,7 +102,11 @@ public class SessionActivity extends AppCompatActivity {
                 Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
                 btnKnown.setEnabled(false);
                 btnUnknown.setEnabled(false);
-                //TODO: Send user to results screen using the cards arraylist result
+
+                Gson gson = new Gson();
+                Intent intent = new Intent(SessionActivity.this, SessionResultsActivity.class);
+                intent.putExtra("SessionCards", gson.toJson(cards));
+                startActivity(intent);
             }
 
             @Override
