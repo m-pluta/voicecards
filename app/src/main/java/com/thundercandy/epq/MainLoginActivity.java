@@ -40,6 +40,7 @@ public class MainLoginActivity extends AppCompatActivity {
         });
 
         btnContinueAsGuest.setOnClickListener(v -> {
+            User.resetUser();
             User.setGuestUser();
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
@@ -70,6 +71,7 @@ public class MainLoginActivity extends AppCompatActivity {
 
     private void proceedAsGoogleUser(@Nullable GoogleSignInAccount account) {
         if (account != null) {
+            User.resetUser();
             User.setGoogleUser();
             User.DisplayName = account.getDisplayName();
             User.imageUri = account.getPhotoUrl();
