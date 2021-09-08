@@ -64,8 +64,6 @@ public class NewCardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_card);
 
-        Utils.removeBottomNavigation(this);
-
         updatePreferenceValues();
 
         checkVoiceCommandPermission();
@@ -85,22 +83,7 @@ public class NewCardActivity extends AppCompatActivity {
         txtCategoryName.setText(DbUtils.getCategoryNameByID(this, targetCategoryID));
 
         btnBack.setOnClickListener(v -> {
-            if (!txtTerm.getText().toString().trim().isEmpty() || !txtDefinition.getText().toString().trim().isEmpty()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(NewCardActivity.this);
-
-                builder.setTitle("Are you sure?");
-                builder.setMessage("Anything you have entered will be lost.");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    onBackPressed();
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    dialog.cancel();
-                });
-                builder.setCancelable(true);
-                builder.show();
-            } else {
-                onBackPressed();
-            }
+            onBackPressed();
         });
 
         btnFinish.setOnClickListener(v -> {
@@ -302,8 +285,24 @@ public class NewCardActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+
+        if (!txtTerm.getText().toString().trim().isEmpty() || !txtDefinition.getText().toString().trim().isEmpty()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(NewCardActivity.this);
+
+            builder.setTitle("Are you sure?");
+            builder.setMessage("Anything you have entered will be lost.");
+            builder.setPositiveButton("Yes", (dialog, which) -> {
+                onBackPressed();
+            });
+            builder.setNegativeButton("No", (dialog, which) -> {
+                dialog.cancel();
+            });
+            builder.setCancelable(true);
+            builder.show();
+        } else {
+            super.onBackPressed();
+            overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+        }
     }
 
     @Override
@@ -342,7 +341,7 @@ public class NewCardActivity extends AppCompatActivity {
         builder.setNegativeButton("Deny", (dialog, which) -> {
         });
         builder.setCancelable(true);
-        builder.create().show();
+        builder.create();
     }
 
     private void requestMicPermission(ActivityResultLauncher<String> launcher) {
@@ -359,7 +358,6 @@ public class NewCardActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Utils.removeBottomNavigation(this);
         super.onResume();
     }
 }

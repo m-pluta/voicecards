@@ -28,7 +28,6 @@ public class SessionActivity extends AppCompatActivity {
     TextView txtTerm, txtDefinition;
     ImageView btnReadTerm;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +39,6 @@ public class SessionActivity extends AppCompatActivity {
         txtTerm = findViewById(R.id.txtTerm);
         txtDefinition = findViewById(R.id.txtDefinition);
         btnReadTerm = findViewById(R.id.btnReadTerm);
-
-        Utils.removeBottomNavigation(this);
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
@@ -160,7 +157,6 @@ public class SessionActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Utils.removeBottomNavigation(this);
         super.onResume();
     }
 }

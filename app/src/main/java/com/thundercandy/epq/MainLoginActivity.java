@@ -29,8 +29,6 @@ public class MainLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_login);
 
-        Utils.removeBottomNavigation(this);
-
         btnGoogleSignUp = findViewById(R.id.btnGoogleSignUp);
         btnContinueAsGuest = findViewById(R.id.btnContinueAsGuest);
 
@@ -117,7 +115,6 @@ public class MainLoginActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Utils.removeBottomNavigation(this);
         super.onResume();
     }
 }

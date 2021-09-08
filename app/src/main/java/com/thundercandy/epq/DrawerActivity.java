@@ -39,12 +39,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         // Makes the transition between DrawerActivities smooth
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
-        // Making the app full screen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // Removing the android system bottom navigation bar    //TODO: Find a better way to do this - maybe place this in the onCreate method instead
-        Utils.removeBottomNavigation(this);
-
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
         ImageView closeDrawer = (ImageView) findViewById(R.id.closeDrawer);
@@ -236,7 +230,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 
     @Override
     protected void onResume() {
-        Utils.removeBottomNavigation(this);
         super.onResume();
     }
 }

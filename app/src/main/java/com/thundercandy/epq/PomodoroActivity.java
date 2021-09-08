@@ -76,12 +76,9 @@ public class PomodoroActivity extends DrawerActivity {
             builder.setMessage("Are you sure you want to stop this pomodoro?");
             builder.setPositiveButton("I'm sure", (dialog, which) -> {
                 stopPomodoro();
-                Utils.removeBottomNavigation(this);
-
             });
             builder.setNegativeButton("Cancel", (dialog, which) -> {
                 dialog.cancel();
-                Utils.removeBottomNavigation(this);
             });
             builder.setCancelable(true);
             builder.show();
@@ -97,11 +94,9 @@ public class PomodoroActivity extends DrawerActivity {
             builder.setMessage("Are you sure you want to stop this break?");
             builder.setPositiveButton("I'm sure", (dialog, which) -> {
                 stopBreak();
-                Utils.removeBottomNavigation(this);
             });
             builder.setNegativeButton("Cancel", (dialog, which) -> {
                 dialog.cancel();
-                Utils.removeBottomNavigation(this);
             });
             builder.setCancelable(true);
             builder.show();
