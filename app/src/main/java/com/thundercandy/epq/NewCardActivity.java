@@ -292,7 +292,8 @@ public class NewCardActivity extends AppCompatActivity {
             builder.setTitle("Are you sure?");
             builder.setMessage("Anything you have entered will be lost.");
             builder.setPositiveButton("Yes", (dialog, which) -> {
-                onBackPressed();
+                super.onBackPressed();
+                overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
             });
             builder.setNegativeButton("No", (dialog, which) -> {
                 dialog.cancel();

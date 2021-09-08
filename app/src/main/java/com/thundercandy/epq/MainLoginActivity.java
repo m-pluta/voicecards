@@ -40,8 +40,7 @@ public class MainLoginActivity extends AppCompatActivity {
         btnContinueAsGuest.setOnClickListener(v -> {
             User.resetUser();
             User.setGuestUser();
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+            goToHome();
         });
 
         // Configure sign-in to request the user's ID, email address, and basic
@@ -73,8 +72,7 @@ public class MainLoginActivity extends AppCompatActivity {
             User.setGoogleUser();
             User.DisplayName = account.getDisplayName();
             User.imageUri = account.getPhotoUrl();
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+            goToHome();
         }
     }
 
@@ -105,6 +103,14 @@ public class MainLoginActivity extends AppCompatActivity {
         } catch (ApiException e) {
             proceedAsGoogleUser(null);
         }
+    }
+
+    private void goToHome() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+
+        // Makes the transition between DrawerActivities smooth
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override

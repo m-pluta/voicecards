@@ -36,9 +36,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         getLayoutInflater().inflate(layoutResID, actContent, true);
         super.setContentView(fullLayout);
 
-        // Makes the transition between DrawerActivities smooth
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
         // Changing color of closeDrawer button in the nav_drawer to red
         // TODO: Do this in the .xml instead of programmatically
         ImageView closeDrawer = (ImageView) findViewById(R.id.closeDrawer);
@@ -156,6 +153,9 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             origin.startActivity(intent);
+
+            // Makes the transition between DrawerActivities smooth
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
     }
 

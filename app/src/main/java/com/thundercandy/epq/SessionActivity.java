@@ -94,6 +94,7 @@ public class SessionActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("SessionCards", gson.toJson(cards));
                 startActivity(intent);
+                overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
             }
 
             @Override
@@ -135,22 +136,18 @@ public class SessionActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        boolean goBack = false;
         if (!manager.isEnded()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(SessionActivity.this);
             builder.setMessage("Are you sure you want to go back?\nThis will end your current session.");
             builder.setPositiveButton("Go Back", (dialog, which) -> {
-                manager.end();
+                super.onBackPressed();
+                overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
             });
 
             builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
             builder.setCancelable(true);
             builder.show();
-        }
-        if (manager.isEnded()) {
-            super.onBackPressed();
-            overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
         }
     }
 
