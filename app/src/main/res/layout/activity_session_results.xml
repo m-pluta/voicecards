@@ -34,7 +34,7 @@
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recViewResultCards"
+            android:id="@+id/recViewSessionResults"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginHorizontal="20dp" />
@@ -53,9 +53,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:padding="10dp"
                     android:text="Cards flicked through:"
                     android:textSize="15sp" />
@@ -87,15 +86,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:padding="10dp"
                     android:text="Percentage of cards learnt:"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtPCardsLearnt"
+                    android:id="@+id/txtCardsLearnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
@@ -121,15 +119,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="225dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:padding="10dp"
                     android:text="Average success rate:"
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/txtPSuccessRate"
+                    android:id="@+id/txtSuccessRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
