@@ -83,7 +83,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         findViewById(R.id.closeDrawer).setOnClickListener(this);
         findViewById(R.id.btnHome).setOnClickListener(this);
         findViewById(R.id.btnCollections).setOnClickListener(this);
-        findViewById(R.id.btnStatistics).setOnClickListener(this);
         findViewById(R.id.btnPomodoro).setOnClickListener(this);
         findViewById(R.id.btnSettings).setOnClickListener(this);
     }
@@ -107,9 +106,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
                 break;
             case R.id.btnCollections:       // The Collections Navigation Item in the navigation view
                 redirectActivity(this, CollectionsActivity.class);
-                break;
-            case R.id.btnStatistics:        // The Statistics Navigation Item in the navigation view
-                redirectActivity(this, StatisticsActivity.class);
                 break;
             case R.id.btnPomodoro:          // The Pomodoro Navigation Item in the navigation view
                 redirectActivity(this, PomodoroActivity.class);
@@ -175,8 +171,6 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             selectNavItem(R.id.navView_home_selected, R.id.navView_home_Icon, R.id.navView_home_SelectedIcon);
         } else if (context.getClass().equals(CollectionsActivity.class)) {
             selectNavItem(R.id.navView_collections_selected, R.id.navView_collections_Icon, R.id.navView_collections_SelectedIcon);
-        } else if (context.getClass().equals(StatisticsActivity.class)) {
-            selectNavItem(R.id.navView_statistics_selected, R.id.navView_statistics_Icon, R.id.navView_statistics_SelectedIcon);
         } else if (context.getClass().equals(PomodoroActivity.class)) {
             selectNavItem(R.id.navView_pomodoro_selected, R.id.navView_pomodoro_Icon, R.id.navView_pomodoro_SelectedIcon);
         }
