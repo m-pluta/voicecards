@@ -34,6 +34,12 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="15dp"
-        android:src="@drawable/ic_more" />
+        android:src="@drawable/ic_more"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/buffer"
+        android:layout_width="54dp"
+        android:layout_height="54dp" />
 
 </LinearLayout>

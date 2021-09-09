@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public abstract class DrawerActivity extends AppCompatActivity implements View.OnClickListener {
     protected DrawerLayout fullLayout;
@@ -51,6 +53,18 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         addListeners();
 
         updateDrawerWithUser();
+
+        checkIfShouldShowMenu();
+    }
+
+    private void checkIfShouldShowMenu() {
+        if (User.LOGIN_TYPE == User.LOGIN_GOOGLE) {
+            findViewById(R.id.btnMore).setVisibility(View.VISIBLE);
+            findViewById(R.id.buffer).setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.btnMore).setVisibility(View.GONE);
+            findViewById(R.id.buffer).setVisibility(View.VISIBLE);
+        }
     }
 
     private void updateDrawerWithUser() {
@@ -63,7 +77,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             txtFullName.setText(User.DEFAULT_DISPLAY_NAME);
         }
 
-        ImageView imgProfile = findViewById(R.id.imgProfile);
+        CircleImageView imgProfile = findViewById(R.id.imgProfile);
         if (User.imageUri != null) {
             System.out.println(User.imageUri.toString());
             Glide.with(this)
@@ -94,9 +108,18 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
                 openDrawer(fullLayout);
                 break;
             case R.id.btnMore:              // The three dots in the toolbar
-                //TODO: Give this functionality
-                RevokeGoogleAccess(); //TODO: REMOVE THIS LATER ON
-                Toast.makeText(DrawerActivity.this, "Three dots clicked", Toast.LENGTH_SHORT).show();
+                PopupMenu popupMenu = new PopupMenu(this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.action_bar_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    switch (item.getItemId()) {
+                        case R.id.log_out:
+                            revokeGoogleAccess();
+                            return true;
+                        default:
+                            return false;
+                    }
+                });
+                popupMenu.show();
                 break;
             case R.id.closeDrawer:          // The X Button in the navigation drawer
                 closeDrawer(fullLayout);
@@ -116,7 +139,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         }
     }
 
-    private void RevokeGoogleAccess() {
+    private void revokeGoogleAccess() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -140,7 +163,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
         }
     }
 
-//Commented is the code for making the transition between activities fast
+    //Commented is the code for making the transition between activities fast
 //    public static void redirectActivity(Activity origin, Class<?> destination) {
     public void redirectActivity(Activity origin, Class<?> destination) {
         if (!origin.getClass().equals(destination)) {               // Checks if the user wants to go to where they already are
