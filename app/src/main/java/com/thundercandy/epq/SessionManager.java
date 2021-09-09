@@ -11,7 +11,8 @@ import java.util.Collections;
 public class SessionManager {
 
 
-    public static double learntThreshold = 0.9;
+    public static double learntThresholdPercent = 0.9;
+    public static double learntThresholdInARow = 3;
     public static double seenThreshold = 3;
 
     onEventListener listener;
@@ -25,7 +26,8 @@ public class SessionManager {
     public SessionManager(ArrayList<SessionCard> cards, Context context) {
         this.listener = null;
         this.cards = cards;
-        learntThreshold = Utils.getLearntThresholdPercent(context);
+        learntThresholdPercent = Utils.getLearntThresholdPercent(context);
+        learntThresholdInARow = Utils.getLearntThresholdInARow(context);
         seenThreshold = Utils.getSeenThreshold(context);
     }
 
