@@ -25,7 +25,6 @@ public class SessionActivity extends AppCompatActivity {
     SessionManager manager;
     Button btnEndSession, btnKnown, btnUnknown;
     TextView txtTerm, txtDefinition;
-    ImageView btnReadTerm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,6 @@ public class SessionActivity extends AppCompatActivity {
         btnUnknown = findViewById(R.id.btnUnknown);
         txtTerm = findViewById(R.id.txtTerm);
         txtDefinition = findViewById(R.id.txtDefinition);
-        btnReadTerm = findViewById(R.id.btnReadTerm);
 
         overridePendingTransition(R.anim.forward_slide_in, R.anim.forward_slide_out);
 
@@ -114,7 +112,6 @@ public class SessionActivity extends AppCompatActivity {
         });
 
         manager.start();
-
 
     }
 

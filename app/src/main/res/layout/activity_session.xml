@@ -33,26 +33,18 @@
             android:id="@+id/txtTerm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="3"
             android:layout_marginTop="30dp"
+            android:maxLines="3"
             android:text="Example Word"
             android:textAlignment="center"
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btnReadTerm"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/ic_speaker" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="60dp"
             android:layout_weight="1"
-            android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -86,6 +78,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/default_button_normal_green"
                 android:enabled="false"
+                android:stateListAnimator="@null"
                 android:text="Knew it!"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
@@ -105,6 +98,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/default_button_normal_red"
                 android:enabled="false"
+                android:stateListAnimator="@null"
                 android:text="Need more practice"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
