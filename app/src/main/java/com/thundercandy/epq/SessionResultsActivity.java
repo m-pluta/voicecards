@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -91,11 +92,20 @@ public class SessionResultsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
-        super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(SessionResultsActivity.this);
+
+        builder.setTitle("Are you sure?");
+        builder.setMessage("This will take you back to the home screen");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.back_slide_in, R.anim.back_slide_out);
+            super.onBackPressed();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.cancel();
+        });
+        builder.setCancelable(true);
+        builder.show();
     }
-
-
 }

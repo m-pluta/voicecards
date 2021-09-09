@@ -7,24 +7,14 @@
     <string name="full_name">Full Name</string>
     <string name="home">Home</string>
     <string name="collections">Collections</string>
-    <string name="statistics">Statistics</string>
     <string name="pomodoro">Pomodoro</string>
-    <string name="friends">Friends</string>
     <string name="settings">Settings</string>
-    <string name="title_activity_settings">SettingsActivity</string>
 
 
     <!--Login Activities-->
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="log_in">Log In</string>
     <string name="continue_as_guest">Continue As Guest</string>
     <string name="or">or</string>
-    <string name="policy">I agree to the Terms of Services and Privacy Policy.</string>
-    <string name="no_account_signup">Don\'t have an account? Sign up</string>
-    <string name="remember_me">Remember me</string>
-    <string name="developed_by">Developed by Michal Pluta 2021</string>
-    <string name="already_a_user_log_in">Already a user? Log In</string>
+    <string name="developed_by">Developed by Michal Pluta</string>
 
 
     <!--NewCardActivity-->
