@@ -3,11 +3,12 @@
     android:id="@+id/session_results_card"
     android:layout_width="match_parent"
     android:layout_height="50dp"
+    android:background="@color/card_item_bg"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="49dp"
+        android:layout_height="50dp"
         android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical">
 
@@ -23,10 +24,11 @@
 
         <TextView
             android:id="@+id/txtKnownCount"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:background="?attr/actionBarItemBackground"
-            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
             android:text="00"
             android:textSize="@dimen/card_item_font_size"
             android:textStyle="bold"
@@ -34,10 +36,11 @@
 
         <TextView
             android:id="@+id/txtUnknownCount"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:background="?attr/actionBarItemBackground"
-            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
             android:text="00"
             android:textSize="@dimen/card_item_font_size"
             android:textStyle="bold"
@@ -45,10 +48,11 @@
 
         <TextView
             android:id="@+id/txtTotalCount"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:background="?attr/actionBarItemBackground"
-            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
             android:text="000"
             android:textSize="@dimen/card_item_font_size"
             android:textStyle="bold"
@@ -56,11 +60,12 @@
 
         <TextView
             android:id="@+id/txtCardPercent"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:background="?attr/actionBarItemBackground"
-            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
             android:text="100%"
             android:textSize="@dimen/card_item_font_size"
             android:textStyle="bold"
@@ -68,11 +73,5 @@
 
 
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/spacer_height"
-        android:layout_marginHorizontal="@dimen/card_item_spacer_margins"
-        android:background="@color/spacer_color" />
 
 </LinearLayout>

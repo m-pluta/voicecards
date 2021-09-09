@@ -3,10 +3,12 @@ package com.thundercandy.epq;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
@@ -47,6 +49,12 @@ public class SessionResultsActivity extends AppCompatActivity {
         Intent receivedIntent = getIntent();
         ArrayList<SessionCard> cards = gson.fromJson(receivedIntent.getStringExtra("SessionCards"), type);
 
+        SessionResultsRecViewAdapter adapter = new SessionResultsRecViewAdapter(this);
+        recViewSessionResults.setAdapter(adapter);
+        recViewSessionResults.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setCards(cards);
+        adapter.setLearntThreshold(Utils.getLearntThreshold(this));
+
         setSessionStats(cards);
     }
 
@@ -67,6 +75,12 @@ public class SessionResultsActivity extends AppCompatActivity {
             stats[0] = String.valueOf(total_flicked);
             stats[1] = String.valueOf(Math.round((double) total_learnt / cards.size() * 100));
             stats[2] = String.valueOf(Math.round((double) total_known / total_flicked * 100));
+
+            if (total_learnt == cards.size()) {
+                txtSuccess.setVisibility(View.VISIBLE);
+            } else {
+                txtFail.setVisibility(View.GONE);
+            }
         }
         txtCardsFlickedThrough.setText(stats[0]);
         txtCardsLearnt.setText(stats[1]);

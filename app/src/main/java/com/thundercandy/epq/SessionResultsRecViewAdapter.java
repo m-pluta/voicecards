@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.thundercandy.epq.data.SessionCard;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class SessionResultsRecViewAdapter extends RecyclerView.Adapter<SessionResultsRecViewAdapter.ViewHolder> {
 
     private ArrayList<SessionCard> cards = new ArrayList<>();
     private Context mContext;
+    private double learntThreshold;
 
     public SessionResultsRecViewAdapter(Context mContext) {
         this.mContext = mContext;
@@ -33,15 +35,35 @@ public class SessionResultsRecViewAdapter extends RecyclerView.Adapter<SessionRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtCardName.setText(cards.get(position).getTerm());
-        holder.txtKnownCount.setText(cards.get(position).getTimesKnown());
-        holder.txtUnknownCount.setText(cards.get(position).getTimesUnknown());
-        holder.txtTotalCount.setText(cards.get(position).getTimesSeen());
-
         int timesKnown = cards.get(position).getTimesKnown();
+        int timesUnknown = cards.get(position).getTimesUnknown();
         int timesSeen = cards.get(position).getTimesSeen();
-        double percent = Math.round((double) timesKnown / timesSeen * 100);
-        holder.txtCardPercent.setText(String.valueOf(percent));
+
+        if (timesSeen > 0) {
+            holder.txtCardName.setText(cards.get(position).getTerm());
+            holder.txtKnownCount.setText(String.valueOf(timesKnown));
+            holder.txtKnownCount.setTextColor(mContext.getResources().getColor(R.color.results_success_color));
+            holder.txtUnknownCount.setText(String.valueOf(timesUnknown));
+            holder.txtUnknownCount.setTextColor(mContext.getResources().getColor(R.color.results_fail_color));
+            holder.txtTotalCount.setText(String.valueOf(timesSeen));
+
+            double percent = Math.round(((double) timesKnown / timesSeen) * 100);
+            DecimalFormat dFormat = new DecimalFormat();
+            dFormat.setMaximumFractionDigits(0);
+            holder.txtCardPercent.setText(dFormat.format(percent) + "%");
+
+            if (percent >= learntThreshold) {
+                holder.txtCardPercent.setTextColor(mContext.getResources().getColor(R.color.results_success_color));
+            } else {
+                holder.txtCardPercent.setTextColor(mContext.getResources().getColor(R.color.results_fail_color));
+            }
+        } else {
+            holder.txtCardName.setText("N/A");
+            holder.txtKnownCount.setText("N/A");
+            holder.txtUnknownCount.setText("N/A");
+            holder.txtTotalCount.setText("N/A");
+
+        }
     }
 
     @Override
@@ -55,6 +77,10 @@ public class SessionResultsRecViewAdapter extends RecyclerView.Adapter<SessionRe
         }
         this.cards = cards;
         notifyDataSetChanged();
+    }
+
+    public void setLearntThreshold(double learntThreshold) {
+        this.learntThreshold = learntThreshold;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

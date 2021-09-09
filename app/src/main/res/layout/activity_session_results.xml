@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="40dp"
             android:text="Success"
+            android:textColor="@color/results_success_color"
             android:textSize="26sp" />
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="40dp"
             android:text="Fail"
+            android:textColor="@color/results_fail_color"
             android:textSize="26sp"
             android:visibility="gone" />
 
@@ -61,7 +63,7 @@
 
                 <TextView
                     android:id="@+id/txtCardsFlickedThrough"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
                     android:paddingLeft="10dp"
@@ -94,7 +96,7 @@
 
                 <TextView
                     android:id="@+id/txtCardsLearnt"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
                     android:paddingLeft="10dp"
@@ -127,7 +129,7 @@
 
                 <TextView
                     android:id="@+id/txtSuccessRate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="10dp"
                     android:paddingLeft="10dp"
