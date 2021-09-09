@@ -1,11 +1,7 @@
 package com.thundercandy.epq;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import androidx.preference.PreferenceManager;
 
@@ -39,14 +35,22 @@ public class Utils {
         return new String(chars, 0, chars.length);
     }
 
-    public static double getLearntThreshold(Context context) {
+    public static double getLearntThresholdPercent(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String key = context.getResources().getString(R.string.KEY_learntThreshold);
-        int defValue = context.getResources().getInteger(R.integer.default_learntThreshold);
+        String key = context.getResources().getString(R.string.KEY_learntThresholdPercent);
+        int defValue = context.getResources().getInteger(R.integer.default_learntThresholdPercent);
 
         int temp = sharedPreferences.getInt(key, defValue);
         return (double) temp / 100;
 
+    }
+
+    public static int getLearntThresholdInARow(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String key = context.getResources().getString(R.string.KEY_learntThresholdInARow);
+        int defValue = context.getResources().getInteger(R.integer.default_learntThresholdInARow);
+
+        return sharedPreferences.getInt(key, defValue);
     }
 
     public static double getSeenThreshold(Context context) {

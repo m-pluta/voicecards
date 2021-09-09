@@ -53,7 +53,7 @@ public class SessionResultsActivity extends AppCompatActivity {
         recViewSessionResults.setAdapter(adapter);
         recViewSessionResults.setLayoutManager(new LinearLayoutManager(this));
         adapter.setCards(cards);
-        adapter.setLearntThreshold(Utils.getLearntThreshold(this));
+        adapter.setLearntThreshold(Utils.getLearntThresholdPercent(this));
 
         setSessionStats(cards);
     }

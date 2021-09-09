@@ -38,10 +38,13 @@
     <string name="Category_Speech_Recognition">Speech Recognition</string>
     <string name="Category_Pomodoro_Options">Pomodoro Options</string>
 
-    <!--Preference - learntThreshold-->
-    <string name="KEY_learntThreshold">learntThreshold</string>
-    <string name="learntThreshold_title">Cards are learnt after you know them __% of the time</string>
-    <string name="learntThreshold_summary">Larger value = You need to click</string>
+    <!--Preference - learntThresholdPercent-->
+    <string name="KEY_learntThresholdPercent">learntThresholdPercent</string>
+    <string name="learntThresholdPercent_title">Cards are learnt after you know them __% of the time</string>
+
+    <!--Preference - learntThresholdInARow-->
+    <string name="KEY_learntThresholdInARow">learntThresholdInARow</string>
+    <string name="learntThresholdInARow_title">Cards are learnt after you know them __ times in a row</string>
 
     <!--Preference - seenThreshold-->
     <string name="KEY_seenThreshold">seenThreshold</string>

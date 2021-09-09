@@ -25,7 +25,7 @@ public class SessionManager {
     public SessionManager(ArrayList<SessionCard> cards, Context context) {
         this.listener = null;
         this.cards = cards;
-        learntThreshold = Utils.getLearntThreshold(context);
+        learntThreshold = Utils.getLearntThresholdPercent(context);
         seenThreshold = Utils.getSeenThreshold(context);
     }
 

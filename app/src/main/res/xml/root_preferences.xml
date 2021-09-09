@@ -4,14 +4,22 @@
     <PreferenceCategory app:title="@string/Category_Session_Options">
 
         <SeekBarPreference
-            android:defaultValue="@integer/default_learntThreshold"
+            android:defaultValue="@integer/default_learntThresholdPercent"
             android:max="95"
-            app:key="@string/KEY_learntThreshold"
+            app:key="@string/KEY_learntThresholdPercent"
             app:min="0"
             app:showSeekBarValue="true"
             app:singleLineTitle="false"
-            app:summary="@string/learntThreshold_summary"
-            app:title="@string/learntThreshold_title" />
+            app:title="@string/learntThresholdPercent_title" />
+
+        <SeekBarPreference
+            android:defaultValue="@integer/default_learntThresholdInARow"
+            android:max="10"
+            app:key="@string/KEY_learntThresholdInARow"
+            app:min="3"
+            app:showSeekBarValue="true"
+            app:singleLineTitle="false"
+            app:title="Cards are learnt after you know them __ times in a row" />
 
         <SeekBarPreference
             android:defaultValue="@integer/default_seenThreshold"
