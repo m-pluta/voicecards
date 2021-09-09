@@ -78,8 +78,10 @@ public class SessionResultsActivity extends AppCompatActivity {
 
             if (total_learnt == cards.size()) {
                 txtSuccess.setVisibility(View.VISIBLE);
-            } else {
                 txtFail.setVisibility(View.GONE);
+            } else {
+                txtFail.setVisibility(View.VISIBLE);
+                txtSuccess.setVisibility(View.GONE);
             }
         }
         txtCardsFlickedThrough.setText(stats[0]);

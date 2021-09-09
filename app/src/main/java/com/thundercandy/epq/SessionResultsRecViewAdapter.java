@@ -47,12 +47,12 @@ public class SessionResultsRecViewAdapter extends RecyclerView.Adapter<SessionRe
             holder.txtUnknownCount.setTextColor(mContext.getResources().getColor(R.color.results_fail_color));
             holder.txtTotalCount.setText(String.valueOf(timesSeen));
 
-            double percent = Math.round(((double) timesKnown / timesSeen) * 100);
+            double percent = Math.round(((double) timesKnown / timesSeen * 100));
             DecimalFormat dFormat = new DecimalFormat();
             dFormat.setMaximumFractionDigits(0);
             holder.txtCardPercent.setText(dFormat.format(percent) + "%");
 
-            if (percent >= learntThreshold) {
+            if (percent >= (learntThreshold * 100)) {
                 holder.txtCardPercent.setTextColor(mContext.getResources().getColor(R.color.results_success_color));
             } else {
                 holder.txtCardPercent.setTextColor(mContext.getResources().getColor(R.color.results_fail_color));

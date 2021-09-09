@@ -35,11 +35,27 @@
             android:textSize="26sp"
             android:visibility="gone" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recViewSessionResults"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginHorizontal="20dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/cards_you_saw_bg"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="5dp"
+                android:text="The cards you saw" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recViewSessionResults"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -55,7 +71,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="225dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Cards flicked through:"
@@ -65,9 +81,10 @@
                     android:id="@+id/txtCardsFlickedThrough"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
                     android:paddingVertical="10dp"
-                    android:paddingLeft="10dp"
                     android:text="100"
+                    android:textAlignment="textEnd"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -88,7 +105,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="225dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Percentage of cards learnt:"
@@ -98,9 +115,10 @@
                     android:id="@+id/txtCardsLearnt"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
                     android:paddingVertical="10dp"
-                    android:paddingLeft="10dp"
                     android:text="100"
+                    android:textAlignment="textEnd"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -121,7 +139,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="225dp"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="Average success rate:"
@@ -131,9 +149,10 @@
                     android:id="@+id/txtSuccessRate"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
                     android:paddingVertical="10dp"
-                    android:paddingLeft="10dp"
                     android:text="100"
+                    android:textAlignment="textEnd"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
