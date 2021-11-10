@@ -139,7 +139,7 @@ public class DbUtils {
         String selection = CategoryEntry._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
         int deletedRows = db.delete(CategoryEntry.TABLE_NAME, selection, selectionArgs);
-        Toast.makeText(context, deletedRows + " categories deleted", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(context, deletedRows + " categories deleted", Toast.LENGTH_SHORT).show();
 
         if (removeChildren) {
             removeCardsWithCatId(context, id);
@@ -153,7 +153,7 @@ public class DbUtils {
         String selection = CardEntry.CATEGORY_ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
         int deletedRows = db.delete(CardEntry.TABLE_NAME, selection, selectionArgs);
-        Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
     }
 
     public static int countCategories(Context context) {
@@ -181,7 +181,7 @@ public class DbUtils {
         String selection = CardEntry._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(id)};
         int deletedRows = db.delete(CardEntry.TABLE_NAME, selection, selectionArgs);
-        Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(context, deletedRows + " cards deleted", Toast.LENGTH_SHORT).show();
     }
 
     public static int addCard(Context context, int categoryID, String term, String definiton, int date) {

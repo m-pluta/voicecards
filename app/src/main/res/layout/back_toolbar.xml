@@ -23,7 +23,6 @@
         android:layout_weight="1"
         android:text=""
         android:textAlignment="center"
-        android:textColor="#636363"
         android:textSize="22sp"
         android:textStyle="bold" />
 

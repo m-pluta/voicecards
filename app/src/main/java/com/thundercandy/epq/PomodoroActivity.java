@@ -42,7 +42,7 @@ public class PomodoroActivity extends DrawerActivity {
     Button btnStartPomodoro, btnStopPomodoro, btnStartBreak, btnStartLongBreak, btnStopBreak;
 
     public static final int strokeWidth = 30;
-    public static final int timerSize = 1000;
+    public static final int timerSize = 800;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

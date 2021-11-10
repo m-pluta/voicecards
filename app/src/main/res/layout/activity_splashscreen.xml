@@ -18,10 +18,10 @@
 
         <ImageView
             android:id="@+id/imgApp"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_gravity="center_horizontal"
-            android:src="@mipmap/app_logo" />
+            android:src="@drawable/ic_voicecardslogo" />
 
         <TextView
             android:id="@+id/app_name_text"

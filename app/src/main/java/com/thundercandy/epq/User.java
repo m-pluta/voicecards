@@ -17,7 +17,7 @@ public class User {
     /**
      * Stores the constant about how the user logged in
      */
-    public static int LOGIN_TYPE = -1;
+    private static int LOGIN_TYPE = -1;
 
     public static String DisplayName = null;
     public static Uri imageUri = null;
@@ -39,5 +39,9 @@ public class User {
 
     public static void setGoogleUser() {
         LOGIN_TYPE = LOGIN_GOOGLE;
+    }
+
+    public static int getLoginType() {
+        return LOGIN_TYPE;
     }
 }

@@ -68,7 +68,8 @@ public class CardRecViewAdapter extends RecyclerView.Adapter<CardRecViewAdapter.
             btnRemove = itemView.findViewById(R.id.btnRemove);
 
             card_item.setOnClickListener(v -> {
-                Toast.makeText(mContext, cards.get(getAdapterPosition()).toString(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(mContext, cards.get(getAdapterPosition()).toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, cards.get(getAdapterPosition()).getDefinition(), Toast.LENGTH_SHORT).show();
             });
 
             btnRemove.setOnClickListener(v -> {

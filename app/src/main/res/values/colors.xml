@@ -30,7 +30,7 @@
     <color name="category_name_bar_bg">#FFE8EAEd</color>
 
     <!--Pomodoro Activity-->
-    <color name="timer_color">#FF80BFE6</color>
+    <color name="timer_color">#429FD9</color>
 
     <!--Session Results-->
     <color name="results_success_color">#66BB6A</color>

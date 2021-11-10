@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,7 +57,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
     }
 
     private void checkIfShouldShowMenu() {
-        if (User.LOGIN_TYPE == User.LOGIN_GOOGLE) {
+        if (User.getLoginType() == User.LOGIN_GOOGLE) {
             findViewById(R.id.btnMore).setVisibility(View.VISIBLE);
             findViewById(R.id.buffer).setVisibility(View.GONE);
         } else {
@@ -88,7 +87,7 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
             imgProfile.setImageResource(User.DEFAULT_PROFILE_PICTURE);
         }
 
-        Toast.makeText(this, "User type: " + User.LOGIN_TYPE, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "User type: " + User.LOGIN_TYPE, Toast.LENGTH_SHORT).show();
     }
 
     private void addListeners() {
@@ -221,22 +220,26 @@ public abstract class DrawerActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onBackPressed() {
-        Class<?> destination;
-        if (this.getClass().equals(HomeActivity.class)) {
-            destination = MainLoginActivity.class;
+        if (this.getClass().equals(HomeActivity.class) && User.getLoginType() == User.LOGIN_GOOGLE) {
+            this.finishAffinity();
         } else {
-            destination = HomeActivity.class;
+            Class<?> destination;
+            if (this.getClass().equals(HomeActivity.class)) {
+                destination = MainLoginActivity.class;
+            } else {
+                destination = HomeActivity.class;
+            }
+
+            Intent intent = new Intent(this, destination);
+
+            // Clears the Back stack so the user can't go back to previous activity
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+            super.onBackPressed();
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
-
-        Intent intent = new Intent(this, destination);
-
-        // Clears the Back stack so the user can't go back to previous activity
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        startActivity(intent);
-
-        super.onBackPressed();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override

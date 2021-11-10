@@ -34,7 +34,7 @@ public class MainLoginActivity extends AppCompatActivity {
 
         btnGoogleSignUp.setOnClickListener(v -> {
             GoogleSignIn();
-            Toast.makeText(MainLoginActivity.this, "Google sign up clicked", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(MainLoginActivity.this, "Google sign up clicked", Toast.LENGTH_SHORT).show();
         });
 
         btnContinueAsGuest.setOnClickListener(v -> {

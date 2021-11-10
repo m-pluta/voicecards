@@ -30,7 +30,6 @@
             android:layout_weight="1"
             android:text=""
             android:textAlignment="center"
-            android:textColor="#636363"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -55,7 +54,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 app:civ_border_color="#000"
-                app:civ_border_width="2dp"
+                app:civ_border_width="1dp"
                 android:layout_gravity="center_horizontal"
                 android:src="@mipmap/ic_launcher_round"/>
 
@@ -67,7 +66,6 @@
                 android:layout_marginBottom="20dp"
                 android:text="@string/full_name"
                 android:textAlignment="center"
-                android:textColor="#636363"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

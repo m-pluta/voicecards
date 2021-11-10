@@ -83,7 +83,7 @@ public class SessionActivity extends AppCompatActivity {
 
             @Override
             public void onEnded(ArrayList<SessionCard> cards) {
-                Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(SessionActivity.this, "Activity Ended", Toast.LENGTH_SHORT).show();
                 btnKnown.setEnabled(false);
                 btnUnknown.setEnabled(false);
 

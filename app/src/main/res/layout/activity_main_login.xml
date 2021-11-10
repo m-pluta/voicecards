@@ -64,7 +64,7 @@
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="18sp"/>
 
         <View
             android:layout_width="60dp"
@@ -95,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:text="@string/or"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -118,7 +118,7 @@
         android:text="@string/continue_as_guest"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/mainGuidelineLeft"
         app:layout_constraintRight_toLeftOf="@id/mainGuidelineRight"
         app:layout_constraintTop_toBottomOf="@+id/separator" />
